@@ -1,5 +1,5 @@
-# CursedChests
-Adds some cursed chests to minecraft.
+# Expanded Storage
+Adds new storage blocks with varying capacities.
 
 ## License
 
