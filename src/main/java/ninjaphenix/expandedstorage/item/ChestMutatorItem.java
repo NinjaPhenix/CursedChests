@@ -39,8 +39,8 @@ public class ChestMutatorItem extends ChestModifierItem
     private static final DirectionProperty FACING = Properties.FACING;
     private static final EnumProperty<CursedChestType> TYPE = AbstractChestBlock.TYPE;
 
-    private static final Text[] modes = new Text[]{ new TranslatableText("tooltip.cursedchests.chest_mutator.merge"),
-            new TranslatableText("tooltip.cursedchests.chest_mutator.unmerge"), new TranslatableText("tooltip.cursedchests.chest_mutator.rotate") };
+    private static final Text[] modes = new Text[]{ new TranslatableText("tooltip.expandedstorage.chest_mutator.merge"),
+            new TranslatableText("tooltip.expandedstorage.chest_mutator.unmerge"), new TranslatableText("tooltip.expandedstorage.chest_mutator.rotate") };
 
     public ChestMutatorItem() { super(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS)); }
 
@@ -118,7 +118,7 @@ public class ChestMutatorItem extends ChestModifierItem
                         return ActionResult.SUCCESS;
                 }
             default:
-                player.sendMessage(new TranslatableText("tooltip.expandedstorage.chest_mutato.invalid"));
+                player.sendMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.invalid"));
                 stack.getOrCreateTag().putByte("mode", (byte) 0);
                 break;
         }
@@ -274,7 +274,7 @@ public class ChestMutatorItem extends ChestModifierItem
             tag.putByte("mode", mode);
             if (!world.isClient)
             {
-                player.addChatMessage(new TranslatableText("tooltip.cursedchests.tool_mode", modes[mode]), true);
+                player.addChatMessage(new TranslatableText("tooltip.expandedstorage.tool_mode", modes[mode]), true);
             }
             return new TypedActionResult<>(ActionResult.SUCCESS, stack);
         }
@@ -317,7 +317,7 @@ public class ChestMutatorItem extends ChestModifierItem
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context)
     {
-        tooltip.add(new TranslatableText("tooltip.cursedchests.tool_mode", modes[getOrSetMode(stack)]).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText("tooltip.expandedstorage.tool_mode", modes[getOrSetMode(stack)]).formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
