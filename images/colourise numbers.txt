@@ -1,0 +1,2 @@
+Values in order of Hue, Saturation, Brightness ( Base is Iron chest texture. )
+GOLD: 0.1424, 1, -0.448
