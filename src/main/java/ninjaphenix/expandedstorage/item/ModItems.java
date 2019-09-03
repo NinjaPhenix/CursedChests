@@ -31,7 +31,7 @@ public class ModItems
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    private static Item registerConversionItem(Pair<Identifier, String> from, Pair<Identifier, String>  to)
+    private static Item registerConversionItem(Pair<Identifier, String> from, Pair<Identifier, String> to)
     {
         Item conversionKit = new ChestConversionItem(from.getLeft(), to.getLeft());
         Registry.register(Registry.ITEM, ExpandedStorage.getId(from.getRight() + "_to_" + to.getRight() + "_conversion_kit"), conversionKit);

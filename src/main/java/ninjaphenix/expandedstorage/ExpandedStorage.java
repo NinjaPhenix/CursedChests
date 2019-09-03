@@ -15,6 +15,8 @@ public class ExpandedStorage implements ModInitializer
 {
     public static final String MOD_ID = "expandedstorage";
 
+    public static Identifier getId(String path) { return new Identifier(MOD_ID, path); }
+
     @Override
     public void onInitialize()
     {
@@ -28,6 +30,4 @@ public class ExpandedStorage implements ModInitializer
             return new ScrollableContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
         }));
     }
-
-    public static Identifier getId(String path) { return new Identifier(MOD_ID, path); }
 }
