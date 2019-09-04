@@ -1,4 +1,4 @@
-package ninjaphenix.expandedstorage;
+package ninjaphenix.expandedstorage.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

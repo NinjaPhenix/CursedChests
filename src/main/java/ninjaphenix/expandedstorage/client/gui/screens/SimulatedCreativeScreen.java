@@ -9,7 +9,7 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import ninjaphenix.expandedstorage.CreativeButtonMover;
+import ninjaphenix.expandedstorage.client.CreativeButtonMover;
 
 public class SimulatedCreativeScreen extends Screen
 {

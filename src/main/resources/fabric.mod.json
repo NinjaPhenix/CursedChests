@@ -19,8 +19,8 @@
       "ninjaphenix.expandedstorage.ExpandedStorage"
     ],
     "client": [
-      "ninjaphenix.expandedstorage.ExpandedStorageClient",
-      "ninjaphenix.expandedstorage.CreativeButtonMover"
+      "ninjaphenix.expandedstorage.client.ExpandedStorageClient",
+      "ninjaphenix.expandedstorage.client.CreativeButtonMover"
     ],
     "rei_plugins_v0": [
       "ninjaphenix.expandedstorage.client.ExpandedStorageREIPlugin"

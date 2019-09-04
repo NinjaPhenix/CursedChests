@@ -2,7 +2,7 @@ package ninjaphenix.expandedstorage.mixins;
 
 import net.fabricmc.fabric.impl.itemgroup.CreativeGuiExtensions;
 import net.fabricmc.fabric.impl.itemgroup.FabricCreativeGuiComponents;
-import ninjaphenix.expandedstorage.CreativeButtonMover;
+import ninjaphenix.expandedstorage.client.CreativeButtonMover;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
