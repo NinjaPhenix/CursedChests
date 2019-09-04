@@ -24,8 +24,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
-import ninjaphenix.expandedstorage.api.world.inventory.ScrollableMenu;
 import ninjaphenix.expandedstorage.api.world.SidedCompoundContainer;
+import ninjaphenix.expandedstorage.api.world.inventory.ScrollableMenu;
 import ninjaphenix.expandedstorage.api.world.level.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.world.level.block.state.properties.CursedChestType;
 
