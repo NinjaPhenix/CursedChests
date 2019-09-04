@@ -5,7 +5,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.SimpleRegistry;
 import ninjaphenix.expandedstorage.ExpandedStorage;
-import ninjaphenix.expandedstorage.api.block.CursedChestType;
+import ninjaphenix.expandedstorage.api.world.level.block.state.properties.CursedChestType;
 
 public class Registries
 {

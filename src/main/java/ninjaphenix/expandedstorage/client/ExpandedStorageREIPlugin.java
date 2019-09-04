@@ -10,7 +10,7 @@ import net.fabricmc.loader.util.version.VersionParsingException;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 import ninjaphenix.expandedstorage.ExpandedStorage;
-import ninjaphenix.expandedstorage.api.client.gui.container.ScrollableScreen;
+import ninjaphenix.expandedstorage.api.client.gui.screens.inventory.ScrollableScreen;
 
 import java.util.ArrayList;
 
