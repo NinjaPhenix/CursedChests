@@ -20,6 +20,7 @@ public class ExpandedStorage implements ModInitializer
     @Override
     public void onInitialize()
     {
+        // comment for new push
         ModBlocks.init();
         ModItems.init();
         ContainerProviderRegistry.INSTANCE.registerFactory(getId("scrollcontainer"), ((syncId, identifier, player, buf) ->
