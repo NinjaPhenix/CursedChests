@@ -12,11 +12,11 @@ import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.block.ModBlocks;
 import ninjaphenix.expandedstorage.client.model.LongChestModel;
 import ninjaphenix.expandedstorage.client.model.SingleChestModel;
 import ninjaphenix.expandedstorage.client.model.TallChestModel;
 import ninjaphenix.expandedstorage.client.model.VanillaChestModel;
-import ninjaphenix.expandedstorage.block.ModBlocks;
 
 @Environment(EnvType.CLIENT)
 public class CursedChestRenderer extends BlockEntityRenderer<CursedChestBlockEntity>

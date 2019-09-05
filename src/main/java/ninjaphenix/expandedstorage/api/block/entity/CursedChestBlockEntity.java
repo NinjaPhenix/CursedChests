@@ -24,10 +24,10 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
-import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
-import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
+import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
 
 import java.util.Iterator;
 import java.util.List;

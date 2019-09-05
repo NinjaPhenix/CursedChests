@@ -6,8 +6,8 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.render.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import ninjaphenix.expandedstorage.ExpandedStorage;
-import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
+import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen;
 import ninjaphenix.expandedstorage.client.render.block.entity.CursedChestRenderer;
 
 @Environment(EnvType.CLIENT)

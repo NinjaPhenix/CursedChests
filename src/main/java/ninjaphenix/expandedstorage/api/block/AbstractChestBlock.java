@@ -28,9 +28,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
-import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
 import ninjaphenix.expandedstorage.api.block.entity.AbstractChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
 
 import java.util.List;
 

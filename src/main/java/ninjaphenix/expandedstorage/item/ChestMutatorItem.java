@@ -25,10 +25,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import ninjaphenix.expandedstorage.api.item.ChestModifierItem;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.api.item.ChestModifierItem;
 import ninjaphenix.expandedstorage.block.ModBlocks;
 
 import java.util.List;

@@ -6,10 +6,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
-import ninjaphenix.expandedstorage.item.ModItems;
+import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
 import ninjaphenix.expandedstorage.block.ModBlocks;
+import ninjaphenix.expandedstorage.item.ModItems;
 
 public class ExpandedStorage implements ModInitializer
 {
