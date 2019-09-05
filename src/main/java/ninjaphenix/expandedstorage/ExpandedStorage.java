@@ -6,10 +6,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import ninjaphenix.expandedstorage.api.world.inventory.ScrollableMenu;
-import ninjaphenix.expandedstorage.api.world.level.block.AbstractChestBlock;
-import ninjaphenix.expandedstorage.world.item.ModItems;
-import ninjaphenix.expandedstorage.world.level.block.ModBlocks;
+import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
+import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
+import ninjaphenix.expandedstorage.item.ModItems;
+import ninjaphenix.expandedstorage.block.ModBlocks;
 
 public class ExpandedStorage implements ModInitializer
 {
@@ -20,7 +20,6 @@ public class ExpandedStorage implements ModInitializer
     @Override
     public void onInitialize()
     {
-        // comment for new push
         ModBlocks.init();
         ModItems.init();
         ContainerProviderRegistry.INSTANCE.registerFactory(getId("scrollcontainer"), ((syncId, identifier, player, buf) ->
@@ -28,7 +27,7 @@ public class ExpandedStorage implements ModInitializer
             BlockPos pos = buf.readBlockPos();
             Text name = buf.readText();
             World world = player.getEntityWorld();
-            return new ScrollableMenu(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
+            return new ScrollableContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
         }));
     }
 }

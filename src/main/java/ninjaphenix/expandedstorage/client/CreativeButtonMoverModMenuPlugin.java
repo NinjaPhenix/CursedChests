@@ -2,7 +2,7 @@ package ninjaphenix.expandedstorage.client;
 
 import io.github.prospector.modmenu.api.ModMenuApi;
 import net.minecraft.client.gui.screen.Screen;
-import ninjaphenix.expandedstorage.client.gui.screens.SimulatedCreativeScreen;
+import ninjaphenix.expandedstorage.client.gui.screen.SimulatedCreativeScreen;
 
 import java.util.function.Function;
 
