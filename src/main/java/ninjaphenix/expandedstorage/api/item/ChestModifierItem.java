@@ -103,6 +103,6 @@ public abstract class ChestModifierItem extends Item
 
     protected TypedActionResult<ItemStack> useModifierInAir(World world, PlayerEntity player, Hand hand)
     {
-        return new TypedActionResult<>(ActionResult.PASS, player.getStackInHand(hand));
+        return new TypedActionResult<>(ActionResult.PASS, player.getStackInHand(hand), false);
     }
 }

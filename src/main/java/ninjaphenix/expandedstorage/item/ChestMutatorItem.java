@@ -35,7 +35,7 @@ import java.util.List;
 
 public class ChestMutatorItem extends ChestModifierItem
 {
-    private static final DirectionProperty FACING = Properties.FACING;
+    private static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final EnumProperty<CursedChestType> TYPE = AbstractChestBlock.TYPE;
 
     private static final Text[] modes = new Text[]{ new TranslatableText("tooltip.expandedstorage.chest_mutator.merge"),
@@ -275,7 +275,7 @@ public class ChestMutatorItem extends ChestModifierItem
             {
                 player.addChatMessage(new TranslatableText("tooltip.expandedstorage.tool_mode", modes[mode]), true);
             }
-            return new TypedActionResult<>(ActionResult.SUCCESS, stack);
+            return new TypedActionResult<>(ActionResult.SUCCESS, stack, false);
         }
         return super.useModifierInAir(world, player, hand);
     }
