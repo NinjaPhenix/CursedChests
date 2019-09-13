@@ -64,5 +64,7 @@ public class Registries
         public int getSlotCount() { return slots; }
 
         public Text getContainerName() { return containerName; }
+
+        public Identifier getBlockId() { return blockId; }
     }
 }

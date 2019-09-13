@@ -24,10 +24,12 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
+import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.entity.AbstractChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
@@ -339,6 +341,8 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
 
     @Override
     public BlockRenderType getRenderType(BlockState blockState_1) { return BlockRenderType.MODEL; }
+
+    public abstract SimpleRegistry<Registries.TierData> getDataRegistry();
 
     interface PropertyRetriever<T>
     {

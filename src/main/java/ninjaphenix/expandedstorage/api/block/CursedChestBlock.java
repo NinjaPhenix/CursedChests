@@ -17,9 +17,11 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
+import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 
 @SuppressWarnings("deprecation")
@@ -136,4 +138,7 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
 
     @Override
     public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
+
+    @Override
+    public SimpleRegistry getDataRegistry() { return Registries.MODELED; }
 }

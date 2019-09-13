@@ -30,6 +30,7 @@
   "tooltip.expandedstorage.chest_mutator.merge": "Merge",
   "tooltip.expandedstorage.chest_mutator.unmerge": "Unmerge",
   "tooltip.expandedstorage.chest_mutator.rotate": "Rotate",
-  "tooltip.expandedstorage.chest_mutator.invalid": "Invalid",
+  "tooltip.expandedstorage.chest_mutator.merge_start": "Merging started, now click the other chest.",
+  "tooltip.expandedstorage.chest_mutator.merge_end": "Merging finished.",
   "tooltip.expandedstorage.tool_mode": "Tool Mode: %s"
 }
