@@ -3,6 +3,10 @@ package ninjaphenix.expandedstorage.item;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.EnderChestBlock;
+import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -138,137 +142,137 @@ public class ChestMutatorItem extends ChestModifierItem
     @Override
     protected ActionResult useModifierOnBlock(ItemUsageContext context, BlockState state)
     {
-        //PlayerEntity player = context.getPlayer();
-        //ItemStack stack = context.getStack();
-        //World world = context.getWorld();
-        //BlockPos mainPos = context.getBlockPos();
-        //byte mode = getMode(stack);
-        //if (state.getBlock() instanceof ChestBlock)
-        //{
-        //    if (mode == 0)
-        //    {
-        //        Direction direction = context.getSide();
-        //        BlockPos otherPos = mainPos.offset(direction);
-        //        BlockState otherState = world.getBlockState(otherPos);
-        //        Direction facing = state.get(ChestBlock.FACING);
-        //        ChestType type;
-        //        if (state.getBlock() == otherState.getBlock() && facing == otherState.get(ChestBlock.FACING) &&
-        //                state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE && otherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
-        //        {
-        //            if (facing.rotateYCounterclockwise() == direction)
-        //            {
-        //                type = ChestType.RIGHT;
-        //            }
-        //            else if (facing.rotateYClockwise() == direction)
-        //            {
-        //                type = ChestType.LEFT;
-        //            }
-        //            else
-        //            {
-        //                CursedChestType cursedType;
-        //                if (direction == Direction.UP) cursedType = CursedChestType.BOTTOM;
-        //                else if (direction == Direction.DOWN) cursedType = CursedChestType.TOP;
-        //                else if (facing == direction) cursedType = CursedChestType.BACK;
-        //                else if (facing == direction.getOpposite()) cursedType = CursedChestType.FRONT;
-        //                else return ActionResult.FAIL;
-        //                if (!world.isClient)
-        //                {
-        //                    CompoundTag tag = world.getBlockEntity(mainPos).toTag(new CompoundTag());
-        //                    ListTag items = tag.getList("Items", 10);
-        //                    CompoundTag otherTag = world.getBlockEntity(otherPos).toTag(new CompoundTag());
-        //                    ListTag otherItems = otherTag.getList("Items", 10);
-        //                    world.removeBlockEntity(mainPos);
-        //                    world.setBlockState(mainPos,
-        //                            ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.TYPE, cursedType).with(CursedChestBlock.FACING, facing)
-        //                                                .with(CursedChestBlock.WATERLOGGED, state.get(ChestBlock.WATERLOGGED)));
-        //                    BlockEntity blockEntity = world.getBlockEntity(mainPos);
-        //                    tag = blockEntity.toTag(new CompoundTag());
-        //                    tag.put("Items", items);
-        //                    blockEntity.fromTag(tag);
-        //                    world.removeBlockEntity(otherPos);
-        //                    world.setBlockState(otherPos, ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.TYPE, cursedType.getOpposite())
-        //                                                                      .with(CursedChestBlock.FACING, facing)
-        //                                                                      .with(CursedChestBlock.WATERLOGGED, otherState.get(ChestBlock.WATERLOGGED)));
-        //                    BlockEntity otherBlockEntity = world.getBlockEntity(otherPos);
-        //                    otherTag = otherBlockEntity.toTag(new CompoundTag());
-        //                    otherTag.put("Items", otherItems);
-        //                    otherBlockEntity.fromTag(otherTag);
-        //                }
-        //                player.getItemCooldownManager().set(this, 5);
-        //                return ActionResult.SUCCESS;
-        //            }
-        //            if (!world.isClient)
-        //            {
-        //                world.setBlockState(mainPos, state.with(ChestBlock.CHEST_TYPE, type));
-        //                world.setBlockState(otherPos, otherState.with(ChestBlock.CHEST_TYPE, type.getOpposite()));
-        //            }
-        //            player.getItemCooldownManager().set(this, 5);
-        //            return ActionResult.SUCCESS;
-        //        }
-        //        return ActionResult.FAIL;
-        //    }
-        //    else if (mode == 1)
-        //    {
-        //        BlockPos otherPos;
-        //        switch (state.get(ChestBlock.CHEST_TYPE))
-        //        {
-        //            case LEFT:
-        //                otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYClockwise());
-        //                break;
-        //            case RIGHT:
-        //                otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYCounterclockwise());
-        //                break;
-        //            default:
-        //                return ActionResult.FAIL;
-        //        }
-        //        if (!world.isClient)
-        //        {
-        //            world.setBlockState(mainPos, state.with(ChestBlock.CHEST_TYPE, ChestType.SINGLE));
-        //            world.setBlockState(otherPos, world.getBlockState(otherPos).with(ChestBlock.CHEST_TYPE, ChestType.SINGLE));
-        //        }
-        //        player.getItemCooldownManager().set(this, 5);
-        //        return ActionResult.SUCCESS;
-        //    }
-        //    else if (mode == 2)
-        //    {
-        //        BlockPos otherPos;
-        //        switch (state.get(ChestBlock.CHEST_TYPE))
-        //        {
-        //            case LEFT:
-        //                otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYClockwise());
-        //                break;
-        //            case RIGHT:
-        //                otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYCounterclockwise());
-        //                break;
-        //            case SINGLE:
-        //                if (!world.isClient) world.setBlockState(mainPos, state.with(ChestBlock.FACING, state.get(ChestBlock.FACING).rotateYClockwise()));
-        //                player.getItemCooldownManager().set(this, 5);
-        //                return ActionResult.SUCCESS;
-        //            default:
-        //                return ActionResult.FAIL;
-        //        }
-        //        if (!world.isClient)
-        //        {
-        //            BlockState otherState = world.getBlockState(otherPos);
-        //            world.setBlockState(mainPos, state.with(ChestBlock.FACING, state.get(ChestBlock.FACING).getOpposite())
-        //                                              .with(ChestBlock.CHEST_TYPE, state.get(ChestBlock.CHEST_TYPE).getOpposite()));
-        //            world.setBlockState(otherPos, otherState.with(ChestBlock.FACING, otherState.get(ChestBlock.FACING).getOpposite())
-        //                                                    .with(ChestBlock.CHEST_TYPE, otherState.get(ChestBlock.CHEST_TYPE).getOpposite()));
-        //        }
-        //        player.getItemCooldownManager().set(this, 5);
-        //        return ActionResult.SUCCESS;
-        //    }
-        //}
-        //else if (state.getBlock() == Blocks.ENDER_CHEST)
-        //{
-        //    if (getMode(stack) == 2)
-        //    {
-        //        if (!world.isClient) world.setBlockState(mainPos, state.with(EnderChestBlock.FACING, state.get(EnderChestBlock.FACING).rotateYClockwise()));
-        //        player.getItemCooldownManager().set(this, 5);
-        //        return ActionResult.SUCCESS;
-        //    }
-        //    return ActionResult.FAIL;
-        //}
+        PlayerEntity player = context.getPlayer();
+        ItemStack stack = context.getStack();
+        World world = context.getWorld();
+        BlockPos mainPos = context.getBlockPos();
+        MutatorModes mode = getMode(stack);
+        if (state.getBlock() instanceof ChestBlock)
+        {
+            if (mode == MutatorModes.MERGE)
+            {
+                //Direction direction = context.getSide();
+                //BlockPos otherPos = mainPos.offset(direction);
+                //BlockState otherState = world.getBlockState(otherPos);
+                //Direction facing = state.get(ChestBlock.FACING);
+                //ChestType type;
+                //if (state.getBlock() == otherState.getBlock() && facing == otherState.get(ChestBlock.FACING) &&
+                //        state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE && otherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
+                //{
+                //    if (facing.rotateYCounterclockwise() == direction)
+                //    {
+                //        type = ChestType.RIGHT;
+                //    }
+                //    else if (facing.rotateYClockwise() == direction)
+                //    {
+                //        type = ChestType.LEFT;
+                //    }
+                //    else
+                //    {
+                //        CursedChestType cursedType;
+                //        if (direction == Direction.UP) cursedType = CursedChestType.BOTTOM;
+                //        else if (direction == Direction.DOWN) cursedType = CursedChestType.TOP;
+                //        else if (facing == direction) cursedType = CursedChestType.BACK;
+                //        else if (facing == direction.getOpposite()) cursedType = CursedChestType.FRONT;
+                //        else return ActionResult.FAIL;
+                //        if (!world.isClient)
+                //        {
+                //            CompoundTag tag = world.getBlockEntity(mainPos).toTag(new CompoundTag());
+                //            ListTag items = tag.getList("Items", 10);
+                //            CompoundTag otherTag = world.getBlockEntity(otherPos).toTag(new CompoundTag());
+                //            ListTag otherItems = otherTag.getList("Items", 10);
+                //            world.removeBlockEntity(mainPos);
+                //            world.setBlockState(mainPos,
+                //                    ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.TYPE, cursedType).with(CursedChestBlock.FACING, facing)
+                //                                        .with(CursedChestBlock.WATERLOGGED, state.get(ChestBlock.WATERLOGGED)));
+                //            BlockEntity blockEntity = world.getBlockEntity(mainPos);
+                //            tag = blockEntity.toTag(new CompoundTag());
+                //            tag.put("Items", items);
+                //            blockEntity.fromTag(tag);
+                //            world.removeBlockEntity(otherPos);
+                //            world.setBlockState(otherPos, ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.TYPE, cursedType.getOpposite())
+                //                                                              .with(CursedChestBlock.FACING, facing)
+                //                                                              .with(CursedChestBlock.WATERLOGGED, otherState.get(ChestBlock.WATERLOGGED)));
+                //            BlockEntity otherBlockEntity = world.getBlockEntity(otherPos);
+                //            otherTag = otherBlockEntity.toTag(new CompoundTag());
+                //            otherTag.put("Items", otherItems);
+                //            otherBlockEntity.fromTag(otherTag);
+                //        }
+                //        player.getItemCooldownManager().set(this, 5);
+                //        return ActionResult.SUCCESS;
+                //    }
+                //    if (!world.isClient)
+                //    {
+                //        world.setBlockState(mainPos, state.with(ChestBlock.CHEST_TYPE, type));
+                //        world.setBlockState(otherPos, otherState.with(ChestBlock.CHEST_TYPE, type.getOpposite()));
+                //    }
+                //    player.getItemCooldownManager().set(this, 5);
+                //    return ActionResult.SUCCESS;
+                //}
+                //return ActionResult.FAIL;
+            }
+            else if (mode == MutatorModes.UNMERGE)
+            {
+                BlockPos otherPos;
+                switch (state.get(ChestBlock.CHEST_TYPE))
+                {
+                    case LEFT:
+                        otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYClockwise());
+                        break;
+                    case RIGHT:
+                        otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYCounterclockwise());
+                        break;
+                    default:
+                        return ActionResult.FAIL;
+                }
+                if (!world.isClient)
+                {
+                    world.setBlockState(mainPos, state.with(ChestBlock.CHEST_TYPE, ChestType.SINGLE));
+                    world.setBlockState(otherPos, world.getBlockState(otherPos).with(ChestBlock.CHEST_TYPE, ChestType.SINGLE));
+                }
+                player.getItemCooldownManager().set(this, 5);
+                return ActionResult.SUCCESS;
+            }
+            else if (mode == MutatorModes.ROTATE)
+            {
+                BlockPos otherPos;
+                switch (state.get(ChestBlock.CHEST_TYPE))
+                {
+                    case LEFT:
+                        otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYClockwise());
+                        break;
+                    case RIGHT:
+                        otherPos = mainPos.offset(state.get(ChestBlock.FACING).rotateYCounterclockwise());
+                        break;
+                    case SINGLE:
+                        if (!world.isClient) world.setBlockState(mainPos, state.rotate(BlockRotation.CLOCKWISE_90));
+                        player.getItemCooldownManager().set(this, 5);
+                        return ActionResult.SUCCESS;
+                    default:
+                        return ActionResult.FAIL;
+                }
+                if (!world.isClient)
+                {
+                    BlockState otherState = world.getBlockState(otherPos);
+                    world.setBlockState(mainPos, state.rotate(BlockRotation.CLOCKWISE_180)
+                                                      .with(ChestBlock.CHEST_TYPE, state.get(ChestBlock.CHEST_TYPE).getOpposite()));
+                    world.setBlockState(otherPos, otherState.rotate(BlockRotation.CLOCKWISE_180)
+                                                            .with(ChestBlock.CHEST_TYPE, otherState.get(ChestBlock.CHEST_TYPE).getOpposite()));
+                }
+                player.getItemCooldownManager().set(this, 5);
+                return ActionResult.SUCCESS;
+            }
+        }
+        else if (state.getBlock() == Blocks.ENDER_CHEST)
+        {
+            if (getMode(stack) == MutatorModes.ROTATE)
+            {
+                if (!world.isClient) world.setBlockState(mainPos, state.rotate(BlockRotation.CLOCKWISE_90));
+                player.getItemCooldownManager().set(this, 5);
+                return ActionResult.SUCCESS;
+            }
+            return ActionResult.FAIL;
+        }
         return super.useModifierOnBlock(context, state);
     }
 
