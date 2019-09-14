@@ -155,44 +155,88 @@ public class ChestMutatorItem extends ChestModifierItem
             // todo: Just recode this to be like the new merge method for mod chests.
             if (mode == MutatorModes.MERGE)
             {
-                Direction direction = context.getSide();
-                BlockPos otherPos = mainPos.offset(direction);
-                BlockState otherState = world.getBlockState(otherPos);
-                Direction facing = state.get(ChestBlock.FACING);
-                if (state.getBlock() == otherState.getBlock() && facing == otherState.get(ChestBlock.FACING) &&
-                        state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE && otherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
+                //Direction direction = context.getSide();
+                //BlockPos otherPos = mainPos.offset(direction);
+                //BlockState otherState = world.getBlockState(otherPos);
+                //Direction facing = state.get(ChestBlock.FACING);
+                //if (state.getBlock() == otherState.getBlock() && facing == otherState.get(ChestBlock.FACING) &&
+                //        state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE && otherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
+                //{
+                //    CursedChestType cursedType;
+                //    cursedType = AbstractChestBlock.getChestType(facing, direction);
+                //    if (cursedType == CursedChestType.SINGLE) return ActionResult.FAIL;
+                //    if (!world.isClient)
+                //    {
+                //        BlockState defaultState = Registry.BLOCK.get(Registries.MODELED.get(ExpandedStorage.getId("wood_chest")).getBlockId())
+                //                                                .getDefaultState();
+                //        CompoundTag tag = world.getBlockEntity(mainPos).toTag(new CompoundTag());
+                //        ListTag items = tag.getList("Items", 10);
+                //        CompoundTag otherTag = world.getBlockEntity(otherPos).toTag(new CompoundTag());
+                //        ListTag otherItems = otherTag.getList("Items", 10);
+                //        world.removeBlockEntity(mainPos);
+                //        world.removeBlockEntity(otherPos);
+                //        world.setBlockState(mainPos, defaultState.with(CursedChestBlock.TYPE, cursedType).with(CursedChestBlock.FACING, facing)
+                //                                                 .with(CursedChestBlock.WATERLOGGED, state.get(ChestBlock.WATERLOGGED)));
+                //        world.setBlockState(otherPos, defaultState.with(CursedChestBlock.TYPE, cursedType.getOpposite())
+                //                                                  .with(CursedChestBlock.FACING, facing)
+                //                                                  .with(CursedChestBlock.WATERLOGGED, otherState.get(ChestBlock.WATERLOGGED)));
+                //        BlockEntity blockEntity = world.getBlockEntity(mainPos);
+                //        tag = blockEntity.toTag(new CompoundTag());
+                //        tag.put("Items", items);
+                //        blockEntity.fromTag(tag);
+                //        BlockEntity otherBlockEntity = world.getBlockEntity(otherPos);
+                //        otherTag = otherBlockEntity.toTag(new CompoundTag());
+                //        otherTag.put("Items", otherItems);
+                //        otherBlockEntity.fromTag(otherTag);
+                //    }
+                //    player.getItemCooldownManager().set(this, 5);
+                //    return ActionResult.SUCCESS;
+                //}
+                //return ActionResult.FAIL;
+                CompoundTag tag = stack.getOrCreateTag();
+                if (tag.containsKey("pos"))
                 {
-                    CursedChestType cursedType;
-                    cursedType = AbstractChestBlock.getChestType(facing, direction);
-                    if (cursedType == CursedChestType.SINGLE) return ActionResult.FAIL;
-                    if (!world.isClient)
+                    if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
                     {
-                        BlockState defaultState = Registry.BLOCK.get(Registries.MODELED.get(ExpandedStorage.getId("wood_chest")).getBlockId())
-                                                                .getDefaultState();
-                        CompoundTag tag = world.getBlockEntity(mainPos).toTag(new CompoundTag());
-                        ListTag items = tag.getList("Items", 10);
-                        CompoundTag otherTag = world.getBlockEntity(otherPos).toTag(new CompoundTag());
-                        ListTag otherItems = otherTag.getList("Items", 10);
-                        world.removeBlockEntity(mainPos);
-                        world.removeBlockEntity(otherPos);
-                        world.setBlockState(mainPos, defaultState.with(CursedChestBlock.TYPE, cursedType).with(CursedChestBlock.FACING, facing)
-                                                                 .with(CursedChestBlock.WATERLOGGED, state.get(ChestBlock.WATERLOGGED)));
-                        world.setBlockState(otherPos, defaultState.with(CursedChestBlock.TYPE, cursedType.getOpposite())
-                                                                  .with(CursedChestBlock.FACING, facing)
-                                                                  .with(CursedChestBlock.WATERLOGGED, otherState.get(ChestBlock.WATERLOGGED)));
-                        BlockEntity blockEntity = world.getBlockEntity(mainPos);
-                        tag = blockEntity.toTag(new CompoundTag());
-                        tag.put("Items", items);
-                        blockEntity.fromTag(tag);
-                        BlockEntity otherBlockEntity = world.getBlockEntity(otherPos);
-                        otherTag = otherBlockEntity.toTag(new CompoundTag());
-                        otherTag.put("Items", otherItems);
-                        otherBlockEntity.fromTag(otherTag);
+                        BlockPos pos = TagHelper.deserializeBlockPos(tag.getCompound("pos"));
+                        BlockState realOtherState = world.getBlockState(pos);
+                        if (realOtherState.getBlock() == state.getBlock() && realOtherState.get(FACING) == state.get(FACING) &&
+                                realOtherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
+                        {
+                            if (!world.isClient)
+                            {
+                                BlockPos vec = pos.subtract(mainPos);
+                                int sum = vec.getX() + vec.getY() + vec.getZ();
+                                if (sum == 1 || sum == -1)
+                                {
+                                    CursedChestType type = AbstractChestBlock.getChestType(state.get(FACING),
+                                            Direction.fromVector(vec.getX(), vec.getY(), vec.getZ()));
+                                    //CursedChestType mainChestType = CursedChestBlock
+                                    //        .getChestType(mainState.get(FACING), Direction.fromVector(vec.getX(), vec.getY(), vec.getZ()));
+                                    //world.setBlockState(mainBlockPos, mainState.with(TYPE, mainChestType));
+                                    //world.setBlockState(pos, world.getBlockState(pos).with(TYPE, mainChestType.getOpposite()));
+                                    tag.remove("pos");
+                                    player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
+                                    player.getItemCooldownManager().set(this, 5);
+                                    return ActionResult.SUCCESS;
+                                }
+
+                            }
+                        }
+                        return ActionResult.FAIL;
                     }
-                    player.getItemCooldownManager().set(this, 5);
-                    return ActionResult.SUCCESS;
                 }
-                return ActionResult.FAIL;
+                else
+                {
+                    if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
+                    {
+                        tag.put("pos", TagHelper.serializeBlockPos(mainPos));
+                        player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
+                        player.getItemCooldownManager().set(this, 5);
+                        return ActionResult.SUCCESS;
+                    }
+
+                }
             }
             else if (mode == MutatorModes.UNMERGE)
             {
