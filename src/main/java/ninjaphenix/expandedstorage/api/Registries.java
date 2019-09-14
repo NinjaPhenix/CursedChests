@@ -12,7 +12,7 @@ import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
  * chest types are added.
  *
  * @author NinjaPhenix
- * @since 3.4.25
+ * @since 3.4+build.25
  */
 public class Registries
 {

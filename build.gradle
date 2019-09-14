@@ -45,6 +45,11 @@ processResources {
     }
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = "sources"
+    from sourceSets.main.allSource
+}
+
 jar {
     from ("LICENSE")
 }
