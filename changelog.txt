@@ -1,3 +1,5 @@
 Added full cube variants of the regular chest blocks.
 Wood chests now have a new texture. More textures are being worked on.
 Chest Mutators merge function has been changed, you now have to click on the two blocks you want to merge.
+
+A very secret feature: see fabric item groups mod menu entry.
