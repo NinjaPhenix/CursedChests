@@ -71,7 +71,14 @@ public class SimulatedCreativeScreen extends Screen
         textureManager.bindTexture(BUTTON_TEXTURE);
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
         blit(left + xpos + 10, top + ypos, 12, 0, 12, 12);
-        font.drawWithShadow("NinjaPhenix's Fabric Creative Button Mover", left - 10, top - 40, 8453920);
+        drawCenteredString("NinjaPhenix's Fabric Creative Button Mover", width / 2, top - 70, 8453920);
+        drawCenteredString("Please not this is not a feature provided by fabric api.", width / 2, top - 55, 8453920);
+        drawCenteredString("Any issues should be reported to ExpandedStorage.", width / 2, top - 40, 8453920);
+    }
+
+    private void drawCenteredString(String msg, int x, int y, int color)
+    {
+        font.drawWithShadow(msg, x - font.getStringWidth(msg) / (float) 2, y, color);
     }
 
     protected void renderItemGroup(ItemGroup itemGroup_1)

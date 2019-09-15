@@ -21,7 +21,10 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import ninjaphenix.expandedstorage.ExpandedStorage;
+import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
@@ -206,10 +209,36 @@ public class ChestMutatorItem extends ChestModifierItem
                                 {
                                     CursedChestType type = AbstractChestBlock.getChestType(state.get(FACING),
                                             Direction.fromVector(vec.getX(), vec.getY(), vec.getZ()));
+                                    BlockState defaultState = Registry.BLOCK.get(Registries.MODELED.get(ExpandedStorage.getId("wood_chest")).getBlockId())
+                                                                            .getDefaultState();
                                     //CursedChestType mainChestType = CursedChestBlock
                                     //        .getChestType(mainState.get(FACING), Direction.fromVector(vec.getX(), vec.getY(), vec.getZ()));
                                     //world.setBlockState(mainBlockPos, mainState.with(TYPE, mainChestType));
                                     //world.setBlockState(pos, world.getBlockState(pos).with(TYPE, mainChestType.getOpposite()));
+
+
+                                    //        CompoundTag tag = world.getBlockEntity(mainPos).toTag(new CompoundTag());
+                                    //        ListTag items = tag.getList("Items", 10);
+                                    //        CompoundTag otherTag = world.getBlockEntity(otherPos).toTag(new CompoundTag());
+                                    //        ListTag otherItems = otherTag.getList("Items", 10);
+                                    //        world.removeBlockEntity(mainPos);
+                                    //        world.removeBlockEntity(otherPos);
+                                    //        world.setBlockState(mainPos, defaultState.with(CursedChestBlock.TYPE, cursedType).with(CursedChestBlock.FACING, facing)
+                                    //                                                 .with(CursedChestBlock.WATERLOGGED, state.get(ChestBlock.WATERLOGGED)));
+                                    //        world.setBlockState(otherPos, defaultState.with(CursedChestBlock.TYPE, cursedType.getOpposite())
+                                    //                                                  .with(CursedChestBlock.FACING, facing)
+                                    //                                                  .with(CursedChestBlock.WATERLOGGED, otherState.get(ChestBlock.WATERLOGGED)));
+                                    //        BlockEntity blockEntity = world.getBlockEntity(mainPos);
+                                    //        tag = blockEntity.toTag(new CompoundTag());
+                                    //        tag.put("Items", items);
+                                    //        blockEntity.fromTag(tag);
+                                    //        BlockEntity otherBlockEntity = world.getBlockEntity(otherPos);
+                                    //        otherTag = otherBlockEntity.toTag(new CompoundTag());
+                                    //        otherTag.put("Items", otherItems);
+                                    //        otherBlockEntity.fromTag(otherTag);
+
+
+
                                     tag.remove("pos");
                                     player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
                                     player.getItemCooldownManager().set(this, 5);
