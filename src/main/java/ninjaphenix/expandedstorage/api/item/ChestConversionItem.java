@@ -18,8 +18,10 @@ import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
+import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.AbstractChestBlockEntity;
@@ -41,30 +43,30 @@ public class ChestConversionItem extends ChestModifierItem
     private void upgradeCursedChest(World world, BlockPos pos, BlockState state)
     {
         AbstractChestBlockEntity blockEntity = (AbstractChestBlockEntity) world.getBlockEntity(pos);
-        // bodged fix this implementation to prevent issues in future
-        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(blockEntity.getInvSize(), ItemStack.EMPTY);
+        final SimpleRegistry<Registries.TierData> registry = ((AbstractChestBlock) state.getBlock()).getDataRegistry();
+        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(registry.get(to).getSlotCount(), ItemStack.EMPTY);
         Inventories.fromTag(blockEntity.toTag(new CompoundTag()), inventoryData);
         world.removeBlockEntity(pos);
-        BlockState newState = Registry.BLOCK.get(((AbstractChestBlock) state.getBlock()).getDataRegistry().get(to).getBlockId()).getDefaultState();
+        BlockState newState = Registry.BLOCK.get(registry.get(to).getBlockId()).getDefaultState();
         if (newState.getBlock() instanceof Waterloggable) newState = newState.with(Properties.WATERLOGGED, state.get(Properties.WATERLOGGED));
         world.setBlockState(pos, newState.with(Properties.HORIZONTAL_FACING, state.get(Properties.HORIZONTAL_FACING))
                                          .with(CursedChestBlock.TYPE, state.get(CursedChestBlock.TYPE)));
-        BlockEntity newBlockEntity = world.getBlockEntity(pos);
-        blockEntity.fromTag(Inventories.toTag(newBlockEntity.toTag(new CompoundTag()), inventoryData));
+        blockEntity = (AbstractChestBlockEntity) world.getBlockEntity(pos);
+        blockEntity.fromTag(Inventories.toTag(blockEntity.toTag(new CompoundTag()), inventoryData));
     }
 
     private void upgradeChest(World world, BlockPos pos, BlockState state)
     {
-        ChestBlockEntity blockEntity = (ChestBlockEntity) world.getBlockEntity(pos);
-        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(blockEntity.getInvSize(), ItemStack.EMPTY); // bodge fix, fix this.
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(Registries.MODELED.get(from).getSlotCount(), ItemStack.EMPTY);
         Inventories.fromTag(blockEntity.toTag(new CompoundTag()), inventoryData);
         world.removeBlockEntity(pos);
-        BlockState newState = Registry.BLOCK.get(((AbstractChestBlock) state.getBlock()).getDataRegistry().get(to).getBlockId()).getDefaultState();
+        BlockState newState = Registry.BLOCK.get(Registries.MODELED.get(to).getBlockId()).getDefaultState();
         world.setBlockState(pos, newState.with(Properties.HORIZONTAL_FACING, state.get(Properties.HORIZONTAL_FACING))
                                          .with(Properties.WATERLOGGED, state.get(Properties.WATERLOGGED))
                                          .with(CursedChestBlock.TYPE, CursedChestType.valueOf(state.get(Properties.CHEST_TYPE))));
-        BlockEntity newBlockEntity = world.getBlockEntity(pos);
-        blockEntity.fromTag(Inventories.toTag(newBlockEntity.toTag(new CompoundTag()), inventoryData));
+        blockEntity = world.getBlockEntity(pos);
+        blockEntity.fromTag(Inventories.toTag(blockEntity.toTag(new CompoundTag()), inventoryData));
     }
 
     @Override
