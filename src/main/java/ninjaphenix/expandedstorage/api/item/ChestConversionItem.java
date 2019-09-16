@@ -9,7 +9,6 @@ import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.CompoundTag;
@@ -32,7 +31,7 @@ public class ChestConversionItem extends ChestModifierItem
 
     public ChestConversionItem(Identifier from, Identifier to)
     {
-        super(new Item.Settings().group(ItemGroup.TOOLS).maxCount(16));
+        super(new Item.Settings().group(ExpandedStorage.group).maxCount(16));
         this.from = from;
         this.to = to;
     }

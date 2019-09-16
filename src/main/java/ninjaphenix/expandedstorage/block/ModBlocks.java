@@ -5,7 +5,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -77,7 +76,7 @@ public class ModBlocks
     {
         Identifier id = ExpandedStorage.getId("old_" + name);
         Registry.register(Registry.BLOCK, id, block);
-        Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ExpandedStorage.group)));
         Registries.OLD.add(ExpandedStorage.getId(name), new Registries.TierData(rows * 9, containerName, id));
         return block;
     }
@@ -87,7 +86,7 @@ public class ModBlocks
     {
         Identifier id = ExpandedStorage.getId(name);
         Registry.register(Registry.BLOCK, id, block);
-        Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ExpandedStorage.group)));
         Registries.MODELED.add(id, new Registries.ModeledTierData(rows * 9, containerName, id, singleTexture, vanillaTexture, tallTexture, longTexture));
         return block;
     }

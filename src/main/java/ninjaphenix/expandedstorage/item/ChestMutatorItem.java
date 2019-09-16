@@ -41,7 +41,7 @@ public class ChestMutatorItem extends ChestModifierItem
     private static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final EnumProperty<CursedChestType> TYPE = AbstractChestBlock.TYPE;
 
-    ChestMutatorItem() { super(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS)); }
+    ChestMutatorItem() { super(new Item.Settings().maxCount(1).group(ExpandedStorage.group)); }
 
     @Override
     protected ActionResult useModifierOnChestBlock(ItemUsageContext context, BlockState mainState, BlockPos mainBlockPos, BlockState otherState,
@@ -236,7 +236,6 @@ public class ChestMutatorItem extends ChestModifierItem
                                     //        otherTag = otherBlockEntity.toTag(new CompoundTag());
                                     //        otherTag.put("Items", otherItems);
                                     //        otherBlockEntity.fromTag(otherTag);
-
 
 
                                     tag.remove("pos");
