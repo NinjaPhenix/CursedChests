@@ -15,6 +15,7 @@ import ninjaphenix.expandedstorage.api.block.OldChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.entity.OldChestBlockEntity;
 
+@SuppressWarnings("WeakerAccess")
 public class ModBlocks
 {
     public static BlockEntityType<CursedChestBlockEntity> CURSED_CHEST;
@@ -50,7 +51,6 @@ public class ModBlocks
                 new TranslatableText("container.expandedstorage.diamond_chest"), ExpandedStorage.getId("textures/entity/diamond_chest/single.png"),
                 ExpandedStorage.getId("textures/entity/diamond_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/diamond_chest/tall.png"),
                 ExpandedStorage.getId("textures/entity/diamond_chest/long.png"));
-        // todo: Make obsidian chests an upgrade (when I implement crystal chests)
         obsidian_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.OBSIDIAN)), "obsidian_chest", 12,
                 new TranslatableText("container.expandedstorage.obsidian_chest"), ExpandedStorage.getId("textures/entity/obsidian_chest/single.png"),
                 ExpandedStorage.getId("textures/entity/obsidian_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/obsidian_chest/tall.png"),
@@ -65,7 +65,6 @@ public class ModBlocks
                 new TranslatableText("container.expandedstorage.diamond_chest"));
         old_obsidian_chest = registerOld(new OldChestBlock(Block.Settings.copy(Blocks.OBSIDIAN)), "obsidian_chest", 12,
                 new TranslatableText("container.expandedstorage.obsidian_chest"));
-        // todo: move to api
         CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, ExpandedStorage.getId("cursed_chest"),
                 BlockEntityType.Builder.create(CursedChestBlockEntity::new, wood_chest, iron_chest, gold_chest, diamond_chest, obsidian_chest).build(null));
         FULL_CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, ExpandedStorage.getId("old_cursed_chest"), BlockEntityType.Builder.create(
