@@ -38,8 +38,6 @@ public class ChestConversionItem extends ChestModifierItem
         this.to = to;
     }
 
-    public ChestConversionItem(CursedChestBlock from, CursedChestBlock to) { this(Registry.BLOCK.getId(from), Registry.BLOCK.getId(to)); }
-
     private void upgradeCursedChest(World world, BlockPos pos, BlockState state)
     {
         AbstractChestBlockEntity blockEntity = (AbstractChestBlockEntity) world.getBlockEntity(pos);
