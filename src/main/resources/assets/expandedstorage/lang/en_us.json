@@ -32,5 +32,6 @@
   "tooltip.expandedstorage.chest_mutator.rotate": "Rotate",
   "tooltip.expandedstorage.chest_mutator.merge_start": "Merging started, now click the other chest.",
   "tooltip.expandedstorage.chest_mutator.merge_end": "Merging finished.",
-  "tooltip.expandedstorage.tool_mode": "Tool Mode: %s"
+  "tooltip.expandedstorage.tool_mode": "Tool Mode: %s",
+  "itemGroup.expandedstorage.expandedstorage": "Expanded Storage"
 }

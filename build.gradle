@@ -12,6 +12,10 @@ group = project.maven_group
 repositories {
     maven { url "https://minecraft.curseforge.com/api/maven" }
     maven { url "https://tehnut.info/maven/" }
+	
+	flatDir {
+        dirs "includes"
+    }
 }
 
 dependencies {
@@ -32,6 +36,9 @@ dependencies {
         exclude (group: "net.fabricmc", module: "fabric-loader")
         exclude (group: "net.fabricmc.fabric-api")
     }
+	
+	modRuntime ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
+	include ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
 }
 
 processResources {

@@ -19,14 +19,10 @@
       "ninjaphenix.expandedstorage.ExpandedStorage"
     ],
     "client": [
-      "ninjaphenix.expandedstorage.client.ExpandedStorageClient",
-      "ninjaphenix.expandedstorage.client.CreativeButtonMover"
+      "ninjaphenix.expandedstorage.client.ExpandedStorageClient"
     ],
     "rei_plugins_v0": [
       "ninjaphenix.expandedstorage.client.ExpandedStorageREIPlugin"
-    ],
-    "modmenu": [
-      "ninjaphenix.expandedstorage.client.CreativeButtonMoverModMenuPlugin"
     ]
   },
   "mixins": [

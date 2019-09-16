@@ -1,7 +1,9 @@
 package ninjaphenix.expandedstorage;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -29,5 +31,7 @@ public class ExpandedStorage implements ModInitializer
             World world = player.getEntityWorld();
             return new ScrollableContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
         }));
+
+        FabricItemGroupBuilder.build(getId(MOD_ID), () -> new ItemStack(ModBlocks.diamond_chest.asItem()));
     }
 }

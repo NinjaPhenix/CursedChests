@@ -3,8 +3,7 @@
   "package": "ninjaphenix.expandedstorage.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ItemDynamicRendererMixin",
-    "FabricCreativeGuiComponentsMixin"
+    "ItemDynamicRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
