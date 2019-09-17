@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "expandedstorage:chest_to_cursed"
+      "expandedstorage:old_obsidian_chest"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:chest"
+            "item": "expandedstorage:old_diamond_chest"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "expandedstorage:chest_to_cursed"
+        "recipe": "expandedstorage:old_obsidian_chest"
       }
     }
   },

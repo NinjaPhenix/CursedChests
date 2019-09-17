@@ -36,6 +36,6 @@
     "fabric": ">=0.3.2"
   },
   "recommends": {
-    "roughlyenoughitems": ">=3.1-pre+build.4"
+    "roughlyenoughitems": ">=3.1+build.5"
   }
 }

@@ -7,13 +7,13 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:gold_ingot"
     },
     "C": {
-      "item": "minecraft:chest"
+      "item": "expandedstorage:old_iron_chest"
     }
   },
   "result": {
-    "item": "expandedstorage:iron_chest"
+    "item": "expandedstorage:old_gold_chest"
   }
 }

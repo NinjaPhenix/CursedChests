@@ -10,10 +10,10 @@
       "item": "minecraft:iron_ingot"
     },
     "C": {
-      "tag": "c:chest"
+      "item": "expandedstorage:old_wood_chest"
     }
   },
   "result": {
-    "item": "expandedstorage:iron_chest"
+    "item": "expandedstorage:old_iron_chest"
   }
 }

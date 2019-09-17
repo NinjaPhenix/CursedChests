@@ -2,10 +2,10 @@
   "type": "crafting_shapeless",
   "ingredients": [
     {
-      "item": "expandedstorage:wood_chest"
+      "item": "expandedstorage:old_gold_chest"
     }
   ],
   "result": {
-    "item": "minecraft:chest"
+    "item": "expandedstorage:gold_chest"
   }
 }

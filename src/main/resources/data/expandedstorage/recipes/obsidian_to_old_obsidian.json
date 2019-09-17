@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "expandedstorage:obsidian_chest"
+    }
+  ],
+  "result": {
+    "item": "expandedstorage:old_obsidian_chest"
+  }
+}

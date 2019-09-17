@@ -2,21 +2,21 @@
   "type": "crafting_shaped",
   "pattern": [
     "GGG",
-    "DID",
+    "ICI",
     "GGG"
   ],
   "key": {
     "I": {
-      "item": "minecraft:gold_ingot"
-    },
-    "D": {
       "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "expandedstorage:old_gold_chest"
     },
     "G": {
       "tag": "c:glass_blocks"
     }
   },
   "result": {
-    "item": "expandedstorage:gold_to_diamond_conversion_kit"
+    "item": "expandedstorage:old_diamond_chest"
   }
 }

@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "expandedstorage:cursed_to_chest"
+      "expandedstorage:gold_to_old_gold"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "expandedstorage:wood_chest"
+            "item": "expandedstorage:gold_chest"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "expandedstorage:cursed_to_chest"
+        "recipe": "expandedstorage:gold_to_old_gold"
       }
     }
   },

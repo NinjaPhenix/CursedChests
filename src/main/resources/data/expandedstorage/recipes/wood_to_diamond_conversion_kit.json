@@ -13,7 +13,7 @@
       "item": "minecraft:diamond"
     },
     "G": {
-      "tag": "expandedstorage:impermeable"
+      "tag": "c:glass_blocks"
     }
   },
   "result": {
