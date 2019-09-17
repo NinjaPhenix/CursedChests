@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cursedchests:item/wood_to_gold_conversion_kit"
-  }
-}

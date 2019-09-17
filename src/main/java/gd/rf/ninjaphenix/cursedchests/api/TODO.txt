@@ -1,5 +1,0 @@
-todo:
-    Maybe add custom stats for each chest type
-    Curse of binding to lock a chest to a specific player (make upgrade ?)
-    Trapped chest variant (make upgrade ?)
-    Potentially fix localization for other languages (where Large is a suffix instead of prefix)

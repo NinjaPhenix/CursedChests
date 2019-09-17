@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "cursedchests:item/iron_to_obsidian_conversion_kit"
-  }
-}
