@@ -74,7 +74,7 @@ curseforge {
     project {
         id = '317856'
         changelog = file('changelog.txt')
-        releaseType = 'beta'
+        releaseType = 'alpha'
         addGameVersion "1.15-Snapshot"
         addGameVersion "Fabric"
         relations {
