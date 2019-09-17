@@ -6,7 +6,7 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = "${project.mod_version}-${project.minecraft_version}"
 group = project.maven_group
 
 repositories {
@@ -81,6 +81,7 @@ curseforge {
             requiredDependency 'fabric-api'
         }
         mainArtifact remapJar
+        addArtifact sourcesJar
     }
     options {
         forgeGradleIntegration = false
