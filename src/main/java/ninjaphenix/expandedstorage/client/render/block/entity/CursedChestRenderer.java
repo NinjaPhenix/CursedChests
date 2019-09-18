@@ -1,6 +1,6 @@
 package ninjaphenix.expandedstorage.client.render.block.entity;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -38,45 +38,45 @@ public class CursedChestRenderer extends BlockEntityRenderer<CursedChestBlockEnt
         if (b == null) b = Registry.BLOCK.getId(ModBlocks.wood_chest);
         SingleChestModel chestModel = getChestModelAndBindTexture(b, breaking_stage, chestType);
         if (chestModel == null) return;
-        RenderSystem.enableDepthTest();
-        RenderSystem.depthFunc(515);
-        RenderSystem.depthMask(true);
+        GlStateManager.enableDepthTest();
+        GlStateManager.depthFunc(515);
+        GlStateManager.depthMask(true);
         if (breaking_stage >= 0)
         {
-            RenderSystem.matrixMode(5890);
-            RenderSystem.pushMatrix();
-            if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) RenderSystem.scalef(6, 6, 1);
-            else if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) RenderSystem.scalef(4, 8, 1);
-            else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) RenderSystem.scalef(8, 4, 1);
-            else RenderSystem.scalef(4, 4, 1);
-            RenderSystem.translatef(0.0625F, 0.0625F, 0.0625F);
-            RenderSystem.matrixMode(5888);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.pushMatrix();
+            if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) GlStateManager.scalef(6, 6, 1);
+            else if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) GlStateManager.scalef(4, 8, 1);
+            else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) GlStateManager.scalef(8, 4, 1);
+            else GlStateManager.scalef(4, 4, 1);
+            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
+            GlStateManager.matrixMode(5888);
         }
-        else RenderSystem.color4f(1, 1, 1, 1);
-        RenderSystem.pushMatrix();
-        RenderSystem.enableRescaleNormal();
-        RenderSystem.translated(x, y + 1, z + 1);
-        RenderSystem.scalef(1, -1, -1);
+        else GlStateManager.color4f(1, 1, 1, 1);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.translated(x, y + 1, z + 1);
+        GlStateManager.scalef(1, -1, -1);
         float chestYaw = state.get(CursedChestBlock.FACING).asRotation();
         if (Math.abs(chestYaw) > 1.0E-5D)
         {
-            RenderSystem.translated(0.5, 0.5, 0.5);
-            RenderSystem.rotatef(chestYaw, 0, 1, 0);
-            RenderSystem.translated(-0.5, -0.5, -0.5);
+            GlStateManager.translated(0.5, 0.5, 0.5);
+            GlStateManager.rotatef(chestYaw, 0, 1, 0);
+            GlStateManager.translated(-0.5, -0.5, -0.5);
         }
-        if (chestType == CursedChestType.TOP) RenderSystem.translatef(0, 1, 0);
-        else if (chestType == CursedChestType.RIGHT) RenderSystem.translatef(-1, 0, 0);
-        else if (chestType == CursedChestType.BACK) RenderSystem.translatef(0, 0, -1);
+        if (chestType == CursedChestType.TOP) GlStateManager.translatef(0, 1, 0);
+        else if (chestType == CursedChestType.RIGHT) GlStateManager.translatef(-1, 0, 0);
+        else if (chestType == CursedChestType.BACK) GlStateManager.translatef(0, 0, -1);
         setLidPitch(blockEntity, lidPitch, chestModel);
         chestModel.render();
-        RenderSystem.disableRescaleNormal();
-        RenderSystem.popMatrix();
-        RenderSystem.color4f(1, 1, 1, 1);
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.popMatrix();
+        GlStateManager.color4f(1, 1, 1, 1);
         if (breaking_stage >= 0)
         {
-            RenderSystem.matrixMode(5890);
-            RenderSystem.popMatrix();
-            RenderSystem.matrixMode(5888);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode(5888);
         }
     }
 

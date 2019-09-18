@@ -1,6 +1,6 @@
 plugins {
-    id 'fabric-loom' version '0.2.5-SNAPSHOT'
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id "fabric-loom" version "0.2.5-SNAPSHOT"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -44,11 +44,11 @@ dependencies {
 processResources {
     inputs.property "version", project.version
     from (sourceSets.main.resources.srcDirs) {
-        include ('fabric.mod.json')
-        expand ('version': version)
+        include ("fabric.mod.json")
+        expand ("version": version)
     }
     from (sourceSets.main.resources.srcDirs) {
-        exclude ('fabric.mod.json')
+        exclude ("fabric.mod.json")
     }
 }
 
@@ -72,13 +72,13 @@ runClient {
 curseforge {
     apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
     project {
-        id = '317856'
-        changelog = file('changelog.txt')
-        releaseType = 'alpha'
-        addGameVersion "1.15-Snapshot"
+        id = "317856"
+        changelog = file("changelog.txt")
+        releaseType = "alpha"
+        addGameVersion "1.14.4"
         addGameVersion "Fabric"
         relations {
-            requiredDependency 'fabric-api'
+            requiredDependency "fabric-api"
         }
         mainArtifact remapJar
         addArtifact sourcesJar

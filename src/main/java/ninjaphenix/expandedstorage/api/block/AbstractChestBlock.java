@@ -141,7 +141,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     private static boolean hasOcelotOnTop(IWorld world, BlockPos pos)
     {
         List<CatEntity> cats = world
-                .getNonSpectatingEntities(CatEntity.class, new Box(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1));
+                .getEntities(CatEntity.class, new Box(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1));
         for (CatEntity catEntity_1 : cats) if (catEntity_1.isSitting()) return true;
         return false;
     }
@@ -175,7 +175,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
         CursedChestType chestType = CursedChestType.SINGLE;
         Direction direction_1 = context.getPlayerFacing().getOpposite();
         Direction direction_2 = context.getSide();
-        boolean shouldCancelInteraction = context.shouldCancelInteraction();
+        boolean shouldCancelInteraction = context.isPlayerSneaking();
         if (shouldCancelInteraction)
         {
             BlockState state;

@@ -58,7 +58,7 @@ public class CursedChestBlockEntity extends AbstractChestBlockEntity implements 
     private static int countViewers(World world, CursedChestBlockEntity instance, int x, int y, int z)
     {
         int viewers = 0;
-        List<PlayerEntity> playersInRange = world.getNonSpectatingEntities(PlayerEntity.class, new Box(x - 5, y - 5, z - 5, x + 6, y + 6, z + 6));
+        List<PlayerEntity> playersInRange = world.getEntities(PlayerEntity.class, new Box(x - 5, y - 5, z - 5, x + 6, y + 6, z + 6));
         Iterator<PlayerEntity> playerIterator = playersInRange.iterator();
         while (true)
         {

@@ -1,6 +1,6 @@
 package ninjaphenix.expandedstorage.api.client.gui.screen.ingame;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -87,7 +87,7 @@ public class ScrollableScreen extends AbstractContainerScreen<ScrollableContaine
     @Override
     protected void drawBackground(float lastFrameDuration, int mouseX, int mouseY)
     {
-        RenderSystem.color4f(1, 1, 1, 1);
+        GlStateManager.color4f(1, 1, 1, 1);
         minecraft.getTextureManager().bindTexture(BASE_TEXTURE);
         int x = (width - containerWidth) / 2;
         int y = (height - containerHeight) / 2;
