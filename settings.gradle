@@ -2,11 +2,11 @@ pluginManagement {
     repositories {
         jcenter()
         maven {
-            name = 'Fabric'
+            name = 'FabricMC'
             url = 'https://maven.fabricmc.net/'
         }
         maven {
-            name = 'Fabric 2'
+            name = 'Modmuss'
             url = 'https://http://maven.modmuss50.me/'
         }
         gradlePluginPortal()

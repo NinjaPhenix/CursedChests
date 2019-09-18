@@ -34,7 +34,5 @@ public class ExpandedStorage implements ModInitializer
             World world = player.getEntityWorld();
             return new ScrollableContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
         }));
-
-
     }
 }

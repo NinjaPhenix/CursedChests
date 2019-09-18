@@ -31,11 +31,11 @@ dependencies {
 		exclude (group: "io.github.prospector", module: "modmenu")
 	}
 
-	modApi ("io.github.prospector:modmenu:${modmenu_version}")
-    {
-        exclude (group: "net.fabricmc", module: "fabric-loader")
-        exclude (group: "net.fabricmc.fabric-api")
-    }
+	//modApi ("io.github.prospector:modmenu:${modmenu_version}")
+    //{
+    //    exclude (group: "net.fabricmc", module: "fabric-loader")
+    //    exclude (group: "net.fabricmc.fabric-api")
+    //}
 	
 	modRuntime ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
 	include ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")

@@ -1,6 +1,6 @@
 package ninjaphenix.expandedstorage.api.block;
 
-import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+//import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.container.Container;
@@ -298,45 +298,45 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     */
     protected void openContainer(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
     {
-        Text containerName = retrieve(state, world, pos, NAME_RETRIEVER);
-        if (containerName == null) return;
-        BlockEntity clickedBlockEntity = world.getBlockEntity(pos);
-        BlockPos pairedPos = getPairedPos(world, pos);
-        if (pairedPos == null)
-        {
-            if (clickedBlockEntity instanceof AbstractChestBlockEntity)
-            {
-                AbstractChestBlockEntity cursedClickBlockEntity = (AbstractChestBlockEntity) clickedBlockEntity;
-                if (cursedClickBlockEntity.checkUnlocked(player))
-                {
-                    cursedClickBlockEntity.checkLootInteraction(player);
-                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
-                    {
-                        packetByteBuf.writeBlockPos(pos);
-                        packetByteBuf.writeText(containerName);
-                    }));
-                }
-            }
-        }
-        else
-        {
-            BlockEntity pairedBlockEntity = world.getBlockEntity(pairedPos);
-            if (clickedBlockEntity instanceof AbstractChestBlockEntity && pairedBlockEntity instanceof AbstractChestBlockEntity)
-            {
-                AbstractChestBlockEntity cursedClickBlockEntity = (AbstractChestBlockEntity) clickedBlockEntity;
-                AbstractChestBlockEntity cursedPairedBlockEntity = (AbstractChestBlockEntity) pairedBlockEntity;
-                if (cursedClickBlockEntity.checkUnlocked(player) && cursedPairedBlockEntity.checkUnlocked(player))
-                {
-                    cursedClickBlockEntity.checkLootInteraction(player);
-                    cursedPairedBlockEntity.checkLootInteraction(player);
-                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
-                    {
-                        packetByteBuf.writeBlockPos(pos);
-                        packetByteBuf.writeText(containerName);
-                    }));
-                }
-            }
-        }
+        //Text containerName = retrieve(state, world, pos, NAME_RETRIEVER);
+        //if (containerName == null) return;
+        //BlockEntity clickedBlockEntity = world.getBlockEntity(pos);
+        //BlockPos pairedPos = getPairedPos(world, pos);
+        //if (pairedPos == null)
+        //{
+        //    if (clickedBlockEntity instanceof AbstractChestBlockEntity)
+        //    {
+        //        AbstractChestBlockEntity cursedClickBlockEntity = (AbstractChestBlockEntity) clickedBlockEntity;
+        //        if (cursedClickBlockEntity.checkUnlocked(player))
+        //        {
+        //            cursedClickBlockEntity.checkLootInteraction(player);
+        //            ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
+        //            {
+        //                packetByteBuf.writeBlockPos(pos);
+        //                packetByteBuf.writeText(containerName);
+        //            }));
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    BlockEntity pairedBlockEntity = world.getBlockEntity(pairedPos);
+        //    if (clickedBlockEntity instanceof AbstractChestBlockEntity && pairedBlockEntity instanceof AbstractChestBlockEntity)
+        //    {
+        //        AbstractChestBlockEntity cursedClickBlockEntity = (AbstractChestBlockEntity) clickedBlockEntity;
+        //        AbstractChestBlockEntity cursedPairedBlockEntity = (AbstractChestBlockEntity) pairedBlockEntity;
+        //        if (cursedClickBlockEntity.checkUnlocked(player) && cursedPairedBlockEntity.checkUnlocked(player))
+        //        {
+        //            cursedClickBlockEntity.checkLootInteraction(player);
+        //            cursedPairedBlockEntity.checkLootInteraction(player);
+        //            ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
+        //            {
+        //                packetByteBuf.writeBlockPos(pos);
+        //                packetByteBuf.writeText(containerName);
+        //            }));
+        //        }
+        //    }
+        //}
     }
 
     @Override

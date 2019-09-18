@@ -22,11 +22,6 @@ public abstract class ChestModifierItem extends Item
     private static final DirectionProperty FACING = AbstractChestBlock.FACING;
     private static final EnumProperty<CursedChestType> TYPE = AbstractChestBlock.TYPE;
 
-    /*
-        UPDATE THIS CLASS
-        UPDATE THIS CLASS
-        UPDATE THIS CLASS
-     */
     public ChestModifierItem(Settings settings) { super(settings); }
 
     @Override
