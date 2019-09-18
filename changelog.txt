@@ -1,7 +1,0 @@
-Added full cube variants of the regular chest blocks.
-Wood chests now have a new texture. More textures are being worked on.
-Chest Mutators merge function has been changed, you now have to click on the two blocks you want to merge.
-Recipes now somewhat use common tags ( for glass and chests ).
-Fixed mod version to follow semver + include sources in curseforge release.
-
-A very secret feature: see creative button mover mod menu entry.
