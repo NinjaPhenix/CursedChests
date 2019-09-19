@@ -1,6 +1,9 @@
 name: Java CI
 
-on: [push]
+on: 
+  push:
+    branches:
+      - release/*
 
 jobs:
   build:
@@ -13,5 +16,5 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Build and Release with gradle
+      run: ./gradlew curseforge -Papi_key=${{ secrets.CURSEFORGE_TOKEN }}
