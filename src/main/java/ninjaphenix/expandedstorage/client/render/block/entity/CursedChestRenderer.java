@@ -1,14 +1,15 @@
 package ninjaphenix.expandedstorage.client.render.block.entity;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.class_4576;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.model.ModelLoader;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
@@ -20,7 +21,7 @@ import ninjaphenix.expandedstorage.client.model.TallChestModel;
 import ninjaphenix.expandedstorage.client.model.VanillaChestModel;
 
 @Environment(EnvType.CLIENT)
-public class CursedChestRenderer extends BlockEntityRenderer<CursedChestBlockEntity>
+public class CursedChestRenderer extends class_4576<CursedChestBlockEntity>
 {
     private static final SingleChestModel singleChestModel = new SingleChestModel();
     private static final SingleChestModel tallChestModel = new TallChestModel();
@@ -81,25 +82,27 @@ public class CursedChestRenderer extends BlockEntityRenderer<CursedChestBlockEnt
     //    }
     //}
 
-    //private SingleChestModel getChestModelAndBindTexture(Identifier tier, int breaking_stage, CursedChestType chestType)
-    //{
-    //    bindTexture(breaking_stage >= 0 ? DESTROY_STAGE_TEXTURES[breaking_stage] : Registries.MODELED.get(tier).getChestTexture(chestType));
-    //    if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) return tallChestModel;
-    //    else if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) return longChestModel;
-    //    else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) return vanillaChestModel;
-    //    else if (chestType == CursedChestType.SINGLE) return singleChestModel;
-    //    return null;
-    //}
-
-    //private void setLidPitch(CursedChestBlockEntity blockEntity, float lidPitch, SingleChestModel model)
-    //{
-    //    float newPitch = 1.0F - blockEntity.getAnimationProgress(lidPitch);
-    //    model.setLidPitch(-((1.0F - newPitch * newPitch * newPitch) * 1.5707964F));
-    //}
-
     @Override
-    public void render(CursedChestBlockEntity cursedChestBlockEntity, double v, double v1, double v2, float v3, int i, BlockRenderLayer blockRenderLayer)
+    protected void method_22738(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, int blockBreakStage,
+            BlockRenderLayer renderLayer, BufferBuilder bufferBuilder, int textureOffsetX, int textureOffsetY)
     {
+        BlockState state = blockEntity.hasWorld() ? blockEntity.getCachedState() : defaultState;
+        CursedChestType chestType = state.get(CursedChestBlock.TYPE);
+        Identifier tier = blockEntity.getBlock();
 
+        SingleChestModel model;
+        if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) model = tallChestModel;
+        else if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) model = longChestModel;
+        else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) model = vanillaChestModel;
+        else if (chestType == CursedChestType.SINGLE) model = singleChestModel;
+        else return;
+
+
+        model.setLidPitch(blockEntity.getAnimationProgress(tickDelta));
+        Sprite texture = this.method_22739(blockBreakStage >= 0 ? ModelLoader.field_20848.get(blockBreakStage) :
+                Registries.MODELED.get(tier).getChestTexture(chestType));
+        bufferBuilder.method_22629();
+        model.appendToBuffer(bufferBuilder, 0.0625f, textureOffsetX, textureOffsetY, texture);
+        bufferBuilder.method_22630();
     }
 }

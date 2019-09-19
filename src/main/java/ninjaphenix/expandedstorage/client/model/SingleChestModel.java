@@ -4,6 +4,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.texture.Sprite;
 
 @Environment(EnvType.CLIENT)
 public class SingleChestModel extends Model
@@ -29,11 +31,15 @@ public class SingleChestModel extends Model
         base.setRotationPoint(1, 6, 1);
     }
 
-    public void render()
+    public void setLidPitch(float pitch)
     {
-        lid.render(0.0625F);
-        base.render(0.0625F);
+        pitch = 1.0f - pitch;
+        lid.pitch = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
     }
 
-    public void setLidPitch(float pitch) { lid.pitch = pitch; }
+    public void appendToBuffer(BufferBuilder bufferBuilder, float scale, int textureOffsetX, int textureOffsetY, Sprite texture)
+    {
+        base.method_22698(bufferBuilder, scale, textureOffsetX, textureOffsetY, texture);
+        lid.method_22698(bufferBuilder, scale, textureOffsetX, textureOffsetY, texture);
+    }
 }
