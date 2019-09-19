@@ -1,1 +1,1 @@
-No mod changes, fixes mod version to follow semver + includes sources on curseforge
+Updated to 19w38b
