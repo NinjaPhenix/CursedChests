@@ -1,12 +1,12 @@
 package ninjaphenix.cursedchests.api;
 
-import ninjaphenix.cursedchests.api.block.CursedChestType;
-import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import ninjaphenix.cursedchests.api.block.CursedChestType;
+import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
 import ninjaphenix.cursedchests.mixins.ItemDynamicRenderer;
 
 import java.util.HashMap;
@@ -50,8 +50,7 @@ public class CursedChestRegistry
     }
 
     /**
-     * Gets a new instance of a registered chest block's block entity. Used in {@link ItemDynamicRenderer} to render the
-     * chests properly in inventories.
+     * Gets a new instance of a registered chest block's block entity. Used in {@link ItemDynamicRenderer} to render the chests properly in inventories.
      *
      * @param block The identifier for the vertical chest block.
      * @return An instance of that block's block entity.
