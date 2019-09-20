@@ -1,13 +1,6 @@
 package ninjaphenix.cursedchests.client.render.block.entity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import ninjaphenix.cursedchests.api.CursedChestRegistry;
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.CursedChestType;
-import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
-import ninjaphenix.cursedchests.block.ModBlocks;
-import ninjaphenix.cursedchests.client.render.entity.model.LongChestEntityModel;
-import ninjaphenix.cursedchests.client.render.entity.model.TallChestEntityModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -17,6 +10,13 @@ import net.minecraft.client.render.entity.model.LargeChestEntityModel;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
+import ninjaphenix.cursedchests.api.CursedChestRegistry;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.CursedChestType;
+import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
+import ninjaphenix.cursedchests.block.ModBlocks;
+import ninjaphenix.cursedchests.client.render.entity.model.LongChestEntityModel;
+import ninjaphenix.cursedchests.client.render.entity.model.TallChestEntityModel;
 
 @Environment(EnvType.CLIENT)
 public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedChestBlockEntity>
