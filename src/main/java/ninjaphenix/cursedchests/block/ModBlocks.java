@@ -1,8 +1,5 @@
 package ninjaphenix.cursedchests.block;
 
-import ninjaphenix.cursedchests.api.CursedChestRegistry;
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,6 +9,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import ninjaphenix.cursedchests.api.CursedChestRegistry;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
 
 public class ModBlocks
 {

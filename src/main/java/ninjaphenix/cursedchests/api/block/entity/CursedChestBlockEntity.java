@@ -1,10 +1,5 @@
 package ninjaphenix.cursedchests.api.block.entity;
 
-import ninjaphenix.cursedchests.api.CursedChestRegistry;
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.CursedChestType;
-import ninjaphenix.cursedchests.api.container.ScrollableContainer;
-import ninjaphenix.cursedchests.api.inventory.DoubleSidedInventory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvironmentInterface;
@@ -30,6 +25,11 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import ninjaphenix.cursedchests.api.CursedChestRegistry;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.CursedChestType;
+import ninjaphenix.cursedchests.api.container.ScrollableContainer;
+import ninjaphenix.cursedchests.api.inventory.DoubleSidedInventory;
 
 import java.util.Iterator;
 import java.util.List;

@@ -1,7 +1,5 @@
 package ninjaphenix.cursedchests.api.block;
 
-import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
-import ninjaphenix.cursedchests.api.inventory.DoubleSidedInventory;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
@@ -37,6 +35,8 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
+import ninjaphenix.cursedchests.api.inventory.DoubleSidedInventory;
 
 import java.util.List;
 

@@ -1,8 +1,6 @@
 package ninjaphenix.cursedchests.api.client.gui.container;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import ninjaphenix.cursedchests.api.client.gui.SearchTextFieldWidget;
-import ninjaphenix.cursedchests.api.container.ScrollableContainer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -13,6 +11,8 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import ninjaphenix.cursedchests.api.client.gui.SearchTextFieldWidget;
+import ninjaphenix.cursedchests.api.container.ScrollableContainer;
 
 @Environment(EnvType.CLIENT)
 public class ScrollableScreen extends AbstractContainerScreen<ScrollableContainer> implements ContainerProvider<ScrollableContainer>
