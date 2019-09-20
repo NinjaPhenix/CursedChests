@@ -9,7 +9,7 @@
   ],
   "contact": {
     "homepage": "https://minecraft.curseforge.com/projects/cursed-chests",
-    "sources": "https://github.com/NinjaPhenix/CursedChests"
+    "sources": "https://github.com/NinjaPhenix/CursedChests/tree/release/1.14.3"
   },
   "license": "MIT",
   "icon": "assets/cursedchests/icon.png",
@@ -21,7 +21,7 @@
     "client": [
       "gd.rf.ninjaphenix.cursedchests.CursedChests"
     ],
-    "rei_plugins": [
+    "rei_plugins_v0": [
       "gd.rf.ninjaphenix.cursedchests.client.CursedChestREIPlugin"
     ]
   },
@@ -32,6 +32,7 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.4.0"
+    "fabricloader": "*",
+    "fabric": ">=0.3.0"
   }
 }

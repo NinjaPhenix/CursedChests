@@ -69,7 +69,7 @@ public class CursedChestBlockEntity extends LootableContainerBlockEntity impleme
 		this.block = block;
 		defaultContainerName = CursedChestRegistry.getDefaultContainerName(block);
 		inventorySize = CursedChestRegistry.getSlots(block);
-		inventory = DefaultedList.create(inventorySize, ItemStack.EMPTY);
+		inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
 		SLOTS = new int[inventorySize];
 		for (int i = 0; i < inventorySize; i++) SLOTS[i] = i;
 	}

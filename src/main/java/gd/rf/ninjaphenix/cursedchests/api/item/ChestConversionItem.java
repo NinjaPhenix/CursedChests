@@ -29,7 +29,7 @@ public class ChestConversionItem extends ChestModifierItem
 	private void upgradeCursedChest(World world, BlockPos pos, BlockState state)
 	{
 		BlockEntity blockEnity = world.getBlockEntity(pos);
-		DefaultedList<ItemStack> inventoryData = DefaultedList.create(CursedChestRegistry.getSlots(to), ItemStack.EMPTY);
+		DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(CursedChestRegistry.getSlots(to), ItemStack.EMPTY);
 		Inventories.fromTag(blockEnity.toTag(new CompoundTag()), inventoryData);
 		world.removeBlockEntity(pos);
 		world.setBlockState(pos, Registry.BLOCK.get(to).getDefaultState().with(Properties.HORIZONTAL_FACING, state.get(Properties.HORIZONTAL_FACING)).with(Properties.WATERLOGGED, state.get(Properties.WATERLOGGED)).with(CursedChestBlock.TYPE, state.get(CursedChestBlock.TYPE)));
@@ -40,7 +40,7 @@ public class ChestConversionItem extends ChestModifierItem
 	private void upgradeChest(World world, BlockPos pos, BlockState state)
 	{
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		DefaultedList<ItemStack> inventoryData = DefaultedList.create(CursedChestRegistry.getSlots(to), ItemStack.EMPTY);
+		DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(CursedChestRegistry.getSlots(to), ItemStack.EMPTY);
 		Inventories.fromTag(blockEntity.toTag(new CompoundTag()), inventoryData);
 		world.removeBlockEntity(pos);
 		world.setBlockState(pos, Registry.BLOCK.get(to).getDefaultState().with(Properties.HORIZONTAL_FACING, state.get(Properties.HORIZONTAL_FACING)).with(Properties.WATERLOGGED, state.get(Properties.WATERLOGGED)).with(CursedChestBlock.TYPE, CursedChestType.valueOf(state.get(Properties.CHEST_TYPE))));
