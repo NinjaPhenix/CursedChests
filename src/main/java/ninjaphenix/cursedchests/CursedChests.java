@@ -1,12 +1,5 @@
 package ninjaphenix.cursedchests;
 
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
-import ninjaphenix.cursedchests.api.client.gui.container.ScrollableScreen;
-import ninjaphenix.cursedchests.api.container.ScrollableContainer;
-import ninjaphenix.cursedchests.block.ModBlocks;
-import ninjaphenix.cursedchests.client.render.block.entity.CursedChestBlockEntityRenderer;
-import ninjaphenix.cursedchests.item.ModItems;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.render.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
@@ -15,6 +8,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.entity.CursedChestBlockEntity;
+import ninjaphenix.cursedchests.api.client.gui.container.ScrollableScreen;
+import ninjaphenix.cursedchests.api.container.ScrollableContainer;
+import ninjaphenix.cursedchests.block.ModBlocks;
+import ninjaphenix.cursedchests.client.render.block.entity.CursedChestBlockEntityRenderer;
+import ninjaphenix.cursedchests.item.ModItems;
 
 @EnvironmentInterface(itf = ClientModInitializer.class, value = EnvType.CLIENT)
 public class CursedChests implements ModInitializer, ClientModInitializer

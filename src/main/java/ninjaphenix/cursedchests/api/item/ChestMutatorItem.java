@@ -1,8 +1,5 @@
 package ninjaphenix.cursedchests.api.item;
 
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.CursedChestType;
-import ninjaphenix.cursedchests.block.ModBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormat;
@@ -32,6 +29,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.CursedChestType;
+import ninjaphenix.cursedchests.block.ModBlocks;
 
 import java.util.List;
 

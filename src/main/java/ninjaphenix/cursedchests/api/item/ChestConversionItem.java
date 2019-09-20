@@ -1,8 +1,5 @@
 package ninjaphenix.cursedchests.api.item;
 
-import ninjaphenix.cursedchests.api.CursedChestRegistry;
-import ninjaphenix.cursedchests.api.block.CursedChestBlock;
-import ninjaphenix.cursedchests.api.block.CursedChestType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
@@ -21,6 +18,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import ninjaphenix.cursedchests.api.CursedChestRegistry;
+import ninjaphenix.cursedchests.api.block.CursedChestBlock;
+import ninjaphenix.cursedchests.api.block.CursedChestType;
 
 public class ChestConversionItem extends ChestModifierItem
 {
