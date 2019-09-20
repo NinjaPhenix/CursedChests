@@ -1,0 +1,4 @@
+Shrunk mod size by ~40kb
+Stop recommending REI so the game launches without it.
+Changed to beta release ( so its synced )
+Fixed sources link
