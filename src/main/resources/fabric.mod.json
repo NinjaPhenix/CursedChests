@@ -21,7 +21,7 @@
     "client": [
       "ninjaphenix.cursedchests.CursedChests"
     ],
-    "rei_plugins": [
+    "rei_plugins_v0": [
       "ninjaphenix.cursedchests.client.CursedChestREIPlugin"
     ]
   },
