@@ -16,31 +16,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings "net.fabricmc:yarn:${minecraft_version}+${yarn_version}"
     modCompile "net.fabricmc:fabric-loader:${loader_version}"
-    //modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-
-    // Lets use the new way in dev environment
-    modCompile "net.fabricmc.fabric-api:fabric-api-base:${project.fabric_api_base}"
-    modCompile "net.fabricmc.fabric-api:fabric-rendering-${project.fabric_rendering}"
-    modCompile "net.fabricmc.fabric-api:fabric-networking-${project.fabric_networking}"
-    modCompile "net.fabricmc.fabric-api:fabric-containers-${project.fabric_containers}"
-    modCompile "net.fabricmc.fabric-api:fabric-object-builders-${project.fabric_object_builders}"
-    // Dependency of fabric-object-builders
-    modCompile "net.fabricmc.fabric-api:fabric-mining-levels-${project.fabric_mining_levels}"
-
-    //REI
-
-    modCompile "net.fabricmc.fabric-api:fabric-keybindings-v0:0.1.1+7dfef87c"
-    modCompile "net.fabricmc.fabric-api:fabric-events-lifecycle-v0:0.1.0+59147463"
-    modCompile "net.fabricmc.fabric-api:fabric-resource-loader-v0:0.1.1+59147463"
-
-    compile "blue.endless:jankson:1.1.0"
-    modCompile "cloth:ClothEvents:0.3.1.23"
-    modCompile "cloth-config:ClothConfig2:0.2.0"
-    modCompile 'roughly-enough-items:RoughlyEnoughItems:2.9.5+build.133'
-
-
-    // ModMenu
-    modCompile "io.github.prospector.modmenu:ModMenu:1.5.4-85"
+    modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }
 
 processResources{
