@@ -19,7 +19,7 @@ dependencies {
     modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }
 
-processResources{
+processResources {
     inputs.property "version", project.version
     from(sourceSets.main.resources.srcDirs) {
         include 'fabric.mod.json'
