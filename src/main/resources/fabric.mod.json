@@ -8,8 +8,9 @@
     "NinjaPhenix"
   ],
   "contact": {
-    "homepage": "https://minecraft.curseforge.com/projects/cursed-chests",
-    "sources": "https://github.com/NinjaPhenix/CursedChests"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage",
+    "issues": "https://github.com/NinjaPhenix/ExpandedStorage/",
+    "sources": "https://github.com/NinjaPhenix/ExpandedStorage/tree/release/1.14.1"
   },
   "license": "MIT",
   "icon": "assets/cursedchests/icon.png",
@@ -32,6 +33,7 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.4.0"
+    "fabricloader": "*",
+    "fabric": ">=0.3.0"
   }
 }
