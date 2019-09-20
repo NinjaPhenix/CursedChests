@@ -16,13 +16,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "gd.rf.ninjaphenix.cursedchests.CursedChests"
+      "ninjaphenix.cursedchests.CursedChests"
     ],
     "client": [
-      "gd.rf.ninjaphenix.cursedchests.CursedChests"
+      "ninjaphenix.cursedchests.CursedChests"
     ],
     "rei_plugins": [
-      "gd.rf.ninjaphenix.cursedchests.client.CursedChestREIPlugin"
+      "ninjaphenix.cursedchests.client.CursedChestREIPlugin"
     ]
   },
   "mixins": [

@@ -1,11 +1,13 @@
 plugins {
-    id 'fabric-loom' version '0.2.5-SNAPSHOT'
+    id "fabric-loom" version "0.2.5-SNAPSHOT"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
-archivesBaseName = "CursedChests"
-version = project.mod_version
+archivesBaseName = project.archives_base_name
+version = "${project.mod_version}+${project.minecraft_version}"
+group = project.maven_group
 
 repositories {
     maven { url "https://minecraft.curseforge.com/api/maven" }
@@ -13,32 +15,69 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings "net.fabricmc:yarn:${minecraft_version}+${yarn_version}"
-    modCompile "net.fabricmc:fabric-loader:${loader_version}"
-    modCompile "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    minecraft ("com.mojang:minecraft:${minecraft_version}")
+    mappings ("net.fabricmc:yarn:${minecraft_version}+build.${yarn_version}")
+    modCompile ("net.fabricmc:fabric-loader:${loader_version}")
+    modCompile ("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    modCompile 'roughly-enough-items:RoughlyEnoughItems:2.9.1+build.121'
-    compile "blue.endless:jankson:1.1.0"
-    modCompile "cloth:ClothEvents:0.3.1.23"
-    modCompile "cloth-config:ClothConfig:0.2.4.17"
+    modApi ("me.shedaniel:RoughlyEnoughItems:${rei_version}")
+    {
+        exclude (group: "net.fabricmc", module: "fabric-loader")
+        exclude (group: "net.fabricmc.fabric-api")
+        exclude (group: "io.github.prospector", module: "modmenu")
+    }
+
+    modApi ("io.github.prospector.modmenu:ModMenu:${modmenu_version}")
+    {
+        exclude (group: "net.fabricmc", module: "fabric-loader")
+        exclude (group: "net.fabricmc.fabric-api")
+    }
 }
 
-processResources{
+processResources {
     inputs.property "version", project.version
-    from(sourceSets.main.resources.srcDirs) {
-        include 'fabric.mod.json'
-        expand 'version': version
+    from (sourceSets.main.resources.srcDirs) {
+        include ("fabric.mod.json")
+        expand ("version": version)
     }
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'fabric.mod.json'
+    from (sourceSets.main.resources.srcDirs) {
+        exclude ("fabric.mod.json")
     }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = "sources"
+    from sourceSets.main.allSource
 }
 
 jar {
-    from "LICENSE"
+    from ("LICENSE")
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+    options.setEncoding("UTF-8")
+}
+
+runClient {
+    args = ["--username", "Dev"]
+}
+
+curseforge {
+    apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
+    project {
+        id = "317856"
+        changelog = file("changelog.txt")
+        releaseType = "release"
+        addGameVersion "1.14.2"
+        addGameVersion "Fabric"
+        relations {
+            requiredDependency "fabric-api"
+        }
+        mainArtifact remapJar
+        addArtifact sourcesJar
+    }
+    options {
+        forgeGradleIntegration = false
+        debug = true
+    }
 }

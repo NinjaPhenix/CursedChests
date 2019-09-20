@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "gd.rf.ninjaphenix.cursedchests.mixins",
+  "package": "ninjaphenix.cursedchests.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ItemDynamicRenderer"
