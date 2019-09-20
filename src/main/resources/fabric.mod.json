@@ -9,6 +9,7 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage",
+    "issues": "https://github.com/NinjaPhenix/ExpandedStorage/",
     "sources": "https://github.com/NinjaPhenix/ExpandedStorage/tree/release/1.14.3"
   },
   "license": "MIT",
