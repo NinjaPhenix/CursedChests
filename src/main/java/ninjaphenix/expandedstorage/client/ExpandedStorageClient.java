@@ -13,7 +13,7 @@ import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen;
-import ninjaphenix.expandedstorage.client.render.block.entity.CursedChestRenderer;
+import ninjaphenix.expandedstorage.client.render.block.entity.CursedChestBlockEntityRenderer;
 
 @Environment(EnvType.CLIENT)
 public class ExpandedStorageClient implements ClientModInitializer
@@ -21,7 +21,7 @@ public class ExpandedStorageClient implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
-        BlockEntityRendererRegistry.INSTANCE.register(CursedChestBlockEntity.class, new CursedChestRenderer());
+        BlockEntityRendererRegistry.INSTANCE.register(CursedChestBlockEntity.class, new CursedChestBlockEntityRenderer());
         ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
 
         ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEX).register((atlas, registry) -> {
