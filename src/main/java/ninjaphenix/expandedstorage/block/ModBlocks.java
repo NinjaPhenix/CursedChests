@@ -36,25 +36,25 @@ public class ModBlocks
     public static void init()
     {
         wood_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.OAK_PLANKS)), "wood_chest", 3,
-                new TranslatableText("container.expandedstorage.wood_chest"), ExpandedStorage.getId("textures/entity/wood_chest/single.png"),
-                ExpandedStorage.getId("textures/entity/wood_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/wood_chest/tall.png"),
-                ExpandedStorage.getId("textures/entity/wood_chest/long.png"));
+                new TranslatableText("container.expandedstorage.wood_chest"), ExpandedStorage.getId("entity/wood_chest/single"),
+                ExpandedStorage.getId("entity/wood_chest/vanilla"), ExpandedStorage.getId("entity/wood_chest/tall"),
+                ExpandedStorage.getId("entity/wood_chest/long"));
         iron_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.IRON_BLOCK)), "iron_chest", 6,
-                new TranslatableText("container.expandedstorage.iron_chest"), ExpandedStorage.getId("textures/entity/iron_chest/single.png"),
-                ExpandedStorage.getId("textures/entity/iron_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/iron_chest/tall.png"),
-                ExpandedStorage.getId("textures/entity/iron_chest/long.png"));
+                new TranslatableText("container.expandedstorage.iron_chest"), ExpandedStorage.getId("entity/iron_chest/single"),
+                ExpandedStorage.getId("entity/iron_chest/vanilla"), ExpandedStorage.getId("entity/iron_chest/tall"),
+                ExpandedStorage.getId("entity/iron_chest/long"));
         gold_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.GOLD_BLOCK)), "gold_chest", 9,
-                new TranslatableText("container.expandedstorage.gold_chest"), ExpandedStorage.getId("textures/entity/gold_chest/single.png"),
-                ExpandedStorage.getId("textures/entity/gold_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/gold_chest/tall.png"),
-                ExpandedStorage.getId("textures/entity/gold_chest/long.png"));
+                new TranslatableText("container.expandedstorage.gold_chest"), ExpandedStorage.getId("entity/gold_chest/single"),
+                ExpandedStorage.getId("entity/gold_chest/vanilla"), ExpandedStorage.getId("entity/gold_chest/tall"),
+                ExpandedStorage.getId("entity/gold_chest/long"));
         diamond_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.DIAMOND_BLOCK)), "diamond_chest", 12,
-                new TranslatableText("container.expandedstorage.diamond_chest"), ExpandedStorage.getId("textures/entity/diamond_chest/single.png"),
-                ExpandedStorage.getId("textures/entity/diamond_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/diamond_chest/tall.png"),
-                ExpandedStorage.getId("textures/entity/diamond_chest/long.png"));
+                new TranslatableText("container.expandedstorage.diamond_chest"), ExpandedStorage.getId("entity/diamond_chest/single"),
+                ExpandedStorage.getId("entity/diamond_chest/vanilla"), ExpandedStorage.getId("entity/diamond_chest/tall"),
+                ExpandedStorage.getId("entity/diamond_chest/long"));
         obsidian_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.OBSIDIAN)), "obsidian_chest", 12,
-                new TranslatableText("container.expandedstorage.obsidian_chest"), ExpandedStorage.getId("textures/entity/obsidian_chest/single.png"),
-                ExpandedStorage.getId("textures/entity/obsidian_chest/vanilla.png"), ExpandedStorage.getId("textures/entity/obsidian_chest/tall.png"),
-                ExpandedStorage.getId("textures/entity/obsidian_chest/long.png"));
+                new TranslatableText("container.expandedstorage.obsidian_chest"), ExpandedStorage.getId("entity/obsidian_chest/single"),
+                ExpandedStorage.getId("entity/obsidian_chest/vanilla"), ExpandedStorage.getId("entity/obsidian_chest/tall"),
+                ExpandedStorage.getId("entity/obsidian_chest/long"));
         old_wood_chest = registerOld(new OldChestBlock(Block.Settings.copy(Blocks.OAK_PLANKS)), "wood_chest", 3,
                 new TranslatableText("container.expandedstorage.wood_chest"));
         old_iron_chest = registerOld(new OldChestBlock(Block.Settings.copy(Blocks.IRON_BLOCK)), "iron_chest", 6,

@@ -8,8 +8,11 @@ import net.minecraft.class_4576;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.util.math.Vector3f;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Quaternion;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
@@ -96,12 +99,17 @@ public class CursedChestRenderer extends class_4576<CursedChestBlockEntity>
         else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) model = vanillaChestModel;
         else if (chestType == CursedChestType.SINGLE) model = singleChestModel;
         else return;
+        if (!chestType.isRenderedType()) return; // fix this in a bit.
 
+        bufferBuilder.method_22629();
+        float float_2 = state.get(Properties.HORIZONTAL_FACING).asRotation();
+        bufferBuilder.method_22626(0.5D, 0.5D, 0.5D); // y probably needs to change
+        bufferBuilder.method_22622(new Quaternion(Vector3f.field_20705, -float_2, true));
+        bufferBuilder.method_22626(-0.5D, -0.5D, -0.5D); // y probably needs to change
 
         model.setLidPitch(blockEntity.getAnimationProgress(tickDelta));
         Sprite texture = this.method_22739(blockBreakStage >= 0 ? ModelLoader.field_20848.get(blockBreakStage) :
                 Registries.MODELED.get(tier).getChestTexture(chestType));
-        bufferBuilder.method_22629();
         model.appendToBuffer(bufferBuilder, 0.0625f, textureOffsetX, textureOffsetY, texture);
         bufferBuilder.method_22630();
     }
