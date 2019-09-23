@@ -1,6 +1,6 @@
 plugins {
-    id 'fabric-loom' version '0.2.5-SNAPSHOT'
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id "fabric-loom" version "0.2.5-SNAPSHOT"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -12,58 +12,51 @@ group = project.maven_group
 repositories {
     maven { url "https://minecraft.curseforge.com/api/maven" }
     maven { url "https://tehnut.info/maven/" }
-	
-	flatDir {
-        dirs "includes"
-    }
+    flatDir { dirs "includes" }
 }
 
 dependencies {
-    minecraft ("com.mojang:minecraft:${minecraft_version}")
-    mappings ("net.fabricmc:yarn:${minecraft_version}+${yarn_version}")
-    modCompile ("net.fabricmc:fabric-loader:${loader_version}")
-    modCompile ("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+    mappings("net.fabricmc:yarn:${minecraft_version}+${yarn_version}")
+    modCompile("net.fabricmc:fabric-loader:${loader_version}")
+    modCompile("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    modCompileOnly ("me.shedaniel:RoughlyEnoughItems:${rei_version}")
-	{
-	    exclude (group: "net.fabricmc", module: "fabric-loader")
-		exclude (group: "net.fabricmc.fabric-api")
-		exclude (group: "io.github.prospector", module: "modmenu")
-	}
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems:${rei_version}")
+            {
+                exclude(group: "net.fabricmc", module: "fabric-loader")
+                exclude(group: "net.fabricmc.fabric-api")
+                exclude(group: "io.github.prospector", module: "modmenu")
+            }
 
-	//modApi ("io.github.prospector:modmenu:${modmenu_version}")
+    //modApi ("io.github.prospector:modmenu:${modmenu_version}")
     //{
     //    exclude (group: "net.fabricmc", module: "fabric-loader")
     //    exclude (group: "net.fabricmc.fabric-api")
     //}
-	
-	modRuntime ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
-	include ("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
+
+    modRuntime("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
+    include("ninjaphenix:creativebuttonmover:0.1+build.1-1.15")
 }
 
 processResources {
     inputs.property "version", project.version
-    from (sourceSets.main.resources.srcDirs) {
-        include ('fabric.mod.json')
-        expand ('version': version)
+    from(sourceSets.main.resources.srcDirs) {
+        include("fabric.mod.json")
+        expand("version": version)
     }
-    from (sourceSets.main.resources.srcDirs) {
-        exclude ('fabric.mod.json')
+    from(sourceSets.main.resources.srcDirs) {
+        exclude("fabric.mod.json")
     }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier = "sources"
+    archiveClassifier.set("sources")
     from sourceSets.main.allSource
 }
 
-jar {
-    from ("LICENSE")
-}
+jar { from("LICENSE") }
 
-tasks.withType(JavaCompile) {
-    options.setEncoding("UTF-8")
-}
+tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
 
 runClient {
     args = ["--username", "Dev"]
@@ -72,13 +65,13 @@ runClient {
 curseforge {
     apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
     project {
-        id = '317856'
-        changelog = file('changelog.txt')
-        releaseType = 'alpha'
-        addGameVersion "1.15-Snapshot"
+        id = "317856"
+        changelog = file("changelog.txt")
+        releaseType = "${project.release_type}"
+        addGameVersion "${project.game_version}"
         addGameVersion "Fabric"
         relations {
-            requiredDependency 'fabric-api'
+            requiredDependency "fabric-api"
         }
         mainArtifact remapJar
         addArtifact sourcesJar

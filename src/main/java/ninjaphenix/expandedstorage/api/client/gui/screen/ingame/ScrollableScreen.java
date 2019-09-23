@@ -88,14 +88,14 @@ public class ScrollableScreen extends AbstractContainerScreen<ScrollableContaine
     protected void drawBackground(float lastFrameDuration, int mouseX, int mouseY)
     {
         RenderSystem.color4f(1, 1, 1, 1);
-        minecraft.getTextureManager().method_22813(BASE_TEXTURE);
+        minecraft.getTextureManager().bindTexture(BASE_TEXTURE);
         int x = (width - containerWidth) / 2;
         int y = (height - containerHeight) / 2;
         blit(x, y, 0, 0, containerWidth, displayedRows * 18 + 17);
         blit(x, y + displayedRows * 18 + 17, 0, 126, containerWidth, 96);
         if (hasScrollbar())
         {
-            minecraft.getTextureManager().method_22813(WIDGETS_TEXTURE);
+            minecraft.getTextureManager().bindTexture(WIDGETS_TEXTURE);
             blit(x + 172, y, 0, 0, 22, 132);
             blit(x + 174, (int) (y + 18 + 91 * progress), 22, 0, 12, 15);
             blit(x + 79, y + 126, 34, 0, 90, 11);
