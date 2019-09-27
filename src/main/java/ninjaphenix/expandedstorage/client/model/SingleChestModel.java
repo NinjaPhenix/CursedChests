@@ -2,6 +2,8 @@ package ninjaphenix.expandedstorage.client.model;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.class_4587;
+import net.minecraft.class_4588;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.BufferBuilder;
@@ -37,9 +39,9 @@ public class SingleChestModel extends Model
         lid.pitch = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
     }
 
-    public void appendToBuffer(BufferBuilder bufferBuilder, float scale, int textureOffsetX, int textureOffsetY, Sprite texture)
+    public void appendToBuffer(class_4587 bufferBuilder, class_4588 something, float scale, int textureOffsetY, Sprite texture)
     {
-        base.method_22698(bufferBuilder, scale, textureOffsetX, textureOffsetY, texture);
-        lid.method_22698(bufferBuilder, scale, textureOffsetX, textureOffsetY, texture);
+        base.method_22698(bufferBuilder, something, scale, textureOffsetY, texture);
+        lid.method_22698(bufferBuilder, something, scale, textureOffsetY, texture);
     }
 }
