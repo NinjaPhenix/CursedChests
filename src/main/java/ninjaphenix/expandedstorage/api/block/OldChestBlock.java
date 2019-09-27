@@ -21,5 +21,5 @@ public class OldChestBlock extends AbstractChestBlock
     }
 
     @Override
-    public SimpleRegistry getDataRegistry() { return Registries.OLD; }
+    public SimpleRegistry<Registries.TierData> getDataRegistry() { return Registries.OLD; }
 }

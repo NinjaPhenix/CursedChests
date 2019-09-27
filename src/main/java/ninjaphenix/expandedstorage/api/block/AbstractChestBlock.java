@@ -13,7 +13,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stat;
 import net.minecraft.stat.Stats;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -147,7 +147,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder) { stateBuilder.add(FACING, TYPE); }
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(FACING, TYPE); }
 
     @Override
     public boolean hasComparatorOutput(BlockState state) { return true; }
@@ -342,7 +342,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     @Override
     public BlockRenderType getRenderType(BlockState blockState_1) { return BlockRenderType.MODEL; }
 
-    public abstract SimpleRegistry<Registries.TierData> getDataRegistry();
+    public abstract SimpleRegistry<? extends Registries.TierData> getDataRegistry();
 
     interface PropertyRetriever<T>
     {

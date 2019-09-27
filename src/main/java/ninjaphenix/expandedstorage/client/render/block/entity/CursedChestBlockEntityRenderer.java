@@ -5,7 +5,11 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.class_4576;
+import net.minecraft.class_4587;
+import net.minecraft.class_4597;
 import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.Vector3f;
@@ -24,7 +28,7 @@ import ninjaphenix.expandedstorage.client.model.TallChestModel;
 import ninjaphenix.expandedstorage.client.model.VanillaChestModel;
 
 @Environment(EnvType.CLIENT)
-public class CursedChestBlockEntityRenderer extends class_4576<CursedChestBlockEntity>
+public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedChestBlockEntity>
 {
     private static final SingleChestModel singleChestModel = new SingleChestModel();
     private static final SingleChestModel tallChestModel = new TallChestModel();
@@ -32,6 +36,11 @@ public class CursedChestBlockEntityRenderer extends class_4576<CursedChestBlockE
     private static final SingleChestModel longChestModel = new LongChestModel();
     private static final BlockState defaultState = ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.FACING, Direction.SOUTH)
                                                                        .with(CursedChestBlock.TYPE, CursedChestType.SINGLE);
+
+    public CursedChestBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher)
+    {
+        super(dispatcher);
+    }
 
     @Override
     protected void method_22738(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, int blockBreakStage,
@@ -57,5 +66,11 @@ public class CursedChestBlockEntityRenderer extends class_4576<CursedChestBlockE
                 Registries.MODELED.get(tier).getChestTexture(chestType));
         model.appendToBuffer(bufferBuilder, 0.0625f, textureOffsetX, textureOffsetY, texture);
         bufferBuilder.method_22630();
+    }
+
+    @Override
+    public void render(CursedChestBlockEntity var1, double xOffset, double yOffset, double zOffset, float tickDelta, class_4587 var9, class_4597 var10, int var11)
+    {
+
     }
 }

@@ -1,7 +1,5 @@
 package ninjaphenix.expandedstorage.api.block;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -11,7 +9,7 @@ import net.minecraft.entity.EntityContext;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -49,10 +47,10 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     public FluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state); }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder)
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
     {
-        super.appendProperties(stateBuilder);
-        stateBuilder.add(WATERLOGGED);
+        super.appendProperties(builder);
+        builder.add(WATERLOGGED);
     }
 
     // Todo: tidy this up. (replace with if statements)
@@ -122,7 +120,7 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     public BlockState getPlacementState(ItemPlacementContext context)
     {
         BlockState state = super.getPlacementState(context);
-        return state.with(WATERLOGGED, context.getWorld().getFluidState(context.getBlockPos()) == Fluids.WATER);
+        return state.with(WATERLOGGED, context.getWorld().getFluidState(context.getBlockPos()) == Fluids.WATER.getDefaultState());
     }
 
     @Override
@@ -132,13 +130,9 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
         return super.getStateForNeighborUpdate(state, direction, otherState, world, pos, otherPos);
     }
 
-    @Environment(EnvType.CLIENT)
-    @Override
-    public boolean hasBlockEntityBreakingRender(BlockState state) { return true; }
-
     @Override
     public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
     @Override
-    public SimpleRegistry getDataRegistry() { return Registries.MODELED; }
+    public SimpleRegistry<Registries.ModeledTierData> getDataRegistry() { return Registries.MODELED; }
 }
