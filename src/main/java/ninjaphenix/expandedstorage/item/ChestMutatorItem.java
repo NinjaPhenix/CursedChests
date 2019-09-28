@@ -15,6 +15,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtHelper;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -61,7 +62,7 @@ public class ChestMutatorItem extends ChestModifierItem
                 {
                     if (mainState.get(TYPE) == CursedChestType.SINGLE)
                     {
-                        BlockPos pos = TagHelper.deserializeBlockPos(tag.getCompound("pos"));
+                        BlockPos pos = NbtHelper.toBlockPos(tag.getCompound("pos"));
                         BlockState realOtherState = world.getBlockState(pos);
                         if (realOtherState.getBlock() == mainState.getBlock() && realOtherState.get(FACING) == mainState.get(FACING) &&
                                 realOtherState.get(TYPE) == CursedChestType.SINGLE)
@@ -91,7 +92,7 @@ public class ChestMutatorItem extends ChestModifierItem
                 {
                     if (mainState.get(TYPE) == CursedChestType.SINGLE)
                     {
-                        tag.put("pos", TagHelper.serializeBlockPos(mainBlockPos));
+                        tag.put("pos", NbtHelper.fromBlockPos(mainBlockPos));
                         player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
                         player.getItemCooldownManager().set(this, 5);
                         return ActionResult.SUCCESS;
@@ -160,7 +161,7 @@ public class ChestMutatorItem extends ChestModifierItem
                 {
                     if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
                     {
-                        BlockPos otherPos = TagHelper.deserializeBlockPos(tag.getCompound("pos"));
+                        BlockPos otherPos = NbtHelper.toBlockPos(tag.getCompound("pos"));
                         BlockState realOtherState = world.getBlockState(otherPos);
                         if (realOtherState.getBlock() == state.getBlock() && realOtherState.get(FACING) == state.get(FACING) &&
                                 realOtherState.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
@@ -207,7 +208,7 @@ public class ChestMutatorItem extends ChestModifierItem
                 {
                     if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
                     {
-                        tag.put("pos", TagHelper.serializeBlockPos(mainPos));
+                        tag.put("pos", NbtHelper.fromBlockPos(mainPos));
                         player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
                         player.getItemCooldownManager().set(this, 5);
                         return ActionResult.SUCCESS;

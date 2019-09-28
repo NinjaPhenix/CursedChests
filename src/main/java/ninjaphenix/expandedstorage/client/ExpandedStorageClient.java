@@ -27,7 +27,7 @@ public class ExpandedStorageClient implements ClientModInitializer
         ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEX).register((atlas, registry) -> {
             for (Identifier id : Registries.MODELED.getIds())
             {
-                if (id.getNamespace() == ExpandedStorage.MOD_ID && id.getPath() != "null")
+                if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
                 {
                     Registries.ModeledTierData data = Registries.MODELED.get(id);
                     registry.register(data.getChestTexture(CursedChestType.SINGLE));

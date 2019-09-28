@@ -35,7 +35,7 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
     private static final BlockState defaultState = ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.FACING, Direction.SOUTH)
                                                                        .with(CursedChestBlock.TYPE, CursedChestType.SINGLE);
 
-    public CursedChestBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) { super(dispatcher); }
+    public CursedChestBlockEntityRenderer(){super(BlockEntityRenderDispatcher.INSTANCE);}
 
     @Override
     public void render(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, class_4587 var9, class_4597 var10,
