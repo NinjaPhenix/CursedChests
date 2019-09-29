@@ -35,7 +35,7 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
     private static final BlockState defaultState = ModBlocks.wood_chest.getDefaultState().with(CursedChestBlock.FACING, Direction.SOUTH)
                                                                        .with(CursedChestBlock.TYPE, CursedChestType.SINGLE);
 
-    public CursedChestBlockEntityRenderer(){super(BlockEntityRenderDispatcher.INSTANCE);}
+    public CursedChestBlockEntityRenderer() { super(BlockEntityRenderDispatcher.INSTANCE); }
 
     @Override
     public void render(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, class_4587 var9, class_4597 var10,
@@ -43,7 +43,6 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
     {
         BlockState state = blockEntity.hasWorld() ? blockEntity.getCachedState() : defaultState;
         CursedChestType chestType = state.get(CursedChestBlock.TYPE);
-        if (!chestType.isRenderedType()) return;
         Identifier tier = blockEntity.getBlock();
         SingleChestModel model;
         if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) model = tallChestModel;
@@ -59,18 +58,9 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
         model.setLidPitch(blockEntity.getAnimationProgress(tickDelta));
         class_4588 class_4588_1 = var10.getBuffer(BlockRenderLayer.SOLID);
         Sprite texture = this.method_23082(Registries.MODELED.get(tier).getChestTexture(chestType));
-        if (chestType == CursedChestType.BACK)
-        {
-            var9.method_22904(0.0D, 0.0D, -1.0D);
-        }
-        else if (chestType == CursedChestType.TOP)
-        {
-            var9.method_22904(0.0D, -1.0D, 0.0D);
-        }
-        else if (chestType == CursedChestType.RIGHT)
-        {
-            var9.method_22904(-1.0D, 0.0D, 0.0D);
-        }
+        if (chestType == CursedChestType.BACK) var9.method_22904(0.0D, 0.0D, 1.0D);
+        else if (chestType == CursedChestType.TOP) var9.method_22904(0.0D, -1.0D, 0.0D);
+        else if (chestType == CursedChestType.RIGHT) var9.method_22904(-1.0D, 0.0D, 0.0D);
         model.appendToBuffer(var9, class_4588_1, 0.0625f, textureOffsetY, texture);
         var9.method_22909();
     }
