@@ -1,6 +1,7 @@
 package ninjaphenix.expandedstorage.mixins;
 
 import net.minecraft.util.Identifier;
+import ninjaphenix.expandedstorage.ExpandedStorage;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -17,6 +18,6 @@ public class IdentifierMixin
     @Inject(method = "<init>([Ljava/lang/String;)V", at = @At("RETURN"))
     private void r(String[] components, CallbackInfo ci)
     {
-        if (namespace.equals("cursedchests")) namespace = "expandedstorage";
+        if (namespace.equals("cursedchests")) namespace = ExpandedStorage.MOD_ID;
     }
 }
