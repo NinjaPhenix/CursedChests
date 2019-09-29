@@ -18,7 +18,7 @@ public class OldChestBlockEntity extends AbstractChestBlockEntity
 
     public OldChestBlockEntity(Identifier block) { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("old_cursed_chest")), block); }
 
-    public OldChestBlockEntity(BlockEntityType type, Identifier block) { super(type, block); }
+    private OldChestBlockEntity(BlockEntityType type, Identifier block) { super(type, block); }
 
     @Override
     protected void initialize(Identifier block)

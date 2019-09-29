@@ -44,7 +44,7 @@ public class CursedChestBlockEntity extends AbstractChestBlockEntity implements 
 
     public CursedChestBlockEntity(Identifier block) { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("cursed_chest")), block); }
 
-    public CursedChestBlockEntity(BlockEntityType type, Identifier block)
+    private CursedChestBlockEntity(BlockEntityType type, Identifier block)
     {
         super(type, block);
     }

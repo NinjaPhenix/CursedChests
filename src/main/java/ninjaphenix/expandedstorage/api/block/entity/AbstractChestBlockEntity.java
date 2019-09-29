@@ -15,6 +15,7 @@ import net.minecraft.util.math.Direction;
 
 import java.util.Iterator;
 
+@SuppressWarnings("WeakerAccess")
 public abstract class AbstractChestBlockEntity extends LootableContainerBlockEntity implements SidedInventory
 {
     protected Text defaultContainerName;

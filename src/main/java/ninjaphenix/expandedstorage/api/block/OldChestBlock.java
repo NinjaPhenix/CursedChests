@@ -8,7 +8,6 @@ import net.minecraft.world.BlockView;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.entity.OldChestBlockEntity;
 
-@SuppressWarnings("deprecation")
 public class OldChestBlock extends AbstractChestBlock
 {
     public OldChestBlock(Settings settings) { super(settings); }
@@ -21,5 +20,5 @@ public class OldChestBlock extends AbstractChestBlock
     }
 
     @Override
-    public SimpleRegistry getDataRegistry() { return Registries.OLD; }
+    public SimpleRegistry<Registries.TierData> getDataRegistry() { return Registries.OLD; }
 }

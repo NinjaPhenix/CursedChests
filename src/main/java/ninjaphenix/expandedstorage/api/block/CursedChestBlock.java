@@ -27,7 +27,7 @@ import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 @SuppressWarnings("deprecation")
 public class CursedChestBlock extends AbstractChestBlock implements Waterloggable
 {
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final VoxelShape SINGLE_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
     private static final VoxelShape TOP_SHAPE = Block.createCuboidShape(1, -16, 1, 15, 14, 15);
     private static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 30, 15);
@@ -140,5 +140,5 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
     @Override
-    public SimpleRegistry getDataRegistry() { return Registries.MODELED; }
+    public SimpleRegistry<Registries.ModeledTierData> getDataRegistry() { return Registries.MODELED; }
 }

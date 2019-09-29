@@ -65,6 +65,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
         public Text getFromSingleChest(AbstractChestBlockEntity mainBlockEntity) { return mainBlockEntity.getDisplayName(); }
     };
 
+    @SuppressWarnings("WeakerAccess")
     public AbstractChestBlock(Settings settings)
     {
         super(settings);
@@ -296,6 +297,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     /*
         This method must be overridden if you are not using cursed chests mod with this api. ( soon not going to be the case )
     */
+    @SuppressWarnings("WeakerAccess")
     protected void openContainer(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
     {
         Text containerName = retrieve(state, world, pos, NAME_RETRIEVER);
@@ -342,7 +344,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     @Override
     public BlockRenderType getRenderType(BlockState blockState_1) { return BlockRenderType.MODEL; }
 
-    public abstract SimpleRegistry<Registries.TierData> getDataRegistry();
+    public abstract SimpleRegistry<? extends Registries.TierData> getDataRegistry();
 
     interface PropertyRetriever<T>
     {
