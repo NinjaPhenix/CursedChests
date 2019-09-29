@@ -1,8 +1,8 @@
 {
-	"replace": false,
-	"values": [ 
-		"minecraft:chest",
-		"minecraft:trapped_chest",
-		"expandedstorage:wood_chest"
-	]
+  "replace": false,
+  "values": [
+    "minecraft:chest",
+    "minecraft:trapped_chest",
+    "expandedstorage:wood_chest"
+  ]
 }

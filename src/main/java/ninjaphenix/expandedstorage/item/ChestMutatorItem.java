@@ -173,7 +173,7 @@ public class ChestMutatorItem extends ChestModifierItem
                                 {
                                     Registries.TierData entry = Registries.MODELED.get(ExpandedStorage.getId("wood_chest"));
                                     BlockState defState = Registry.BLOCK.get(entry.getBlockId())
-                                                                            .getDefaultState().with(FACING, state.get(FACING));
+                                                                        .getDefaultState().with(FACING, state.get(FACING));
                                     CursedChestType mainChestType = AbstractChestBlock
                                             .getChestType(state.get(FACING), Direction.fromVector(vec.getX(), vec.getY(), vec.getZ()));
 
