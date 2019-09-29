@@ -6,7 +6,6 @@ import net.minecraft.class_4587;
 import net.minecraft.class_4588;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.texture.Sprite;
 
 @Environment(EnvType.CLIENT)
