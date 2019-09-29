@@ -1,1 +1,1 @@
-Added compatability for old cursed chests worlds
+Added compatability for old cursed chests worlds.
