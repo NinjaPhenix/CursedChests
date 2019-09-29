@@ -1,1 +1,2 @@
 Updated to 19w39a
+Added Compatability for old cursed chest worlds ( please backup before updating!!! )
