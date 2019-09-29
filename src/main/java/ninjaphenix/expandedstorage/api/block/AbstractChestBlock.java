@@ -344,7 +344,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     @Override
     public BlockRenderType getRenderType(BlockState blockState_1) { return BlockRenderType.MODEL; }
 
-    public abstract SimpleRegistry<? extends Registries.TierData> getDataRegistry();
+    public abstract <T extends Registries.TierData> SimpleRegistry<T> getDataRegistry();
 
     interface PropertyRetriever<T>
     {
