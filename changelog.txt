@@ -1,1 +1,2 @@
-Added compatability for old cursed chests worlds.
+Added pumpkin chests (Not available as full cube chests yet)
+Fixed a bug which allowed upgrading double chests with only 1 upgrade kit.
