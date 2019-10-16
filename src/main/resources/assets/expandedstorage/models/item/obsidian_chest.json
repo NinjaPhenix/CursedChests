@@ -1,6 +1,6 @@
 {
   "parent": "item/chest",
   "textures": {
-    "particle": "block/obsidian"
+    "particle": "expandedstorage:block/old_obsidian_chest/chest_front"
   }
 }

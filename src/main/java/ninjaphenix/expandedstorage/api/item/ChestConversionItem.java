@@ -75,7 +75,7 @@ public class ChestConversionItem extends ChestModifierItem
         AbstractChestBlock chestBlock = (AbstractChestBlock) mainState.getBlock();
         if (Registry.BLOCK.getId(chestBlock) != chestBlock.getDataRegistry().get(from).getBlockId()) return ActionResult.FAIL;
         ItemStack handStack = player.getStackInHand(context.getHand());
-        if (otherBlockPos == null || (handStack.getCount() == 1 && !player.isCreative()))
+        if (otherBlockPos == null)
         {
             if (!world.isClient)
             {
@@ -84,7 +84,7 @@ public class ChestConversionItem extends ChestModifierItem
             }
             return ActionResult.SUCCESS;
         }
-        else
+        else if(handStack.getCount() > 1 || player.isCreative())
         {
             if (!world.isClient)
             {
@@ -94,6 +94,7 @@ public class ChestConversionItem extends ChestModifierItem
             }
             return ActionResult.SUCCESS;
         }
+        return ActionResult.FAIL;
     }
 
     @Override
@@ -112,8 +113,9 @@ public class ChestConversionItem extends ChestModifierItem
                     upgradeChest(world, mainpos, state);
                     handStack.decrement(1);
                 }
+                return ActionResult.SUCCESS;
             }
-            else
+            else if(handStack.getCount() > 1 || player.isCreative())
             {
                 BlockPos otherPos;
                 if (state.get(Properties.CHEST_TYPE) == ChestType.RIGHT)
@@ -127,9 +129,9 @@ public class ChestConversionItem extends ChestModifierItem
                     upgradeChest(world, mainpos, state);
                     handStack.decrement(2);
                 }
+                return ActionResult.SUCCESS;
             }
-            return ActionResult.SUCCESS;
         }
-        return super.useModifierOnBlock(context, state);
+        return ActionResult.FAIL;
     }
 }

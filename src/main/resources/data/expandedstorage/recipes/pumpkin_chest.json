@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:pumpkin_seeds"
+    },
+    "C": {
+      "tag": "c:chest"
+    }
+  },
+  "result": {
+    "item": "expandedstorage:pumpkin_chest"
+  }
+}
