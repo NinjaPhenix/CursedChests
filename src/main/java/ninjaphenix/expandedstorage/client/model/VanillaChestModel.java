@@ -11,8 +11,8 @@ public class VanillaChestModel extends SingleChestModel
         super(96, 48);
         lid.addCuboid(0, 0, 0, 30, 5, 14, 0);
         lid.addCuboid(14, -1, 14, 2, 4, 1, 0);
-        lid.setRotationPoint(1, 9, 1);
+        lid.setPivot(1, 9, 1);
         base.addCuboid(0, 0, 0, 30, 10, 14, 0);
-        base.setRotationPoint(1, 0, 1);
+        base.setPivot(1, 0, 1);
     }
 }

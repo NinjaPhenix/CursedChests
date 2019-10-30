@@ -58,7 +58,7 @@ public class ChestMutatorItem extends ChestModifierItem
         {
             case MERGE:
                 CompoundTag tag = stack.getOrCreateTag();
-                if (tag.containsKey("pos"))
+                if (tag.contains("pos"))
                 {
                     if (mainState.get(TYPE) == CursedChestType.SINGLE)
                     {
@@ -157,7 +157,7 @@ public class ChestMutatorItem extends ChestModifierItem
             if (mode == MutatorModes.MERGE)
             {
                 CompoundTag tag = stack.getOrCreateTag();
-                if (tag.containsKey("pos"))
+                if (tag.contains("pos"))
                 {
                     if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
                     {
@@ -289,9 +289,9 @@ public class ChestMutatorItem extends ChestModifierItem
             ItemStack stack = player.getStackInHand(hand);
             CompoundTag tag = stack.getOrCreateTag();
             tag.putByte("mode", getMode(stack).next);
-            if (tag.containsKey("pos")) tag.remove("pos");
+            if (tag.contains("pos")) tag.remove("pos");
             if (!world.isClient) player.addChatMessage(getMode(stack).translation, true);
-            return new TypedActionResult<>(ActionResult.SUCCESS, stack, false);
+            return TypedActionResult.successWithoutSwing(stack);
         }
         return super.useModifierInAir(world, player, hand);
     }
@@ -320,7 +320,7 @@ public class ChestMutatorItem extends ChestModifierItem
     private MutatorModes getMode(ItemStack stack)
     {
         CompoundTag tag = stack.getOrCreateTag();
-        if (!tag.containsKey("mode", 1)) tag.putByte("mode", (byte) 0);
+        if (!tag.contains("mode", 1)) tag.putByte("mode", (byte) 0);
         return MutatorModes.values()[tag.getByte("mode")];
     }
 

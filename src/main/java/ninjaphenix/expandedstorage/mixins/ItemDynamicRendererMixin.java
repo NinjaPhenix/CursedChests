@@ -3,13 +3,13 @@ package ninjaphenix.expandedstorage.mixins;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
-import net.minecraft.class_4587;
-import net.minecraft.class_4597;
+import net.minecraft.client.render.LayeredVertexConsumerStorage;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.item.ItemDynamicRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MatrixStack;
 import net.minecraft.util.registry.Registry;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
@@ -25,7 +25,8 @@ public class ItemDynamicRendererMixin
     private static final CursedChestBlockEntity CURSED_CHEST_RENDER_ENTITY = new CursedChestBlockEntity();
 
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
-    private void render(ItemStack itemStack, class_4587 class_4587_1, class_4597 class_4597_1, int int_1, CallbackInfo info)
+    private void render(ItemStack itemStack, MatrixStack stack, LayeredVertexConsumerStorage consumerStorage, int textureOffsetX, int textureOffsetY,
+            CallbackInfo info)
     {
         Item item = itemStack.getItem();
         if (item instanceof BlockItem)
@@ -34,7 +35,7 @@ public class ItemDynamicRendererMixin
             if (block instanceof CursedChestBlock)
             {
                 CURSED_CHEST_RENDER_ENTITY.setBlock(Registry.BLOCK.getId(block));
-                BlockEntityRenderDispatcher.INSTANCE.method_23077(CURSED_CHEST_RENDER_ENTITY, class_4587_1, class_4597_1, int_1);
+                BlockEntityRenderDispatcher.INSTANCE.method_23077(CURSED_CHEST_RENDER_ENTITY, stack, consumerStorage, textureOffsetX, textureOffsetY);
                 info.cancel();
             }
         }

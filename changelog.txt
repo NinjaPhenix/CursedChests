@@ -1,2 +1,4 @@
-Updated to 19w39a
-Added Compatability for old cursed chest worlds ( please backup before updating!!! )
+Updated to 19w42a
+Added pumpkin chests.
+Fixed a bug allowing to upgrade double chests with a single kit.
+Fixed a crash introduced with new piston changes.

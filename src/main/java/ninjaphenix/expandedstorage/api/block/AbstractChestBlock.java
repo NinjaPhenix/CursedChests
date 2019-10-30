@@ -3,6 +3,7 @@ package ninjaphenix.expandedstorage.api.block;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.container.Container;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.CatEntity;
@@ -283,14 +284,14 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     }
 
     @Override
-    public boolean activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
     {
         if (!world.isClient)
         {
             openContainer(state, world, pos, player, hand, hitResult);
             player.incrementStat(getOpenStat());
         }
-        return true;
+        return ActionResult.SUCCESS;
     }
 
     /*
@@ -340,7 +341,10 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     }
 
     @Override
-    public BlockRenderType getRenderType(BlockState blockState_1) { return BlockRenderType.MODEL; }
+    public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.MODEL; }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) { return PistonBehavior.IGNORE; }
 
     public abstract <T extends Registries.TierData> SimpleRegistry<T> getDataRegistry();
 

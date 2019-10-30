@@ -2,18 +2,19 @@ package ninjaphenix.expandedstorage.client.render.block.entity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
-import net.minecraft.class_4587;
-import net.minecraft.class_4588;
-import net.minecraft.class_4597;
+import net.minecraft.client.render.LayeredVertexConsumerStorage;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MatrixStack;
 import net.minecraft.util.math.Quaternion;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
@@ -38,8 +39,8 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
     public CursedChestBlockEntityRenderer() { super(BlockEntityRenderDispatcher.INSTANCE); }
 
     @Override
-    public void render(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, class_4587 var9, class_4597 var10,
-            int textureOffsetY)
+    public void render(CursedChestBlockEntity blockEntity, double xOffset, double yOffset, double zOffset, float tickDelta, MatrixStack stack,
+            LayeredVertexConsumerStorage consumerStorage, int textureOffsetX, int textureOffsetY)
     {
         BlockState state = blockEntity.hasWorld() ? blockEntity.getCachedState() : defaultState;
         CursedChestType chestType = state.get(CursedChestBlock.TYPE);
@@ -50,18 +51,18 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
         else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) model = vanillaChestModel;
         else if (chestType == CursedChestType.SINGLE) model = singleChestModel;
         else return;
-        var9.method_22903();
+        stack.push();
         float float_2 = state.get(Properties.HORIZONTAL_FACING).asRotation();
-        var9.method_22904(0.5D, 0.5D, 0.5D);
-        var9.method_22907(new Quaternion(Vector3f.field_20705, -float_2, true));
-        var9.method_22904(-0.5D, -0.5D, -0.5D);
+        stack.translate(0.5D, 0.5D, 0.5D);
+        stack.multiply(new Quaternion(Vector3f.POSITIVE_Y, -float_2, true));
+        stack.translate(-0.5D, -0.5D, -0.5D);
         model.setLidPitch(blockEntity.getAnimationProgress(tickDelta));
-        class_4588 class_4588_1 = var10.getBuffer(BlockRenderLayer.SOLID);
-        Sprite texture = this.method_23082(Registries.MODELED.get(tier).getChestTexture(chestType));
-        if (chestType == CursedChestType.BACK) var9.method_22904(0.0D, 0.0D, 1.0D);
-        else if (chestType == CursedChestType.TOP) var9.method_22904(0.0D, -1.0D, 0.0D);
-        else if (chestType == CursedChestType.RIGHT) var9.method_22904(-1.0D, 0.0D, 0.0D);
-        model.appendToBuffer(var9, class_4588_1, 0.0625f, textureOffsetY, texture);
-        var9.method_22909();
+        VertexConsumer consumer = consumerStorage.getBuffer(RenderLayer.getEntitySolid(SpriteAtlasTexture.BLOCK_ATLAS_TEX));
+        Sprite texture = this.getSprite(Registries.MODELED.get(tier).getChestTexture(chestType));
+        if (chestType == CursedChestType.BACK) stack.translate(0.0D, 0.0D, 1.0D);
+        else if (chestType == CursedChestType.TOP) stack.translate(0.0D, -1.0D, 0.0D);
+        else if (chestType == CursedChestType.RIGHT) stack.translate(-1.0D, 0.0D, 0.0D);
+        model.render(stack, consumer, 0.0625f, textureOffsetX, textureOffsetY, texture);
+        stack.pop();
     }
 }
