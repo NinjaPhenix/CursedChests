@@ -10,7 +10,7 @@ public class LongChestModel extends SingleChestModel
     {
         super(96, 80);
         lid.addCuboid(0, 0, 0, 14, 5, 30, 0);
-        lid.addCuboid(6, -1, 30, 2, 4, 1, 0);
+        lid.addCuboid(6, -2, 30, 2, 4, 1, 0);
         lid.setPivot(1, 9, -15);
         base.setTextureOffset(0, 35);
         base.addCuboid(0, 0, 0, 14, 10, 30, 0);
