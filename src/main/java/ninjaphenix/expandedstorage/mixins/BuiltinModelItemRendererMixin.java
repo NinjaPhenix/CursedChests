@@ -24,7 +24,7 @@ public class BuiltinModelItemRendererMixin
 {
     private static final CursedChestBlockEntity CURSED_CHEST_RENDER_ENTITY = new CursedChestBlockEntity();
 
-    @Inject(at=@At("HEAD"), method="render", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     private void render(ItemStack itemStack, MatrixStack matrixStack, VertexConsumerProvider consumerProvider, int light, int overlay,
             CallbackInfo info)
     {

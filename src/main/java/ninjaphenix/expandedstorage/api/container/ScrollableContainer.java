@@ -28,8 +28,7 @@ public class ScrollableContainer extends Container
         this.inventory = inventory;
         this.containerName = containerName;
         realRows = inventory.getInvSize() / 9;
-        rows = realRows > 6 ? 6 : realRows;
-        // todo eval if fabric loader removes this statement on server side
+        rows = Math.min(realRows, 6);
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) unsortedToSortedSlotMap = new Integer[realRows * 9];
         int int_3 = (rows - 4) * 18;
         inventory.onInvOpen(playerInventory.player);
@@ -96,7 +95,7 @@ public class ScrollableContainer extends Container
         ItemStack stack_b = slotList.get(b).getStack();
         if (stack_a.isEmpty() && !stack_b.isEmpty()) return 1;
         if (!stack_a.isEmpty() && stack_b.isEmpty()) return -1;
-        if (stack_a.isEmpty() && stack_b.isEmpty()) return 0;
+        if (stack_a.isEmpty()) return 0; // && stack_b.isEmpty() -- unneeded
         return stack_a.getName().getString().toLowerCase().contains(searchTerm) ? -1 : stack_b.getName().getString().toLowerCase().contains(searchTerm) ? 1 : 0;
     }
 

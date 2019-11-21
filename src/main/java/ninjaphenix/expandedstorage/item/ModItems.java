@@ -30,11 +30,9 @@ public class ModItems
         Registry.register(Registry.ITEM, ExpandedStorage.getId("chest_mutator"), chestMutator);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    private static Item registerConversionItem(Pair<Identifier, String> from, Pair<Identifier, String> to)
+    private static void registerConversionItem(Pair<Identifier, String> from, Pair<Identifier, String> to)
     {
         Item conversionKit = new ChestConversionItem(from.getLeft(), to.getLeft());
         Registry.register(Registry.ITEM, ExpandedStorage.getId(from.getRight() + "_to_" + to.getRight() + "_conversion_kit"), conversionKit);
-        return conversionKit;
     }
 }

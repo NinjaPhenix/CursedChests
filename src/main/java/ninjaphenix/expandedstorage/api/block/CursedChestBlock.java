@@ -20,6 +20,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import ninjaphenix.expandedstorage.api.Registries;
+import ninjaphenix.expandedstorage.api.Registries.ModeledTierData;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 
 @SuppressWarnings("deprecation")
@@ -41,7 +42,7 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView var1) { return new CursedChestBlockEntity(Registry.BLOCK.getId(this)); }
+    public BlockEntity createBlockEntity(BlockView view) { return new CursedChestBlockEntity(Registry.BLOCK.getId(this)); }
 
     @Override
     public FluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state); }
@@ -55,7 +56,7 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
 
     // Todo: tidy this up. (replace with if statements)
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext verticalEntityPosition)
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context)
     {
         switch (state.get(TYPE))
         {
@@ -124,15 +125,17 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState otherState, IWorld world, BlockPos pos, BlockPos otherPos)
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, IWorld world, BlockPos pos,
+            BlockPos neighborPos)
     {
         if (state.get(WATERLOGGED)) world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        return super.getStateForNeighborUpdate(state, direction, otherState, world, pos, otherPos);
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
     public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public SimpleRegistry<Registries.ModeledTierData> getDataRegistry() { return Registries.MODELED; }
+    public SimpleRegistry<ModeledTierData> getDataRegistry() { return Registries.MODELED; }
 }

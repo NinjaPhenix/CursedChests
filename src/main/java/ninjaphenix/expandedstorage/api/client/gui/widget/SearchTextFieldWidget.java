@@ -28,14 +28,14 @@ public class SearchTextFieldWidget extends TextFieldWidget
     }
 
     @Override
-    public boolean charTyped(char character, int int_1)
+    public boolean charTyped(char character, int keyCode)
     {
         if (ignoreNextChar)
         {
             ignoreNextChar = false;
             return false;
         }
-        return super.charTyped(character, int_1);
+        return super.charTyped(character, keyCode);
     }
 
     public boolean mouseInBounds(double x, double y) { return clicked(x, y); }

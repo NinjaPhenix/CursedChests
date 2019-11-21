@@ -44,10 +44,10 @@ public abstract class AbstractChestBlockEntity extends LootableContainerBlockEnt
     public void setInvStackList(DefaultedList<ItemStack> inventory) { this.inventory = inventory; }
 
     @Override
-    protected Container createContainer(int int_1, PlayerInventory playerInventory) { return null; }
+    protected Container createContainer(int i, PlayerInventory playerInventory) { return null; }
 
     @Override
-    public int[] getInvAvailableSlots(Direction direction) { return SLOTS; }
+    public int[] getInvAvailableSlots(Direction side) { return SLOTS; }
 
     @Override
     public boolean canInsertInvStack(int slot, ItemStack stack, Direction direction) { return this.isValidInvStack(slot, stack); }

@@ -101,7 +101,7 @@ public class CursedChestBlockEntity extends AbstractChestBlockEntity implements 
 
     @Environment(EnvType.CLIENT)
     @Override
-    public float getAnimationProgress(float float_1) { return MathHelper.lerp(float_1, lastAnimationAngle, animationAngle); }
+    public float getAnimationProgress(float f) { return MathHelper.lerp(f, lastAnimationAngle, animationAngle); }
 
     @Override
     public void tick()

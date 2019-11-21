@@ -232,7 +232,8 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState otherState, IWorld world, BlockPos pos, BlockPos otherPos)
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, IWorld world, BlockPos pos,
+            BlockPos neighborPos)
     {
         CursedChestType type = state.get(TYPE);
         Direction facing = state.get(FACING);
@@ -255,7 +256,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 return state.with(TYPE, newType);
             }
         }
-        return super.getStateForNeighborUpdate(state, direction, otherState, world, pos, otherPos);
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
@@ -269,9 +270,9 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     }
 
     @Override
-    public void onBlockRemoved(BlockState state_1, World world, BlockPos pos, BlockState state_2, boolean boolean_1)
+    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved)
     {
-        if (state_1.getBlock() != state_2.getBlock())
+        if (state.getBlock() != newState.getBlock())
         {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof Inventory)
@@ -279,16 +280,16 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
                 world.updateNeighbors(pos, this);
             }
-            super.onBlockRemoved(state_1, world, pos, state_2, boolean_1);
+            super.onBlockRemoved(state, world, pos, newState, moved);
         }
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
     {
         if (!world.isClient)
         {
-            openContainer(state, world, pos, player, hand, hitResult);
+            openContainer(state, world, pos, player, hand, hit);
             player.incrementStat(getOpenStat());
         }
         return ActionResult.SUCCESS;
@@ -297,7 +298,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     /*
         This method must be overridden if you are not using cursed chests mod with this api. ( soon not going to be the case )
     */
-    protected void openContainer(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult)
+    protected void openContainer(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
     {
         Text containerName = retrieve(state, world, pos, NAME_RETRIEVER);
         if (containerName == null) return;

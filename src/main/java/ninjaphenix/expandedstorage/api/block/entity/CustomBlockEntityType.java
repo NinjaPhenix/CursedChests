@@ -12,10 +12,10 @@ public class CustomBlockEntityType<T extends BlockEntity> extends BlockEntityTyp
 {
     Predicate<Block> predicate;
 
-    public CustomBlockEntityType(Supplier<? extends T> supplier_1, Type<?> type_1, Predicate<Block> supports)
+    public CustomBlockEntityType(Supplier<? extends T> supplier, Type<?> type, Predicate<Block> supportPredicate)
     {
-        super(supplier_1, null, type_1);
-        predicate = supports;
+        super(supplier, null, type);
+        predicate = supportPredicate;
     }
 
     @Override

@@ -69,42 +69,42 @@ public class ScrollableScreen extends AbstractContainerScreen<ScrollableContaine
     public void tick() { searchBox.tick(); }
 
     @Override
-    public void render(int mouseX, int mouseY, float lastFrameDuration)
+    public void render(int x, int y, float delta)
     {
         renderBackground();
-        drawBackground(lastFrameDuration, mouseX, mouseY);
-        super.render(mouseX, mouseY, lastFrameDuration);
-        drawMouseoverTooltip(mouseX, mouseY);
+        drawBackground(delta, x, y);
+        super.render(x, y, delta);
+        drawMouseoverTooltip(x, y);
     }
 
     @Override
-    protected void drawForeground(int mouseX, int mouseY)
+    protected void drawForeground(int x, int y)
     {
         font.draw(title.asFormattedString(), 8, 6, 4210752);
         font.draw(playerInventory.getDisplayName().asFormattedString(), 8, containerHeight - 94, 4210752);
     }
 
     @Override
-    protected void drawBackground(float lastFrameDuration, int mouseX, int mouseY)
+    protected void drawBackground(float delta, int x, int y)
     {
         RenderSystem.color4f(1, 1, 1, 1);
         minecraft.getTextureManager().bindTexture(BASE_TEXTURE);
-        int x = (width - containerWidth) / 2;
-        int y = (height - containerHeight) / 2;
-        blit(x, y, 0, 0, containerWidth, displayedRows * 18 + 17);
-        blit(x, y + displayedRows * 18 + 17, 0, 126, containerWidth, 96);
+        int left = (width - containerWidth) / 2;
+        int top = (height - containerHeight) / 2;
+        blit(left, top, 0, 0, containerWidth, displayedRows * 18 + 17);
+        blit(left, top + displayedRows * 18 + 17, 0, 126, containerWidth, 96);
         if (hasScrollbar())
         {
             minecraft.getTextureManager().bindTexture(WIDGETS_TEXTURE);
-            blit(x + 172, y, 0, 0, 22, 132);
-            blit(x + 174, (int) (y + 18 + 91 * progress), 22, 0, 12, 15);
-            blit(x + 79, y + 126, 34, 0, 90, 11);
-            searchBox.render(mouseX, mouseY, lastFrameDuration);
+            blit(left + 172, top, 0, 0, 22, 132);
+            blit(left + 174, (int) (top + 18 + 91 * progress), 22, 0, 12, 15);
+            blit(left + 79, top + 126, 34, 0, 90, 11);
+            searchBox.render(x, y, delta);
         }
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double scrollDelta)
+    public boolean mouseScrolled(double x, double y, double scrollDelta)
     {
         if (hasScrollbar())
         {
@@ -116,44 +116,44 @@ public class ScrollableScreen extends AbstractContainerScreen<ScrollableContaine
     }
 
     @Override
-    protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int mouseButton)
+    protected boolean isClickOutsideBounds(double x, double y, int left, int top, int mouseButton)
     {
-        boolean left_up_down = mouseX < left || mouseY < top || mouseY > top + height;
-        boolean right = mouseX > left + width;
-        if (hasScrollbar()) right = (right && mouseY > top + 132) || mouseX > left + width + 18;
+        boolean left_up_down = x < left || y < top || y > top + height;
+        boolean right = x > left + width;
+        if (hasScrollbar()) right = (right && y > top + 132) || x > left + width + 18;
         return left_up_down || right;
     }
 
     @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY)
+    public boolean mouseDragged(double x, double y, int button, double deltaX, double deltaY)
     {
-        if (!dragging) return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
-        progress = MathHelper.clamp((mouseY - top - 25.5) / 90, 0, 1);
+        if (!dragging) return super.mouseDragged(x, y, button, deltaX, deltaY);
+        progress = MathHelper.clamp((y - top - 25.5) / 90, 0, 1);
         setTopRow((int) (progress * (totalRows - 6)));
         return true;
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button)
+    public boolean mouseClicked(double x, double y, int button)
     {
-        if (searchBox.isFocused() && !searchBox.mouseInBounds(mouseX, mouseY) && button == 0)
+        if (searchBox.isFocused() && !searchBox.mouseInBounds(x, y) && button == 0)
         {
             searchBox.changeFocus(true);
             this.setFocused(null);
         }
-        if (button == 0 && left + 172 < mouseX && mouseX < left + 184 && top + 18 < mouseY && mouseY < top + 123)
+        if (button == 0 && left + 172 < x && x < left + 184 && top + 18 < y && y < top + 123)
         {
             dragging = true;
             return true;
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(x, y, button);
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button)
+    public boolean mouseReleased(double x, double y, int button)
     {
         if (dragging && button == 0) dragging = false;
-        return super.mouseReleased(mouseX, mouseY, button);
+        return super.mouseReleased(x, y, button);
     }
 
     private void setTopRow(int row)
@@ -185,10 +185,10 @@ public class ScrollableScreen extends AbstractContainerScreen<ScrollableContaine
     }
 
     @Override
-    public boolean charTyped(char character, int int_1)
+    public boolean charTyped(char character, int keyCode)
     {
-        if (searchBox.isFocused()) return searchBox.charTyped(character, int_1);
-        return super.charTyped(character, int_1);
+        if (searchBox.isFocused()) return searchBox.charTyped(character, keyCode);
+        return super.charTyped(character, keyCode);
     }
 
     @Override
