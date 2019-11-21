@@ -56,6 +56,11 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 jar { from("LICENSE") }
 
+runClient {
+    args = ["--username", "Dev"]
+}
+
+
 tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
 
 curseforge {
