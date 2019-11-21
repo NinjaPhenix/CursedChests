@@ -291,7 +291,7 @@ public class ChestMutatorItem extends ChestModifierItem
             tag.putByte("mode", getMode(stack).next);
             if (tag.contains("pos")) tag.remove("pos");
             if (!world.isClient) player.addChatMessage(getMode(stack).translation, true);
-            return TypedActionResult.successWithoutSwing(stack);
+            return TypedActionResult.success(stack);
         }
         return super.useModifierInAir(world, player, hand);
     }

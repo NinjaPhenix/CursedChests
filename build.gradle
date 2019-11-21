@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
-    mappings("net.fabricmc:yarn:${minecraft_version}+${yarn_version}")
+    mappings("net.fabricmc:yarn:${minecraft_version}+${yarn_version}:v2")
     modCompile("net.fabricmc:fabric-loader:${loader_version}")
     modCompile("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
@@ -34,8 +34,8 @@ dependencies {
         exclude (group: "net.fabricmc.fabric-api")
     }
 
-    modRuntime("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
-    include("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
+    //modRuntime("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
+    //include("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
 }
 
 processResources {
@@ -57,10 +57,6 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 jar { from("LICENSE") }
 
 tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
-
-runClient {
-    args = ["--username", "Dev"]
-}
 
 curseforge {
     apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
