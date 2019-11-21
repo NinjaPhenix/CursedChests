@@ -3,18 +3,18 @@ package ninjaphenix.expandedstorage.client.render.block.entity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
+import net.minecraft.class_4730;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
@@ -56,12 +56,13 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
         stack.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(-float_2));
         stack.translate(-0.5D, -0.5D, -0.5D);
         model.setLidPitch(blockEntity.getAnimationProgress(tickDelta));
-        VertexConsumer consumer = consumerStorage.getBuffer(RenderLayer.getEntitySolid(SpriteAtlasTexture.BLOCK_ATLAS_TEX));
-        Sprite texture = this.getSprite(Registries.MODELED.get(tier).getChestTexture(chestType));
         if (chestType == CursedChestType.BACK) stack.translate(0.0D, 0.0D, 1.0D);
         else if (chestType == CursedChestType.TOP) stack.translate(0.0D, -1.0D, 0.0D);
         else if (chestType == CursedChestType.RIGHT) stack.translate(-1.0D, 0.0D, 0.0D);
-        model.render(stack, consumer, textureOffsetX, textureOffsetY, texture);
+        class_4730 lv = new class_4730(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png"),
+                Registries.MODELED.get(tier).getChestTexture(chestType));
+        VertexConsumer consumer = lv.method_24145(consumerStorage, RenderLayer::getEntityCutout);
+        model.render(stack, consumer, textureOffsetX, textureOffsetY);
         stack.pop();
     }
 }

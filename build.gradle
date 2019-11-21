@@ -1,5 +1,5 @@
 plugins {
-    id "fabric-loom" version "0.2.5-SNAPSHOT"
+    id "fabric-loom" version "0.2.6-SNAPSHOT"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
@@ -21,14 +21,14 @@ dependencies {
     modCompile("net.fabricmc:fabric-loader:${loader_version}")
     modCompile("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    modApi("me.shedaniel:RoughlyEnoughItems:${rei_version}")
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems:${rei_version}")
     {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector", module: "modmenu")
     }
 
-    modApi("io.github.prospector:modmenu:${modmenu_version}")
+    modCompileOnly("io.github.prospector:modmenu:${modmenu_version}")
     {
         exclude (group: "net.fabricmc", module: "fabric-loader")
         exclude (group: "net.fabricmc.fabric-api")

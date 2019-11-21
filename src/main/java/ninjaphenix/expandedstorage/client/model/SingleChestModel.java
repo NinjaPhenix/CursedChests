@@ -6,7 +6,6 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
 
 @Environment(EnvType.CLIENT)
@@ -17,7 +16,7 @@ public class SingleChestModel extends Model
 
     public SingleChestModel(int textureWidth, int textureHeight)
     {
-        super(RenderLayer::getEntitySolid);
+        super(RenderLayer::getEntityCutout);
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
         lid = new ModelPart(this, 0, 0);
@@ -40,17 +39,18 @@ public class SingleChestModel extends Model
         lid.pitch = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
     }
 
-    public void render(MatrixStack stack, VertexConsumer consumer, int textureOffsetX, int textureOffsetY, Sprite texture)
-    {
-
-        base.render(stack, consumer, textureOffsetX, textureOffsetY, texture);
-        lid.render(stack, consumer, textureOffsetX, textureOffsetY, texture);
-    }
-
-    // Fixes IDE errors
     @Override
     public void accept(ModelPart modelPart) { this.method_22696(modelPart); }
 
+    public void render(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j)
+    {
+        render(matrixStack, vertexConsumer, i, j, 1, 1, 1, 1);
+    }
+
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int i1, float v, float v1, float v2) { }
+    public void render(MatrixStack stack, VertexConsumer consumer, int i, int j, float r, float g, float b, float f)
+    {
+        base.render(stack, consumer, i, j);
+        lid.render(stack, consumer, i, j);
+    }
 }
