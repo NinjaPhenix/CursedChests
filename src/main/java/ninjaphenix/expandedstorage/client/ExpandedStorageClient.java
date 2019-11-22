@@ -48,7 +48,6 @@ public class ExpandedStorageClient implements ClientModInitializer
     {
         BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, new CursedChestBlockEntityRenderer());
         ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
-
         ClientSpriteRegistryCallback.event(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png")).register((atlas, registry) -> {
             for (Identifier id : Registries.MODELED.getIds())
             {
@@ -62,7 +61,6 @@ public class ExpandedStorageClient implements ClientModInitializer
                         registry.register(d.getChestTexture(CursedChestType.LEFT));
                         registry.register(d.getChestTexture(CursedChestType.FRONT));
                     });
-
                 }
             }
         });
