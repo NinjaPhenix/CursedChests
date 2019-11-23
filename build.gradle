@@ -21,21 +21,21 @@ dependencies {
     modCompile("net.fabricmc:fabric-loader:${loader_version}")
     modCompile("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    modCompileOnly("me.shedaniel:RoughlyEnoughItems:${rei_version}")
+    modCompile("me.shedaniel:RoughlyEnoughItems:${rei_version}")
     {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector", module: "modmenu")
     }
 
-    modCompileOnly("io.github.prospector:modmenu:${modmenu_version}")
+    modCompile("io.github.prospector:modmenu:${modmenu_version}")
     {
         exclude (group: "net.fabricmc", module: "fabric-loader")
         exclude (group: "net.fabricmc.fabric-api")
     }
 
-    //modRuntime("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
-    //include("ninjaphenix:creativebuttonmover:0.1.1+19w42a")
+    modRuntime("ninjaphenix:creativebuttonmover:${cbm_version}+${minecraft_version}")
+    include("ninjaphenix:creativebuttonmover:${cbm_version}+${minecraft_version}")
 }
 
 processResources {

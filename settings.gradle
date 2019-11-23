@@ -7,7 +7,7 @@ pluginManagement {
         }
         maven {
             name = 'Modmuss'
-            url = 'https://http://maven.modmuss50.me/'
+            url = 'https://maven.modmuss50.me/'
         }
         gradlePluginPortal()
     }

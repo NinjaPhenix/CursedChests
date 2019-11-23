@@ -1,5 +1,5 @@
 {
   "textures": {
-    "particle": "block/diamond_block"
+    "particle": "expandedstorage:block/old_diamond_chest/chest_front"
   }
 }
