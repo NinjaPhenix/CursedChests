@@ -46,7 +46,7 @@ public class ExpandedStorageClient implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
-        BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, new CursedChestBlockEntityRenderer());
+        BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, CursedChestBlockEntityRenderer::new);
         ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
         ClientSpriteRegistryCallback.event(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png")).register((atlas, registry) -> {
             for (Identifier id : Registries.MODELED.getIds())

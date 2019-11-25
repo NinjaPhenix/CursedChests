@@ -11,10 +11,7 @@ import ninjaphenix.expandedstorage.api.Registries;
 public class OldChestBlockEntity extends AbstractChestBlockEntity
 {
 
-    public OldChestBlockEntity()
-    {
-        this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("old_cursed_chest")), ExpandedStorage.getId("null"));
-    }
+    public OldChestBlockEntity() { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("old_cursed_chest")), ExpandedStorage.getId("null")); }
 
     public OldChestBlockEntity(Identifier block) { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("old_cursed_chest")), block); }
 

@@ -39,9 +39,6 @@ public class SingleChestModel extends Model
         lid.pitch = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
     }
 
-    @Override
-    public void accept(ModelPart modelPart) { this.method_22696(modelPart); }
-
     public void render(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int j)
     {
         render(matrixStack, vertexConsumer, i, j, 1, 1, 1, 1);
