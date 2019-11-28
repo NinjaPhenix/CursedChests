@@ -3,7 +3,7 @@
   "package": "ninjaphenix.expandedstorage.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BuiltinModelItemRendererMixin", "Class_4722Mixin"
+    "BuiltinModelItemRendererMixin", "TexturedRenderLayersMixin"
   ],
   "injectors": {
     "defaultRequire": 1

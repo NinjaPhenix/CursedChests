@@ -6,7 +6,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.minecraft.class_4730;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
@@ -15,32 +15,22 @@ import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen
 import ninjaphenix.expandedstorage.block.ModBlocks;
 import ninjaphenix.expandedstorage.client.render.block.entity.CursedChestBlockEntityRenderer;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 @Environment(EnvType.CLIENT)
 public class ExpandedStorageClient implements ClientModInitializer
 {
-    public static void makeAtlases(Consumer<class_4730> consumer)
+    public static final Identifier CHEST_TEXTURE_ATLAS = ExpandedStorage.getId("textures/atlas/chest.png");
+
+    public static void makeAtlases(Consumer<SpriteIdentifier> consumer)
     {
-        for (Identifier id : Registries.MODELED.getIds())
+        iterateOurModeledTiers((data) ->
         {
-            if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
-            {
-                Optional<Registries.ModeledTierData> data = Registries.MODELED.getOrEmpty(id);
-                data.ifPresent((d) ->
-                {
-                    consumer.accept(
-                            new class_4730(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png"), d.getChestTexture(CursedChestType.SINGLE)));
-                    consumer.accept(
-                            new class_4730(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png"), d.getChestTexture(CursedChestType.BOTTOM)));
-                    consumer.accept(
-                            new class_4730(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png"), d.getChestTexture(CursedChestType.LEFT)));
-                    consumer.accept(
-                            new class_4730(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png"), d.getChestTexture(CursedChestType.FRONT)));
-                });
-            }
-        }
+            consumer.accept(new SpriteIdentifier(CHEST_TEXTURE_ATLAS, data.getChestTexture(CursedChestType.SINGLE)));
+            consumer.accept(new SpriteIdentifier(CHEST_TEXTURE_ATLAS, data.getChestTexture(CursedChestType.BOTTOM)));
+            consumer.accept(new SpriteIdentifier(CHEST_TEXTURE_ATLAS, data.getChestTexture(CursedChestType.LEFT)));
+            consumer.accept(new SpriteIdentifier(CHEST_TEXTURE_ATLAS, data.getChestTexture(CursedChestType.FRONT)));
+        });
     }
 
     @Override
@@ -48,21 +38,19 @@ public class ExpandedStorageClient implements ClientModInitializer
     {
         BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, CursedChestBlockEntityRenderer::new);
         ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
-        ClientSpriteRegistryCallback.event(new Identifier(ExpandedStorage.MOD_ID, "textures/atlas/chest.png")).register((atlas, registry) -> {
-            for (Identifier id : Registries.MODELED.getIds())
-            {
-                if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
-                {
-                    Optional<Registries.ModeledTierData> data = Registries.MODELED.getOrEmpty(id);
-                    data.ifPresent((d) ->
-                    {
-                        registry.register(d.getChestTexture(CursedChestType.SINGLE));
-                        registry.register(d.getChestTexture(CursedChestType.BOTTOM));
-                        registry.register(d.getChestTexture(CursedChestType.LEFT));
-                        registry.register(d.getChestTexture(CursedChestType.FRONT));
-                    });
-                }
-            }
-        });
+        ClientSpriteRegistryCallback.event(CHEST_TEXTURE_ATLAS).register((atlas, registry) -> iterateOurModeledTiers((data) ->
+        {
+            registry.register(data.getChestTexture(CursedChestType.SINGLE));
+            registry.register(data.getChestTexture(CursedChestType.BOTTOM));
+            registry.register(data.getChestTexture(CursedChestType.LEFT));
+            registry.register(data.getChestTexture(CursedChestType.FRONT));
+        }));
+    }
+
+    private static void iterateOurModeledTiers(Consumer<Registries.ModeledTierData> consumer)
+    {
+        for (Identifier id : Registries.MODELED.getIds())
+            if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
+                Registries.MODELED.getOrEmpty(id).ifPresent(consumer);
     }
 }

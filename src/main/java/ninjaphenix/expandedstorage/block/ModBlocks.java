@@ -24,6 +24,7 @@ public class ModBlocks
 
     public static CursedChestBlock wood_chest;
     public static CursedChestBlock pumpkin_chest;
+    public static CursedChestBlock christmas_chest;
     public static CursedChestBlock iron_chest;
     public static CursedChestBlock gold_chest;
     public static CursedChestBlock diamond_chest;
@@ -45,6 +46,10 @@ public class ModBlocks
                 new TranslatableText("container.expandedstorage.pumpkin_chest"), ExpandedStorage.getId("entity/pumpkin_chest/single"),
                 ExpandedStorage.getId("entity/pumpkin_chest/vanilla"), ExpandedStorage.getId("entity/pumpkin_chest/tall"),
                 ExpandedStorage.getId("entity/pumpkin_chest/long"));
+        christmas_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.OAK_PLANKS)), "christmas_chest", 3,
+                new TranslatableText("container.expandedstorage.christmas_chest"), ExpandedStorage.getId("entity/christmas_chest/single"),
+                ExpandedStorage.getId("entity/christmas_chest/vanilla"), ExpandedStorage.getId("entity/christmas_chest/tall"),
+                ExpandedStorage.getId("entity/christmas_chest/long"));
         iron_chest = register(new CursedChestBlock(Block.Settings.copy(Blocks.IRON_BLOCK)), "iron_chest", 6,
                 new TranslatableText("container.expandedstorage.iron_chest"), ExpandedStorage.getId("entity/iron_chest/single"),
                 ExpandedStorage.getId("entity/iron_chest/vanilla"), ExpandedStorage.getId("entity/iron_chest/tall"),

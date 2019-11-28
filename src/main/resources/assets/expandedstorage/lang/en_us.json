@@ -1,6 +1,7 @@
 {
   "container.expandedstorage.wood_chest": "Chest",
   "container.expandedstorage.pumpkin_chest": "Pumpkin Chest",
+  "container.expandedstorage.christmas_chest": "Christmas Chest",
   "container.expandedstorage.iron_chest": "Iron Chest",
   "container.expandedstorage.gold_chest": "Gold Chest",
   "container.expandedstorage.diamond_chest": "Diamond Chest",
@@ -9,6 +10,7 @@
   "container.expandedstorage.error": "Error",
   "block.expandedstorage.wood_chest": "Chest",
   "block.expandedstorage.pumpkin_chest": "Pumpkin Chest",
+  "block.expandedstorage.christmas_chest": "Christmas Chest",
   "block.expandedstorage.iron_chest": "Iron Chest",
   "block.expandedstorage.gold_chest": "Gold Chest",
   "block.expandedstorage.diamond_chest": "Diamond Chest",

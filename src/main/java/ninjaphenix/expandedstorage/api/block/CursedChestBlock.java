@@ -22,6 +22,9 @@ import net.minecraft.world.IWorld;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.Registries.ModeledTierData;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
+import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+
+import static ninjaphenix.expandedstorage.api.block.enums.CursedChestType.*;
 
 @SuppressWarnings("deprecation")
 public class CursedChestBlock extends AbstractChestBlock implements Waterloggable
@@ -54,67 +57,53 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
         builder.add(WATERLOGGED);
     }
 
-    // Todo: tidy this up. (replace with if statements)
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context)
     {
-        switch (state.get(TYPE))
+        CursedChestType type = state.get(TYPE);
+        if (type == SINGLE) return SINGLE_SHAPE;
+        if (type == TOP) return TOP_SHAPE;
+        if (type == BOTTOM) return BOTTOM_SHAPE;
+        switch (type)
         {
-            case TOP:
-                return TOP_SHAPE;
-            case BOTTOM:
-                return BOTTOM_SHAPE;
-            case FRONT:
-                switch (state.get(FACING))
-                {
-                    case NORTH:
-                        return D;
-                    case SOUTH:
-                        return C;
-                    case EAST:
-                        return B;
-                    case WEST:
-                        return A;
-                }
             case BACK:
                 switch (state.get(FACING))
                 {
-                    case NORTH:
-                        return C;
-                    case SOUTH:
-                        return D;
-                    case EAST:
-                        return A;
-                    case WEST:
-                        return B;
+                    case NORTH: return C;
+                    case SOUTH: return D;
+                    case WEST: return B;
+                    case EAST: return A;
                 }
-            case LEFT:
-                switch (state.get(FACING))
-                {
-                    case NORTH:
-                        return B;
-                    case SOUTH:
-                        return A;
-                    case EAST:
-                        return C;
-                    case WEST:
-                        return D;
-                }
+                break;
             case RIGHT:
                 switch (state.get(FACING))
                 {
-                    case NORTH:
-                        return A;
-                    case SOUTH:
-                        return B;
-                    case EAST:
-                        return D;
-                    case WEST:
-                        return C;
+                    case NORTH: return A;
+                    case SOUTH: return B;
+                    case WEST: return C;
+                    case EAST: return D;
                 }
-            default:
-                return SINGLE_SHAPE;
+                break;
+            case FRONT:
+                switch (state.get(FACING))
+                {
+                    case NORTH: return D;
+                    case SOUTH: return C;
+                    case WEST: return A;
+                    case EAST: return B;
+                }
+                break;
+            case LEFT:
+                switch (state.get(FACING))
+                {
+                    case NORTH: return B;
+                    case SOUTH: return A;
+                    case WEST: return D;
+                    case EAST: return C;
+                }
+                break;
         }
+        return SINGLE_SHAPE;
     }
 
     @Override
