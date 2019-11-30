@@ -1,1 +1,3 @@
-Updated to pre release 2...
+Updated to pre release 3
+Added christmas chests - Thanks to Yoghurt4c once again for the textures and recipe suggestion
+Fixed breaking particles on wrong block ( outline of chests no longer merge )
