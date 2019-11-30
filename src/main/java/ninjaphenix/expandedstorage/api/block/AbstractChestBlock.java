@@ -46,38 +46,38 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
     private static final String DOUBLE_PREFIX = "container.expandedstorage.generic_double";
     private static final DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, Optional<SidedInventory>> INVENTORY_RETRIEVER =
             new DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, Optional<SidedInventory>>()
-    {
+            {
 
-        @Override
-        public Optional<SidedInventory> getFromBoth(AbstractChestBlockEntity object, AbstractChestBlockEntity object2)
-        {
-            return Optional.of(new DoubleSidedInventory(object, object2));
-        }
+                @Override
+                public Optional<SidedInventory> getFromBoth(AbstractChestBlockEntity object, AbstractChestBlockEntity object2)
+                {
+                    return Optional.of(new DoubleSidedInventory(object, object2));
+                }
 
-        @Override
-        public Optional<SidedInventory> getFrom(AbstractChestBlockEntity object) { return Optional.of(object); }
+                @Override
+                public Optional<SidedInventory> getFrom(AbstractChestBlockEntity object) { return Optional.of(object); }
 
-        @Override
-        public Optional<SidedInventory> getFallback() { return Optional.empty(); }
-    };
+                @Override
+                public Optional<SidedInventory> getFallback() { return Optional.empty(); }
+            };
     private static final DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, Optional<Text>> NAME_RETRIEVER =
             new DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, Optional<Text>>()
-    {
-        @Override
-        public Optional<Text> getFromBoth(AbstractChestBlockEntity mainBlockEntity, AbstractChestBlockEntity secondaryBlockEntity)
-        {
-            Text v = new TranslatableText(DOUBLE_PREFIX, mainBlockEntity.getDisplayName());
-            if (mainBlockEntity.hasCustomName()) v = mainBlockEntity.getDisplayName();
-            if (secondaryBlockEntity.hasCustomName()) v = secondaryBlockEntity.getDisplayName();
-            return Optional.of(v);
-        }
+            {
+                @Override
+                public Optional<Text> getFromBoth(AbstractChestBlockEntity mainBlockEntity, AbstractChestBlockEntity secondaryBlockEntity)
+                {
+                    Text v = new TranslatableText(DOUBLE_PREFIX, mainBlockEntity.getDisplayName());
+                    if (mainBlockEntity.hasCustomName()) v = mainBlockEntity.getDisplayName();
+                    if (secondaryBlockEntity.hasCustomName()) v = secondaryBlockEntity.getDisplayName();
+                    return Optional.of(v);
+                }
 
-        @Override
-        public Optional<Text> getFrom(AbstractChestBlockEntity mainBlockEntity) { return Optional.of(mainBlockEntity.getDisplayName()); }
+                @Override
+                public Optional<Text> getFrom(AbstractChestBlockEntity mainBlockEntity) { return Optional.of(mainBlockEntity.getDisplayName()); }
 
-        @Override
-        public Optional<Text> getFallback() { return Optional.empty(); }
-    };
+                @Override
+                public Optional<Text> getFallback() { return Optional.empty(); }
+            };
 
     public AbstractChestBlock(Settings settings)
     {
@@ -117,7 +117,8 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
         else return pos.offset(state.get(FACING));
     }
 
-    private static <T> T retrieve(BlockState clickedState, IWorld world, BlockPos clickedPos, DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, T> propertyRetriever)
+    private static <T> T retrieve(BlockState clickedState, IWorld world, BlockPos clickedPos,
+            DoubleBlockProperties.PropertyRetriever<AbstractChestBlockEntity, T> propertyRetriever)
     {
         BlockEntity clickedBlockEntity = world.getBlockEntity(clickedPos);
         if (!(clickedBlockEntity instanceof AbstractChestBlockEntity) || isChestBlocked(world, clickedPos)) return propertyRetriever.getFallback();

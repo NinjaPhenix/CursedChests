@@ -2,7 +2,6 @@ package ninjaphenix.expandedstorage.api.block.enums;
 
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.Direction;
 
 public enum CursedChestType implements StringIdentifiable
 {

@@ -31,12 +31,12 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
 {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final VoxelShape SINGLE_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
-    private static final VoxelShape TOP_SHAPE = Block.createCuboidShape(1, -16, 1, 15, 14, 15);
-    private static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 30, 15);
-    private static final VoxelShape A = Block.createCuboidShape(1, 0, 1, 31, 14, 15);
-    private static final VoxelShape B = Block.createCuboidShape(1 - 16, 0, 1, 15, 14, 15);
-    private static final VoxelShape C = Block.createCuboidShape(1, 0, 1 - 16, 15, 14, 15);
-    private static final VoxelShape D = Block.createCuboidShape(1, 0, 1, 15, 14, 31);
+    private static final VoxelShape TOP_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
+    private static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
+    private static final VoxelShape A = Block.createCuboidShape(1, 0, 1, 16, 14, 15);
+    private static final VoxelShape B = Block.createCuboidShape(0, 0, 1, 15, 14, 15);
+    private static final VoxelShape C = Block.createCuboidShape(1, 0, 0, 15, 14, 15);
+    private static final VoxelShape D = Block.createCuboidShape(1, 0, 1, 15, 14, 16);
 
     public CursedChestBlock(Settings settings)
     {

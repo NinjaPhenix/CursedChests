@@ -33,6 +33,13 @@ public class ExpandedStorageClient implements ClientModInitializer
         });
     }
 
+    private static void iterateOurModeledTiers(Consumer<Registries.ModeledTierData> consumer)
+    {
+        for (Identifier id : Registries.MODELED.getIds())
+            if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
+                Registries.MODELED.getOrEmpty(id).ifPresent(consumer);
+    }
+
     @Override
     public void onInitializeClient()
     {
@@ -45,12 +52,5 @@ public class ExpandedStorageClient implements ClientModInitializer
             registry.register(data.getChestTexture(CursedChestType.LEFT));
             registry.register(data.getChestTexture(CursedChestType.FRONT));
         }));
-    }
-
-    private static void iterateOurModeledTiers(Consumer<Registries.ModeledTierData> consumer)
-    {
-        for (Identifier id : Registries.MODELED.getIds())
-            if (id.getNamespace().equals(ExpandedStorage.MOD_ID) && !id.getPath().equals("null"))
-                Registries.MODELED.getOrEmpty(id).ifPresent(consumer);
     }
 }
