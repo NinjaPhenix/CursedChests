@@ -26,7 +26,7 @@ import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
-import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
+import ninjaphenix.expandedstorage.api.container.ExpandedContainer;
 import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
 
 import java.util.Iterator;
@@ -70,8 +70,8 @@ public class CursedChestBlockEntity extends AbstractChestBlockEntity implements 
                 {
                     if (!playerIterator.hasNext()) { return viewers; }
                     player = playerIterator.next();
-                } while (!(player.container instanceof ScrollableContainer));
-                inventory = ((ScrollableContainer) player.container).getInventory();
+                } while (!(player.container instanceof ExpandedContainer));
+                inventory = ((ExpandedContainer) player.container).getInventory();
             } while (inventory != instance && (!(inventory instanceof DoubleSidedInventory) || !((DoubleSidedInventory) inventory).isPart(instance)));
             viewers++;
         }

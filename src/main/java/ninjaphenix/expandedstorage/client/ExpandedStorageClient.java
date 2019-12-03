@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
-import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen;
+import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.BaseScreen;
 import ninjaphenix.expandedstorage.block.ModBlocks;
 import ninjaphenix.expandedstorage.client.render.block.entity.CursedChestBlockEntityRenderer;
 
@@ -44,7 +44,7 @@ public class ExpandedStorageClient implements ClientModInitializer
     public void onInitializeClient()
     {
         BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, CursedChestBlockEntityRenderer::new);
-        ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
+        ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("container"), BaseScreen::createScreen);
         ClientSpriteRegistryCallback.event(CHEST_TEXTURE_ATLAS).register((atlas, registry) -> iterateOurModeledTiers((data) ->
         {
             registry.register(data.getChestTexture(CursedChestType.SINGLE));

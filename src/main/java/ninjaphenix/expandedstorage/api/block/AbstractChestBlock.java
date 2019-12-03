@@ -334,7 +334,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 if (cursedClickBlockEntity.checkUnlocked(player))
                 {
                     cursedClickBlockEntity.checkLootInteraction(player);
-                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
+                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("container"), player, (packetByteBuf ->
                     {
                         packetByteBuf.writeBlockPos(pos);
                         packetByteBuf.writeText(containerName.get());
@@ -353,7 +353,7 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 {
                     cursedClickBlockEntity.checkLootInteraction(player);
                     cursedPairedBlockEntity.checkLootInteraction(player);
-                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("scrollcontainer"), player, (packetByteBuf ->
+                    ContainerProviderRegistry.INSTANCE.openContainer(ExpandedStorage.getId("container"), player, (packetByteBuf ->
                     {
                         packetByteBuf.writeBlockPos(pos);
                         packetByteBuf.writeText(containerName.get());

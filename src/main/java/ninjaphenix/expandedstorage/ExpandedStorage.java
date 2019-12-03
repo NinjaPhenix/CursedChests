@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
-import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
+import ninjaphenix.expandedstorage.api.container.ExpandedContainer;
 import ninjaphenix.expandedstorage.block.ModBlocks;
 import ninjaphenix.expandedstorage.item.ModItems;
 
@@ -26,12 +26,12 @@ public class ExpandedStorage implements ModInitializer
     {
         ModBlocks.init();
         ModItems.init();
-        ContainerProviderRegistry.INSTANCE.registerFactory(getId("scrollcontainer"), (syncId, identifier, player, buf) ->
+        ContainerProviderRegistry.INSTANCE.registerFactory(getId("container"), (syncId, identifier, player, buf) ->
         {
             BlockPos pos = buf.readBlockPos();
             Text name = buf.readText();
             World world = player.getEntityWorld();
-            return new ScrollableContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
+            return new ExpandedContainer(syncId, player.inventory, AbstractChestBlock.getInventoryStatic(world, pos), name);
         });
     }
 }
