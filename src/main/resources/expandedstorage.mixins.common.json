@@ -3,7 +3,7 @@
   "package": "ninjaphenix.expandedstorage.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "IdentifierMixin"
+    "IdentifierMixin", "SlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

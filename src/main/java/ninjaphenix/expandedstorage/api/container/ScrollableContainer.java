@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import ninjaphenix.expandedstorage.SlotAccessor;
 
 import java.util.Arrays;
 
@@ -82,8 +83,8 @@ public class ScrollableContainer extends Container
         {
             Slot slot = slotList.get(slotID);
             int y = (index / 9) - offset;
-            slot.xPosition = 8 + 18 * (index % 9);
-            slot.yPosition = (y >= rows || y < 0) ? -2000 : 18 + 18 * y;
+            ((SlotAccessor) slot).setX(8 + 18 * (index % 9));
+            ((SlotAccessor) slot).setY((y >= rows || y < 0) ? -2000 : 18 + 18 * y);
             index++;
         }
     }
