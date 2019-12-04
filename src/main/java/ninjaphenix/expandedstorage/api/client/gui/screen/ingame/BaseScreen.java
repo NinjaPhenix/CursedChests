@@ -5,10 +5,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.AbstractContainerScreen;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.BufferRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.container.Slot;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -23,10 +19,12 @@ public class BaseScreen extends AbstractContainerScreen<ExpandedContainer>
     private double offsetX, offsetY;
     private int slotWidth, slotHeight;
     private boolean draggingWindow;
+    private final int invSize;
 
     public BaseScreen(ExpandedContainer container, PlayerInventory playerInventory, Text containerTitle)
     {
         super(container, playerInventory, containerTitle);
+        invSize = container.getInventory().getInvSize();
     }
 
     public static BaseScreen createScreen(ExpandedContainer container)
@@ -45,12 +43,11 @@ public class BaseScreen extends AbstractContainerScreen<ExpandedContainer>
     }
 
     @Override
-    public void render(int x, int y, float delta)
+    public void render(int mouseX, int mouseY, float delta)
     {
         renderBackground();
-        drawBackground(delta, x, y);
-        super.render(x, y, delta);
-        drawMouseoverTooltip(x, y);
+        super.render(mouseX, mouseY, delta);
+        drawMouseoverTooltip(mouseX, mouseY);
     }
 
     @Override
@@ -61,22 +58,26 @@ public class BaseScreen extends AbstractContainerScreen<ExpandedContainer>
     }
 
     @Override
-    protected void drawBackground(float delta, int x, int y)
+    protected void drawBackground(float delta, int mouseX, int mouseY)
     {
         RenderSystem.color4f(1, 1, 1, 1);
         minecraft.getTextureManager().bindTexture(WIDGETS_TEXTURE);
-        blit(left, top, 22, 15, 7, 18);
-        blit(left + 7, top, containerWidth - 14, 18, 28, 15, 1, 18, 256, 256);
-        blit(left + containerWidth - 7, top, 7, 18, 47, 15, 7, 18, 256, 256);
-        blit(left, top + 18, 7, slotHeight * 18 + 14, 22, 33, 7, 1, 256, 256);
-        blit(left + containerWidth - 7, top + 18, 7, slotHeight * 18 + 14, 47, 33, 7, 1, 256, 256);
-        blit(left + 7, top + 18 + (slotHeight * 18), containerWidth - 14, 14, 25, 19, 1, 14, 256, 256);
-
-        for (int i = 0; i < container.getInventory().getInvSize(); i++)
+        blit(x, y, 22, 15, 7, 18); // top left
+        blit(x + 7, y, containerWidth - 14, 18, 28, 15, 1, 18, 256, 256); // top line
+        blit(x + containerWidth - 7, y, 7, 18, 47, 15, 7, 18, 256, 256); // top right
+        blit(x, y + 18, 7, slotHeight * 18 + 14, 22, 33, 7, 1, 256, 256); // left side
+        blit(x + containerWidth - 7, y + 18, 7, slotHeight * 18 + 14, 47, 33, 7, 1, 256, 256); // right side
+        blit(x + 7, y + 18 + (slotHeight * 18), containerWidth - 14, 14, 25, 19, 1, 14, 256, 256); // chest-player spacer
+        blit(x, y + 18 + 14 + (slotHeight * 18), 25, 7, 22, 51, 25, 7, 256, 256); // bottom left
+        blit(x + containerWidth - 25, y + 18 + 14 + (slotHeight * 18), 25, 7, 29, 51, 25, 7, 256, 256); // bottom right
+        blit(x + 7, y + 18 + 14 + (slotHeight * 18), containerWidth - 14, 7, 25, 51, 1, 7, 256, 256); // bottom line
+        blit(x + 7, y + 18, slotWidth * 18, slotHeight * 18, 26, 18, 1, 1, 256, 256); // chest slots background
+        for (int i = 0; i < invSize; i++)
         {
             Slot slot = container.slotList.get(i);
-            blit(left + slot.xPosition - 1, top + slot.yPosition - 1, 18, 18, 29, 33, 18, 18, 256, 256);
+            blit(x + slot.xPosition - 1, y + slot.yPosition - 1, 18, 18, 29, 33, 18, 18, 256, 256);
         }
+        blit(x+container.slotList.get(invSize).xPosition-8, y + 32 + slotHeight*18, 176, 83, 22, 58, 176, 83, 256, 256); // player inventory
     }
 
     @Override
@@ -90,11 +91,11 @@ public class BaseScreen extends AbstractContainerScreen<ExpandedContainer>
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if (button == 0 && mouseX > left && mouseX < left + containerWidth && mouseY > top && mouseY <= top + 30)
+        if (button == 0 && mouseX > x && mouseX < x + containerWidth && mouseY > y && mouseY <= y + 18)
         {
             draggingWindow = true;
-            offsetX = mouseX - left;
-            offsetY = mouseY - top;
+            offsetX = mouseX - x;
+            offsetY = mouseY - y;
             return true;
         }
         return super.mouseClicked(mouseX, mouseY, button);
@@ -105,12 +106,12 @@ public class BaseScreen extends AbstractContainerScreen<ExpandedContainer>
     {
         if (draggingWindow)
         {
-            left = (int) (mouseX - offsetX);
-            if (left < 0) left = 0;
-            else if (left + containerWidth > width) left = width - containerWidth;
-            top = (int) (mouseY - offsetY);
-            if (top < 0) top = 0;
-            else if (top + containerHeight > height) top = height - containerHeight;
+            x = (int) (mouseX - offsetX);
+            if (x < 0) x = 0;
+            else if (x + containerWidth > width) x = width - containerWidth;
+            y = (int) (mouseY - offsetY);
+            if (y < 0) y = 0;
+            else if (y + containerHeight > height) y = height - containerHeight;
             return true;
         }
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);

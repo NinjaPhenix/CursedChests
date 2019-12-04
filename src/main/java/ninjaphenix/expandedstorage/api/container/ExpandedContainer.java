@@ -25,8 +25,8 @@ public class ExpandedContainer extends Container implements Nameable
     public ExpandedContainer(int syncId, PlayerInventory playerInventory, SidedInventory inventory, Text containerName)
     {
         super(null, syncId);
-        width = 8;
-        height = 4;
+        width = 9;
+        height = (int) Math.ceil((double)inventory.getInvSize() / width);
         this.inventory = inventory;
         this.containerName = containerName;
         inventory.onInvOpen(playerInventory.player);
@@ -37,10 +37,11 @@ public class ExpandedContainer extends Container implements Nameable
 
             sX = (sX + 1) % width; if (sX == 0) sY++;
         }
-        int int_3 = ++sY * 18 + 18 + 14;
-        for (int y = 0; y < 3; ++y) for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, y * 18 + int_3));
-        int_3 += 58;
-        for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x, 8 + x * 18, int_3));
+        int left = 8 + (int) (((double) width/2) * 18) - 81;
+        int top = height * 18 + 19 + 14;
+        for (int y = 0; y < 3; ++y) for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x + y * 9 + 9, left + 18*x, y * 18 + top));
+        top += 58;
+        for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x, left + 18*x, top));
     }
 
     @Override
@@ -75,13 +76,7 @@ public class ExpandedContainer extends Container implements Nameable
 
     public SidedInventory getInventory() { return inventory; }
 
-    public int getWidth()
-    {
-        return width;
-    }
+    public int getWidth() { return width; }
 
-    public int getHeight()
-    {
-        return height;
-    }
+    public int getHeight() { return height; }
 }
