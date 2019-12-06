@@ -65,6 +65,7 @@ tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
 
 curseforge {
     apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
+    //noinspection GroovyAssignabilityCheck
     project {
         id = "317856"
         changelog = file("changelog.txt")
