@@ -1,4 +1,4 @@
-package ninjaphenix.expandedstorage;
+package ninjaphenix.expandedstorage.accessors;
 
 public interface SlotAccessor
 {

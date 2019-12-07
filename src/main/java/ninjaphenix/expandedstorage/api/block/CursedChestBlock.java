@@ -3,22 +3,13 @@ package ninjaphenix.expandedstorage.api.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityContext;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.IWorld;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.Registries.ModeledTierData;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
@@ -27,9 +18,8 @@ import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import static ninjaphenix.expandedstorage.api.block.enums.CursedChestType.*;
 
 @SuppressWarnings("deprecation")
-public class CursedChestBlock extends AbstractChestBlock implements Waterloggable
+public class CursedChestBlock extends FluidLoggableChestBlock
 {
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     private static final VoxelShape SINGLE_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
     private static final VoxelShape TOP_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
     private static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 16, 15);
@@ -38,24 +28,10 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     private static final VoxelShape C = Block.createCuboidShape(1, 0, 0, 15, 14, 15);
     private static final VoxelShape D = Block.createCuboidShape(1, 0, 1, 15, 14, 16);
 
-    public CursedChestBlock(Settings settings)
-    {
-        super(settings);
-        setDefaultState(getDefaultState().with(WATERLOGGED, false));
-    }
+    public CursedChestBlock(Settings settings) { super(settings); }
 
     @Override
     public BlockEntity createBlockEntity(BlockView view) { return new CursedChestBlockEntity(Registry.BLOCK.getId(this)); }
-
-    @Override
-    public FluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state); }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
-    {
-        super.appendProperties(builder);
-        builder.add(WATERLOGGED);
-    }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context)
@@ -107,24 +83,9 @@ public class CursedChestBlock extends AbstractChestBlock implements Waterloggabl
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext context)
-    {
-        BlockState state = super.getPlacementState(context);
-        return state.with(WATERLOGGED, context.getWorld().getFluidState(context.getBlockPos()) == Fluids.WATER.getDefaultState());
-    }
-
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, IWorld world, BlockPos pos,
-            BlockPos neighborPos)
-    {
-        if (state.get(WATERLOGGED)) world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    @Override
     public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public SimpleRegistry<ModeledTierData> getDataRegistry() { return Registries.MODELED; }
 }

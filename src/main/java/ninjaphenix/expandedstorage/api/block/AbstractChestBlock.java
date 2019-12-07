@@ -135,16 +135,10 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 if (isChestBlocked(world, pairedPos)) return propertyRetriever.getFallback();
                 BlockEntity pairedBlockEntity = world.getBlockEntity(pairedPos);
                 if (pairedBlockEntity instanceof AbstractChestBlockEntity)
-                {
                     if (clickedChestType.isRenderedType())
-                    {
                         return propertyRetriever.getFromBoth(clickedChestBlockEntity, (AbstractChestBlockEntity) pairedBlockEntity);
-                    }
                     else
-                    {
                         return propertyRetriever.getFromBoth((AbstractChestBlockEntity) pairedBlockEntity, clickedChestBlockEntity);
-                    }
-                }
             }
         }
         return propertyRetriever.getFrom(clickedChestBlockEntity);
@@ -159,8 +153,8 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
 
     private static boolean hasOcelotOnTop(IWorld world, BlockPos pos)
     {
-        List<CatEntity> cats = world
-                .getNonSpectatingEntities(CatEntity.class, new Box(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1));
+        List<CatEntity> cats = world.getNonSpectatingEntities(CatEntity.class,
+                new Box(pos.getX(), pos.getY() + 1, pos.getZ(), pos.getX() + 1, pos.getY() + 2, pos.getZ() + 1));
         for (CatEntity catEntity_1 : cats) if (catEntity_1.isSitting()) return true;
         return false;
     }

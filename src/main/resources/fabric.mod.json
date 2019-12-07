@@ -27,10 +27,6 @@
   },
   "mixins": [
     {
-      "config": "expandedstorage.mixins.client.json",
-      "environment": "client"
-    },
-    {
       "config": "expandedstorage.mixins.common.json",
       "environment": "*"
     }

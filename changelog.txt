@@ -1,3 +1,0 @@
-Updated to pre release 4
-Fixed crash when opening chests
-Fixed crash when opening creative button mover gui.

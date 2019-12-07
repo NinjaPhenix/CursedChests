@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 import ninjaphenix.expandedstorage.ExpandedStorage;
+import ninjaphenix.expandedstorage.api.ExpandedStorageAPI;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.api.client.gui.screen.ingame.ScrollableScreen;
@@ -43,7 +44,7 @@ public class ExpandedStorageClient implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
-        BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.CURSED_CHEST, CursedChestBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(ExpandedStorageAPI.CURSED_CHEST, CursedChestBlockEntityRenderer::new);
         ScreenProviderRegistry.INSTANCE.registerFactory(ExpandedStorage.getId("scrollcontainer"), ScrollableScreen::createScreen);
         ClientSpriteRegistryCallback.event(CHEST_TEXTURE_ATLAS).register((atlas, registry) -> iterateOurModeledTiers((data) ->
         {

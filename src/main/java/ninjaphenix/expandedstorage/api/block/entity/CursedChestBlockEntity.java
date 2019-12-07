@@ -5,7 +5,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvironmentInterface;
 import net.fabricmc.api.EnvironmentInterfaces;
 import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SidedInventory;
@@ -20,9 +19,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
+import ninjaphenix.expandedstorage.api.ExpandedStorageAPI;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
@@ -40,14 +39,9 @@ public class CursedChestBlockEntity extends AbstractChestBlockEntity implements 
     private int viewerCount;
     private int ticksOpen;
 
-    public CursedChestBlockEntity() { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("cursed_chest")), ExpandedStorage.getId("null")); }
+    public CursedChestBlockEntity() { this(ExpandedStorage.getId("null")); }
 
-    public CursedChestBlockEntity(Identifier block) { this(Registry.BLOCK_ENTITY.get(ExpandedStorage.getId("cursed_chest")), block); }
-
-    public CursedChestBlockEntity(BlockEntityType type, Identifier block)
-    {
-        super(type, block);
-    }
+    public CursedChestBlockEntity(Identifier block) { super(ExpandedStorageAPI.CURSED_CHEST, block); }
 
     private static int tickViewerCount(World world, CursedChestBlockEntity instance, int ticksOpen, int x, int y, int z, int viewCount)
     {
