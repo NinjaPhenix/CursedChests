@@ -92,12 +92,14 @@ public class ScrollableContainer extends Container
     private int compare(Integer a, Integer b)
     {
         if (a == null || b == null) return 0;
-        ItemStack stack_a = slotList.get(a).getStack();
-        ItemStack stack_b = slotList.get(b).getStack();
+        final ItemStack stack_a = slotList.get(a).getStack();
+        final ItemStack stack_b = slotList.get(b).getStack();
         if (stack_a.isEmpty() && !stack_b.isEmpty()) return 1;
         if (!stack_a.isEmpty() && stack_b.isEmpty()) return -1;
         if (stack_a.isEmpty()) return 0; // && stack_b.isEmpty() -- unneeded
-        return stack_a.getName().getString().toLowerCase().contains(searchTerm) ? -1 : stack_b.getName().getString().toLowerCase().contains(searchTerm) ? 1 : 0;
+        final boolean stack_a_matches = stack_a.getName().getString().toLowerCase().contains(searchTerm);
+        final boolean stack_b_matches = stack_b.getName().getString().toLowerCase().contains(searchTerm);
+        return stack_a_matches && stack_b_matches ? 0 : stack_b_matches ? 1 : -1;
     }
 
     @Override
