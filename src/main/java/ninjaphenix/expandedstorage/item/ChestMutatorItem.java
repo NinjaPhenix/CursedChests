@@ -28,8 +28,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
-import ninjaphenix.expandedstorage.api.block.base.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
+import ninjaphenix.expandedstorage.api.block.base.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.api.item.ChestModifierItem;
 

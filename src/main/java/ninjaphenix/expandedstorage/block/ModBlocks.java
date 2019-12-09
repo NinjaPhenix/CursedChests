@@ -77,6 +77,8 @@ public class ModBlocks
         old_obsidian_chest_slab = oldSlab(Blocks.OBSIDIAN, "obsidian_chest", 12);
     }
 
+    private ModBlocks() {}
+
     private static SlabChestBlock slab(Block material, String name, int rows)
     {
         final SlabChestBlock block = new SlabChestBlock(Block.Settings.copy(material));
@@ -128,6 +130,4 @@ public class ModBlocks
     }
 
     public static void init() {}
-
-    private ModBlocks() {}
 }

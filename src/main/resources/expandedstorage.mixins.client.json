@@ -4,7 +4,8 @@
   "plugin": "ninjaphenix.expandedstorage.ExpandedStorageMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BuiltinModelItemRendererMixin", "TexturedRenderLayersMixin"
+    "BuiltinModelItemRendererMixin",
+    "TexturedRenderLayersMixin"
   ],
   "injectors": {
     "defaultRequire": 1

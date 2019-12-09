@@ -3,7 +3,6 @@ package ninjaphenix.expandedstorage.mixins;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
@@ -43,7 +42,7 @@ public class BuiltinModelItemRendererMixin
                 BlockEntityRenderDispatcher.INSTANCE.renderEntity(CURSED_CHEST_RENDER_ENTITY, matrixStack, consumerProvider, light, overlay);
                 info.cancel();
             }
-            else if(block instanceof SlabChestBlock)
+            else if (block instanceof SlabChestBlock)
             {
                 final Identifier id = Registry.BLOCK.getId(block);
                 SLAB_CHEST_RENDER_ENTITY.setBlock(new Identifier(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - 5)));

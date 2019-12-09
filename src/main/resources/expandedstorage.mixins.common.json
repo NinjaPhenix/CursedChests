@@ -4,7 +4,9 @@
   "plugin": "ninjaphenix.expandedstorage.ExpandedStorageMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "IdentifierMixin", "SlotMixin", "ToweletteSupportMixin"
+    "IdentifierMixin",
+    "SlotMixin",
+    "ToweletteSupportMixin"
   ],
   "injectors": {
     "defaultRequire": 1

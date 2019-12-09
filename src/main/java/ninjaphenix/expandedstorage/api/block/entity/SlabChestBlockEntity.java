@@ -1,7 +1,6 @@
 package ninjaphenix.expandedstorage.api.block.entity;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;

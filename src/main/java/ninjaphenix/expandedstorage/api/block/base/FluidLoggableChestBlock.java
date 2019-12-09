@@ -10,7 +10,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.IWorld;
-import ninjaphenix.expandedstorage.api.block.base.AbstractChestBlock;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 

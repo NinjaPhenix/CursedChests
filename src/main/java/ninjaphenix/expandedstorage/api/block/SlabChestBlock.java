@@ -13,7 +13,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.IWorld;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.base.AbstractSlabChestBlock;
-import ninjaphenix.expandedstorage.api.block.entity.OldSlabChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.entity.SlabChestBlockEntity;
 
 public class SlabChestBlock extends AbstractSlabChestBlock
