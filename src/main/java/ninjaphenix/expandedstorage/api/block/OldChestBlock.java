@@ -9,7 +9,6 @@ import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.Registries.TierData;
 import ninjaphenix.expandedstorage.api.block.entity.OldChestBlockEntity;
 
-@SuppressWarnings("deprecation")
 public class OldChestBlock extends AbstractChestBlock
 {
     public OldChestBlock(Settings settings) { super(settings); }
@@ -23,5 +22,5 @@ public class OldChestBlock extends AbstractChestBlock
 
     @SuppressWarnings("unchecked")
     @Override
-    public SimpleRegistry<TierData> getDataRegistry() { return Registries.OLD; }
+    public SimpleRegistry<TierData> getDataRegistry() { return Registries.OLD_CHEST; }
 }

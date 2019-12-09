@@ -12,13 +12,13 @@ import ninjaphenix.expandedstorage.api.block.entity.OldChestBlockEntity;
 public final class ExpandedStorageAPI
 {
     public static final BlockEntityType<CursedChestBlockEntity> CURSED_CHEST;
-    public static final BlockEntityType<OldChestBlockEntity> FULL_CURSED_CHEST;
+    public static final BlockEntityType<OldChestBlockEntity> OLD_CURSED_CHEST;
 
     static
     {
         CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "cursed_chest"), new CustomBlockEntityType<>(
                 CursedChestBlockEntity::new, (b) -> b instanceof CursedChestBlock));
-        FULL_CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_cursed_chest"), new CustomBlockEntityType<>(
+        OLD_CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_cursed_chest"), new CustomBlockEntityType<>(
                 OldChestBlockEntity::new, (b) -> b instanceof OldChestBlock));
     }
 

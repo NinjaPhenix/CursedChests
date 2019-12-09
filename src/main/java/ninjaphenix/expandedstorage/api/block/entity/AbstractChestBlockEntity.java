@@ -25,7 +25,7 @@ public abstract class AbstractChestBlockEntity extends LootableContainerBlockEnt
     // May be Identifier("expandedstorage", "null")
     protected Identifier block;
 
-    public AbstractChestBlockEntity(BlockEntityType type, Identifier block)
+    protected AbstractChestBlockEntity(BlockEntityType type, Identifier block)
     {
         super(type);
         this.initialize(block);

@@ -16,25 +16,27 @@ import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
  */
 public class Registries
 {
+
+
     /**
      * This registry for CursedChestBlock data storage.
      */
-    public static final SimpleRegistry<ModeledTierData> MODELED = new SimpleRegistry<>();
+    public static final SimpleRegistry<ChestTierData> CHEST = new SimpleRegistry<>();
 
     /**
      * This registry is for OldChestBlock data storage.
      */
-    public static final SimpleRegistry<TierData> OLD = new SimpleRegistry<>();
+    public static final SimpleRegistry<TierData> OLD_CHEST = new SimpleRegistry<>();
 
     static
     {
         // Populates registries with null ids incase anything goes wrong. Idealy these should never present themselves.
         Identifier nullId = ExpandedStorage.getId("null");
-        MODELED.add(nullId, new ModeledTierData(0, new TranslatableText("container.expandedstorage.error"), nullId, nullId, nullId, nullId, nullId));
-        OLD.add(nullId, new TierData(0, new TranslatableText("container.expandedstorage.error"), nullId));
+        CHEST.add(nullId, new ChestTierData(0, new TranslatableText("container.expandedstorage.error"), nullId, nullId, nullId, nullId, nullId));
+        OLD_CHEST.add(nullId, new TierData(0, new TranslatableText("container.expandedstorage.error"), nullId));
     }
 
-    public static class ModeledTierData extends TierData
+    public static class ChestTierData extends TierData
     {
         private final Identifier singleTexture;
         private final Identifier vanillaTexture;
@@ -52,7 +54,7 @@ public class Registries
          * @param tallTexture The blocks tall texture.
          * @param longTexture The blocks long texture.
          */
-        public ModeledTierData(int slots, Text containerName, Identifier blockId, Identifier singleTexture, Identifier vanillaTexture,
+        public ChestTierData(int slots, Text containerName, Identifier blockId, Identifier singleTexture, Identifier vanillaTexture,
                 Identifier tallTexture, Identifier longTexture)
         {
             super(slots, containerName, blockId);

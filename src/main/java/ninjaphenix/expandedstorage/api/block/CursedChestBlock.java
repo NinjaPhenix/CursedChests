@@ -11,7 +11,7 @@ import net.minecraft.util.registry.SimpleRegistry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import ninjaphenix.expandedstorage.api.Registries;
-import ninjaphenix.expandedstorage.api.Registries.ModeledTierData;
+import ninjaphenix.expandedstorage.api.Registries.ChestTierData;
 import ninjaphenix.expandedstorage.api.block.entity.CursedChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 
@@ -87,5 +87,5 @@ public class CursedChestBlock extends FluidLoggableChestBlock
 
     @Override
     @SuppressWarnings("unchecked")
-    public SimpleRegistry<ModeledTierData> getDataRegistry() { return Registries.MODELED; }
+    public SimpleRegistry<ChestTierData> getDataRegistry() { return Registries.CHEST; }
 }

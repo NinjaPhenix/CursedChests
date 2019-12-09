@@ -47,6 +47,8 @@ public class ModBlocks
         old_obsidian_chest = old(Blocks.OBSIDIAN, "obsidian_chest", 12);
     }
 
+    private ModBlocks() {}
+
     private static OldChestBlock old(Block material, String name, int rows)
     {
         final OldChestBlock block = new OldChestBlock(Block.Settings.copy(material));
@@ -54,7 +56,7 @@ public class ModBlocks
         final Identifier id = ExpandedStorage.getId("old_" + name);
         Registry.register(Registry.BLOCK, id, block);
         Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ExpandedStorage.group)));
-        Registries.OLD.add(ExpandedStorage.getId(name), new Registries.TierData(rows * 9, containerName, id));
+        Registries.OLD_CHEST.add(ExpandedStorage.getId(name), new Registries.TierData(rows * 9, containerName, id));
         return block;
     }
 
@@ -69,11 +71,9 @@ public class ModBlocks
         final Identifier id = ExpandedStorage.getId(name);
         Registry.register(Registry.BLOCK, id, block);
         Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Settings().group(ExpandedStorage.group)));
-        Registries.MODELED.add(id, new Registries.ModeledTierData(rows * 9, containerName, id, singleTexture, vanillaTexture, tallTexture, longTexture));
+        Registries.CHEST.add(id, new Registries.ChestTierData(rows * 9, containerName, id, singleTexture, vanillaTexture, tallTexture, longTexture));
         return block;
     }
 
     public static void init() {}
-
-    private ModBlocks() {}
 }

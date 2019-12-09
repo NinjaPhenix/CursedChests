@@ -9,3 +9,5 @@ classes/
 *.iml
 *.ipr
 *.iws
+/includes/Statement*.jar
+/includes/Towelette*.jar

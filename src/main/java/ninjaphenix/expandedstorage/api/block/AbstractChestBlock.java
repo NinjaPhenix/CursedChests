@@ -79,19 +79,13 @@ public abstract class AbstractChestBlock extends BlockWithEntity implements Inve
                 public Optional<Text> getFallback() { return Optional.empty(); }
             };
 
-    public AbstractChestBlock(Settings settings)
+    protected AbstractChestBlock(Settings settings)
     {
         super(settings);
         setDefaultState(getDefaultState().with(FACING, Direction.SOUTH).with(TYPE, CursedChestType.SINGLE));
     }
 
     private static boolean isChestBlocked(IWorld world, BlockPos pos) { return hasBlockOnTop(world, pos) || hasOcelotOnTop(world, pos); }
-
-    public static SidedInventory getInventoryStatic(IWorld world, BlockPos pos)
-    {
-        Optional<SidedInventory> inventory = retrieve(world.getBlockState(pos), world, pos, INVENTORY_RETRIEVER);
-        return inventory.orElse(null);
-    }
 
     public static CursedChestType getChestType(Direction facing, Direction offset)
     {

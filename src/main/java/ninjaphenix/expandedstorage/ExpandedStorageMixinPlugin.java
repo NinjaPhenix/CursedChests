@@ -21,26 +21,24 @@ public class ExpandedStorageMixinPlugin implements IMixinConfigPlugin
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName)
     {
-        final Boolean rv = conditionalMixins.getOrDefault(mixinClassName, Boolean.TRUE);
-        System.out.println("DEBUG: Should Mixin Apply - " + mixinClassName + " = " + rv);
-        return rv;
+        return conditionalMixins.getOrDefault(mixinClassName, Boolean.TRUE);
     }
 
     @Override
-    public void onLoad(String mixinPackage) { }
+    public void onLoad(String mixinPackage) {}
 
     @Override
     public String getRefMapperConfig() { return null; }
 
     @Override
-    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets)
-    { }
+    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {}
+
     @Override
     public List<String> getMixins() { return null; }
 
     @Override
-    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) { }
+    public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
 
     @Override
-    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) { }
+    public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {}
 }

@@ -12,14 +12,14 @@ public class OldChestBlockEntity extends AbstractChestBlockEntity
 
     public OldChestBlockEntity() { this(ExpandedStorage.getId("null")); }
 
-    public OldChestBlockEntity(Identifier block) { super(ExpandedStorageAPI.FULL_CURSED_CHEST, block); }
+    public OldChestBlockEntity(Identifier block) { super(ExpandedStorageAPI.OLD_CURSED_CHEST, block); }
 
     @Override
     protected void initialize(Identifier block)
     {
         this.block = block;
-        defaultContainerName = Registries.OLD.get(block).getContainerName();
-        inventorySize = Registries.OLD.get(block).getSlotCount();
+        defaultContainerName = Registries.OLD_CHEST.get(block).getContainerName();
+        inventorySize = Registries.OLD_CHEST.get(block).getSlotCount();
         inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
         SLOTS = new int[inventorySize];
         for (int i = 0; i < inventorySize; i++) SLOTS[i] = i;

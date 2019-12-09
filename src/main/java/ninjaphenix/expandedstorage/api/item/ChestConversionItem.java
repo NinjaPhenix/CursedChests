@@ -55,10 +55,10 @@ public class ChestConversionItem extends ChestModifierItem
     private void upgradeChest(World world, BlockPos pos, BlockState state)
     {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(Registries.MODELED.get(from).getSlotCount(), ItemStack.EMPTY);
+        DefaultedList<ItemStack> inventoryData = DefaultedList.ofSize(Registries.CHEST.get(from).getSlotCount(), ItemStack.EMPTY);
         Inventories.fromTag(blockEntity.toTag(new CompoundTag()), inventoryData);
         world.removeBlockEntity(pos);
-        BlockState newState = Registry.BLOCK.get(Registries.MODELED.get(to).getBlockId()).getDefaultState();
+        BlockState newState = Registry.BLOCK.get(Registries.CHEST.get(to).getBlockId()).getDefaultState();
         world.setBlockState(pos, newState.with(Properties.HORIZONTAL_FACING, state.get(Properties.HORIZONTAL_FACING))
                                          .with(Properties.WATERLOGGED, state.get(Properties.WATERLOGGED))
                                          .with(CursedChestBlock.TYPE, CursedChestType.valueOf(state.get(Properties.CHEST_TYPE))));
