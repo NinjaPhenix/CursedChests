@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,type=bottom": { "model": "expandedstorage:block/old_obsidian_chest/slab_bottom" },
+        "facing=east,type=bottom": { "model": "expandedstorage:block/old_obsidian_chest/slab_bottom", "y": 90 },
+        "facing=south,type=bottom": { "model": "expandedstorage:block/old_obsidian_chest/slab_bottom", "y": 180 },
+        "facing=west,type=bottom": { "model": "expandedstorage:block/old_obsidian_chest/slab_bottom", "y": 270 },
+        "facing=north,type=top": { "model": "expandedstorage:block/old_obsidian_chest/slab_top" },
+        "facing=east,type=top": { "model": "expandedstorage:block/old_obsidian_chest/slab_top", "y": 90 },
+        "facing=south,type=top": { "model": "expandedstorage:block/old_obsidian_chest/slab_top", "y": 180 },
+        "facing=west,type=top": { "model": "expandedstorage:block/old_obsidian_chest/slab_top", "y": 270 },
+        "facing=north,type=double": { "model": "expandedstorage:block/old_obsidian_chest/single" },
+        "facing=east,type=double": { "model": "expandedstorage:block/old_obsidian_chest/single", "y": 90 },
+        "facing=south,type=double": { "model": "expandedstorage:block/old_obsidian_chest/single", "y": 180 },
+        "facing=west,type=double": { "model": "expandedstorage:block/old_obsidian_chest/single", "y": 270 }
+    }
+}

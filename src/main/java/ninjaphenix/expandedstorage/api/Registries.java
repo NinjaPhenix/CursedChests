@@ -1,5 +1,6 @@
 package ninjaphenix.expandedstorage.api;
 
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -19,22 +20,71 @@ public class Registries
     /**
      * This registry for CursedChestBlock data storage.
      */
-    public static final SimpleRegistry<ModeledTierData> MODELED = new SimpleRegistry<>();
+    public static final SimpleRegistry<ChestTierData> CHEST = new SimpleRegistry<>();
 
     /**
      * This registry is for OldChestBlock data storage.
      */
-    public static final SimpleRegistry<TierData> OLD = new SimpleRegistry<>();
+    public static final SimpleRegistry<TierData> OLD_CHEST = new SimpleRegistry<>();
+
+    /**
+     * This registry is for SlabChestBlock data storage.
+     */
+    public static final SimpleRegistry<SlabTierData> SLAB = new SimpleRegistry<>();
+
+    /**
+     * This registry is for OldSlabChestBlock data storage.
+     */
+    public static final SimpleRegistry<TierData> OLD_SLAB = new SimpleRegistry<>();
+
+    // Use Registries.CHEST instead
+    @Deprecated
+    public static final SimpleRegistry<ChestTierData> MODELED = CHEST;
+
+    // Use Registries.OLD_CHEST instead
+    @Deprecated
+    public static final SimpleRegistry<TierData> OLD = OLD_CHEST;
 
     static
     {
         // Populates registries with null ids incase anything goes wrong. Idealy these should never present themselves.
-        Identifier nullId = ExpandedStorage.getId("null");
-        MODELED.add(nullId, new ModeledTierData(0, new TranslatableText("container.expandedstorage.error"), nullId, nullId, nullId, nullId, nullId));
-        OLD.add(nullId, new TierData(0, new TranslatableText("container.expandedstorage.error"), nullId));
+        final Identifier nullId = ExpandedStorage.getId("null");
+        final Text containerName = new TranslatableText("container.expandedstorage.error");
+        CHEST.add(nullId, new ChestTierData(0, containerName, nullId, nullId, nullId, nullId, nullId));
+        OLD_CHEST.add(nullId, new TierData(0, containerName, nullId));
+        SLAB.add(nullId, new SlabTierData(0, containerName, nullId, nullId, nullId));
+        OLD_SLAB.add(nullId, new TierData(0, containerName, nullId));
     }
 
-    public static class ModeledTierData extends TierData
+    public static class SlabTierData extends TierData
+    {
+        private final Identifier halfTexture;
+        private final Identifier doubleTexture;
+
+        /**
+         * Data representing a slab chest block.
+         *
+         * @param slots The amount of itemstacks this chest tier can hold.
+         * @param containerName The default container name for this chest tier.
+         * @param blockId The block id that represents this data.
+         * @param halfTexture The blocks half texture.
+         * @param doubleTexture The blocks double texture.
+         */
+        public SlabTierData(int slots, Text containerName, Identifier blockId, Identifier halfTexture, Identifier doubleTexture)
+        {
+            super(slots, containerName, blockId);
+            this.halfTexture = halfTexture;
+            this.doubleTexture = doubleTexture;
+        }
+
+        public Identifier getChestTexture(SlabType type)
+        {
+            if (type == SlabType.DOUBLE) return doubleTexture;
+            return halfTexture;
+        }
+    }
+
+    public static class ChestTierData extends TierData
     {
         private final Identifier singleTexture;
         private final Identifier vanillaTexture;
@@ -42,7 +92,7 @@ public class Registries
         private final Identifier longTexture;
 
         /**
-         * Data representing a vanilla looking chest block.
+         * Data representing a regular chest block.
          *
          * @param slots The amount of itemstacks this chest tier can hold.
          * @param containerName The default container name for this chest tier.
@@ -52,7 +102,7 @@ public class Registries
          * @param tallTexture The blocks tall texture.
          * @param longTexture The blocks long texture.
          */
-        public ModeledTierData(int slots, Text containerName, Identifier blockId, Identifier singleTexture, Identifier vanillaTexture,
+        public ChestTierData(int slots, Text containerName, Identifier blockId, Identifier singleTexture, Identifier vanillaTexture,
                 Identifier tallTexture, Identifier longTexture)
         {
             super(slots, containerName, blockId);

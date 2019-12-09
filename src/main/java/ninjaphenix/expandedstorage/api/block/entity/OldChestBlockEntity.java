@@ -6,13 +6,14 @@ import net.minecraft.util.Identifier;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.ExpandedStorageAPI;
 import ninjaphenix.expandedstorage.api.Registries;
+import ninjaphenix.expandedstorage.api.block.base.entity.AbstractChestBlockEntity;
 
 public class OldChestBlockEntity extends AbstractChestBlockEntity
 {
 
     public OldChestBlockEntity() { this(ExpandedStorage.getId("null")); }
 
-    public OldChestBlockEntity(Identifier block) { super(ExpandedStorageAPI.FULL_CURSED_CHEST, block); }
+    public OldChestBlockEntity(Identifier block) { super(ExpandedStorageAPI.OLD_CURSED_CHEST, block); }
 
     @Override
     protected void initialize(Identifier block)

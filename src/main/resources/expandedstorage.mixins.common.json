@@ -6,9 +6,6 @@
   "mixins": [
     "IdentifierMixin", "SlotMixin", "ToweletteSupportMixin"
   ],
-  "client": [
-    "BuiltinModelItemRendererMixin", "TexturedRenderLayersMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   },

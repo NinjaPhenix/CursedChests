@@ -14,7 +14,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
+import ninjaphenix.expandedstorage.api.block.base.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 
 public abstract class ChestModifierItem extends Item

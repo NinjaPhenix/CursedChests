@@ -1,4 +1,4 @@
-package ninjaphenix.expandedstorage.api.block.entity;
+package ninjaphenix.expandedstorage.api.block.base.entity;
 
 import com.mojang.datafixers.types.Type;
 import net.minecraft.block.Block;

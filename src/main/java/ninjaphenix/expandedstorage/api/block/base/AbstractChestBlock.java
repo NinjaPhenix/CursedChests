@@ -1,4 +1,4 @@
-package ninjaphenix.expandedstorage.api.block;
+package ninjaphenix.expandedstorage.api.block.base;
 
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.*;
@@ -31,7 +31,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
-import ninjaphenix.expandedstorage.api.block.entity.AbstractChestBlockEntity;
+import ninjaphenix.expandedstorage.api.block.base.entity.AbstractChestBlockEntity;
 import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.api.inventory.DoubleSidedInventory;
 

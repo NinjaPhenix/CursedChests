@@ -1,4 +1,4 @@
-package ninjaphenix.expandedstorage.api.block.entity;
+package ninjaphenix.expandedstorage.api.block.base.entity;
 
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -25,7 +25,7 @@ public abstract class AbstractChestBlockEntity extends LootableContainerBlockEnt
     // May be Identifier("expandedstorage", "null")
     protected Identifier block;
 
-    public AbstractChestBlockEntity(BlockEntityType type, Identifier block)
+    protected AbstractChestBlockEntity(BlockEntityType type, Identifier block)
     {
         super(type);
         this.initialize(block);

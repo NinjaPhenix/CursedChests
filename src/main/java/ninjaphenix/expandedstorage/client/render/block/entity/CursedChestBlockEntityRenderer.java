@@ -51,7 +51,7 @@ public class CursedChestBlockEntityRenderer extends BlockEntityRenderer<CursedCh
         else if (chestType == CursedChestType.TOP) stack.translate(0.0D, -1.0D, 0.0D);
         else if (chestType == CursedChestType.RIGHT) stack.translate(-1.0D, 0.0D, 0.0D);
         model.render(stack, new SpriteIdentifier(ExpandedStorageClient.CHEST_TEXTURE_ATLAS,
-                Registries.MODELED.get(be.getBlock()).getChestTexture(chestType)).getVertexConsumer(vcp, RenderLayer::getEntityCutout), x, y);
+                Registries.CHEST.get(be.getBlock()).getChestTexture(chestType)).getVertexConsumer(vcp, RenderLayer::getEntityCutout), x, y);
         stack.pop();
     }
 }
