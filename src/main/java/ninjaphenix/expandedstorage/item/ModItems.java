@@ -7,7 +7,7 @@ import net.minecraft.util.registry.Registry;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.item.ChestConversionItem;
 
-public class ModItems
+public final class ModItems
 {
     public static void init()
     {
@@ -32,7 +32,7 @@ public class ModItems
 
     private static void registerConversionItem(Pair<Identifier, String> from, Pair<Identifier, String> to)
     {
-        Item conversionKit = new ChestConversionItem(from.getLeft(), to.getLeft());
+        Item conversionKit = new ChestConversionItem(new Item.Settings().group(ExpandedStorage.group).maxCount(16), from.getLeft(), to.getLeft());
         Registry.register(Registry.ITEM, ExpandedStorage.getId(from.getRight() + "_to_" + to.getRight() + "_conversion_kit"), conversionKit);
     }
 }

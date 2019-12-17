@@ -30,7 +30,7 @@ import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
-import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.api.block.misc.CursedChestType;
 import ninjaphenix.expandedstorage.api.item.ChestModifierItem;
 
 import java.util.List;

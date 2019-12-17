@@ -14,37 +14,25 @@ import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
 import ninjaphenix.expandedstorage.api.block.OldChestBlock;
 
 @SuppressWarnings("WeakerAccess")
-public class ModBlocks
+public final class ModBlocks
 {
-    public static final CursedChestBlock wood_chest;
-    public static final CursedChestBlock pumpkin_chest;
-    public static final CursedChestBlock christmas_chest;
-    public static final CursedChestBlock iron_chest;
-    public static final CursedChestBlock gold_chest;
     public static final CursedChestBlock diamond_chest;
-    public static final CursedChestBlock obsidian_chest;
-
-    public static final OldChestBlock old_wood_chest;
-    public static final OldChestBlock old_iron_chest;
-    public static final OldChestBlock old_gold_chest;
-    public static final OldChestBlock old_diamond_chest;
-    public static final OldChestBlock old_obsidian_chest;
 
     static
     {
-        wood_chest = chest(Blocks.OAK_PLANKS, "wood_chest", 3);
-        pumpkin_chest = chest(Blocks.PUMPKIN, "pumpkin_chest", 3);
-        christmas_chest = chest(Blocks.OAK_PLANKS, "christmas_chest", 3);
-        iron_chest = chest(Blocks.IRON_BLOCK, "iron_chest", 6);
-        gold_chest = chest(Blocks.GOLD_BLOCK, "gold_chest", 9);
+        chest(Blocks.OAK_PLANKS, "wood_chest", 3);
+        chest(Blocks.PUMPKIN, "pumpkin_chest", 3);
+        chest(Blocks.OAK_PLANKS, "christmas_chest", 3);
+        chest(Blocks.IRON_BLOCK, "iron_chest", 6);
+        chest(Blocks.GOLD_BLOCK, "gold_chest", 9);
         diamond_chest = chest(Blocks.DIAMOND_BLOCK, "diamond_chest", 12);
-        obsidian_chest = chest(Blocks.OBSIDIAN, "obsidian_chest", 12);
+        chest(Blocks.OBSIDIAN, "obsidian_chest", 12);
 
-        old_wood_chest = old(Blocks.OAK_PLANKS, "wood_chest", 3);
-        old_iron_chest = old(Blocks.IRON_BLOCK, "iron_chest", 6);
-        old_gold_chest = old(Blocks.GOLD_BLOCK, "gold_chest", 9);
-        old_diamond_chest = old(Blocks.DIAMOND_BLOCK, "diamond_chest", 12);
-        old_obsidian_chest = old(Blocks.OBSIDIAN, "obsidian_chest", 12);
+        old(Blocks.OAK_PLANKS, "wood_chest", 3);
+        old(Blocks.IRON_BLOCK, "iron_chest", 6);
+        old(Blocks.GOLD_BLOCK, "gold_chest", 9);
+        old(Blocks.DIAMOND_BLOCK, "diamond_chest", 12);
+        old(Blocks.OBSIDIAN, "obsidian_chest", 12);
     }
 
     private ModBlocks() {}

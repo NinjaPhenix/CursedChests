@@ -1,11 +1,15 @@
 plugins {
     id "fabric-loom" version "0.2.6-SNAPSHOT"
+    id "java"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-archivesBaseName = project.archives_base_name
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    archivesBaseName = project.archives_base_name
+}
+
 version = "${project.mod_version}+${project.minecraft_version}"
 group = project.maven_group
 
@@ -34,11 +38,15 @@ dependencies {
         exclude (group: "net.fabricmc.fabric-api")
     }
 
-    modCompile("towelette:Towelette:2.1.3+1.15-pre6") // Remove Only to add towlette to dev.
+    modCompile("towelette:Towelette:2.1.3+1.15") // Remove Only to add towlette to dev.
     modCompile("statement:Statement:1.2.0+1.14.4")    // Remove Only to add towlette to dev.
 
-    modRuntime("ninjaphenix:creativebuttonmover:${cbm_version}+${minecraft_version}")
-    include("ninjaphenix:creativebuttonmover:${cbm_version}+${minecraft_version}")
+    modRuntime("ninjaphenix:creativebuttonmover:${cbm_version}")
+    include("ninjaphenix:creativebuttonmover:${cbm_version}")
+
+    modCompile("ninjaphenix:expandedstorageapi:${expandedstorageapi_version}")
+    modCompile("ninjaphenix:ninjaphenix-container-lib:${containerlib_version}")
+    include("ninjaphenix:expandedstorageapi:${expandedstorageapi_version}")
 }
 
 processResources {
@@ -67,6 +75,7 @@ tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
 
 curseforge {
     apiKey = project.hasProperty("api_key") ? project.api_key : "" // Fix for other tasks failing due to missing property
+    //noinspection GroovyAssignabilityCheck
     project {
         id = "317856"
         changelog = file("changelog.txt")

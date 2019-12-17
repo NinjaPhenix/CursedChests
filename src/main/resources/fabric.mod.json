@@ -15,29 +15,24 @@
   "icon": "assets/expandedstorage/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "expandedstorage_plugins_v0": [
       "ninjaphenix.expandedstorage.ExpandedStorage"
     ],
     "client": [
       "ninjaphenix.expandedstorage.client.ExpandedStorageClient"
-    ],
-    "rei_plugins_v0": [
-      "ninjaphenix.expandedstorage.client.ExpandedStorageREIPlugin"
     ]
   },
   "mixins": [
     {
       "config": "expandedstorage.mixins.common.json",
       "environment": "*"
-    },
-    {
-      "config": "expandedstorage.mixins.client.json",
-      "environment": "client"
     }
   ],
   "depends": {
     "fabricloader": ">=0.6.2",
     "fabric": ">=0.4.23",
-    "minecraft": ">=1.15"
+    "minecraft": ">=1.15",
+    "expandedstorageapi": ">=0.0.2 <1.0.0",
+    "ninjaphenix-container-lib": ">=0.0.1 <1.0.0"
   }
 }
