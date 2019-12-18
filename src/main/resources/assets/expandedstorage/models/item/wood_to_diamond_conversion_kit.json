@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "expandedstorage:item/wood_to_diamond_conversion_kit"
+  }
+}

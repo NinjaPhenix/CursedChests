@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "expandedstorage:iron_to_diamond_conversion_kit"
+    ]
+  },
+  "criteria": {
+    "has_kit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "expandedstorage:iron_to_gold_conversion_kit"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "expandedstorage:iron_to_diamond_conversion_kit"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_kit",
+      "has_the_recipe"
+    ]
+  ]
+}

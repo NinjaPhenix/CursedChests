@@ -1,0 +1,8 @@
+{
+  "parent": "expandedstorage:block/old_chest/single",
+  "textures": {
+    "top": "expandedstorage:block/old_gold_chest/chest_top",
+    "front": "expandedstorage:block/old_gold_chest/chest_front",
+    "side": "expandedstorage:block/old_gold_chest/chest_side"
+  }
+}

@@ -1,0 +1,19 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"  C",
+		" S ",
+		"S  "
+	],
+	"key": {
+		"S": {
+			"item": "minecraft:stick"
+		},
+		"C": {
+			"item": "expandedstorage:wood_chest"
+		}
+	},
+	"result": {
+		"item": "expandedstorage:chest_mutator"
+	}
+}

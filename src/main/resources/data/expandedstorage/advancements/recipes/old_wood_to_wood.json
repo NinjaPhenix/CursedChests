@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"expandedstorage:old_wood_to_wood"
+		]
+	},
+	"criteria": {
+		"has_chest": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "expandedstorage:old_wood_chest"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "expandedstorage:old_wood_to_wood"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_chest",
+			"has_the_recipe"
+		]
+	]
+}

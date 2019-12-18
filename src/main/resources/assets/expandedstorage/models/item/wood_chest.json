@@ -1,0 +1,6 @@
+{
+  "parent": "item/chest",
+  "textures": {
+    "particle": "expandedstorage:block/old_wood_chest/chest_front"
+  }
+}

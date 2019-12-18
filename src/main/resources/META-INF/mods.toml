@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/NinjaPhenix/ExpandedStorage/issues"
+[[mods]] #mandatory
+modId="expandedstorage"
+version="${file.jarVersion}"
+displayName="Expanded Storage"
+#updateJSONURL="http://myurl.me/"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/expanded-storage"
+logoFile="expandedstorage.png"
+#credits=""
+authors="NinjaPhenix"
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+    This mod adds chests with higher capacities which can combine between any face.
+
+    This is the first release for forge as such bugs and other oddities may occur.
+'''
+[[dependencies.expandedstorage]]
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[28,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.expandedstorage]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"

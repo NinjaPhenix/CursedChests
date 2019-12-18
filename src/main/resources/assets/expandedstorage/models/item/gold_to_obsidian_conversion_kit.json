@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "expandedstorage:item/gold_to_obsidian_conversion_kit"
+  }
+}
