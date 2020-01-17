@@ -13,8 +13,6 @@ authors="NinjaPhenix"
 # The description text for the mod (multi line!) (#mandatory)
 description='''
     This mod adds chests with higher capacities which can combine between any face.
-
-    This is the first release for forge as such bugs and other oddities may occur.
 '''
 [[dependencies.expandedstorage]]
     modId="forge" #mandatory
