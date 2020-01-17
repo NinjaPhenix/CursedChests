@@ -26,11 +26,11 @@ public class SingleChestModel extends Model
 	public SingleChestModel()
 	{
 		this(64, 48);
-		lid.func_228301_a_(0, -5, -14, 14, 5, 14, 0);
-		lid.func_228301_a_(6, -2, -15, 2, 4, 1, 0);
-		lid.setRotationPoint(1, 7, 15);
+		lid.func_228301_a_(0, 0, 0, 14, 5, 14, 0);
+		lid.func_228301_a_(6, -2, 14, 2, 4, 1, 0);
+		lid.setRotationPoint(1, 9, 1);
 		base.func_228301_a_(0, 0, 0, 14, 10, 14, 0);
-		base.setRotationPoint(1, 6, 1);
+		base.setRotationPoint(1, 0, 1);
 	}
 
 	public void setLidPitch(float pitch)

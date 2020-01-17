@@ -15,6 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import ninjaphenix.expandedstorage.api.Registries;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
@@ -28,42 +29,45 @@ import ninjaphenix.expandedstorage.api.item.ChestConversionItem;
 import ninjaphenix.expandedstorage.client.render.CursedChestTileEntityItemStackRenderer;
 import ninjaphenix.expandedstorage.item.ChestMutatorItem;
 
+import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
+
+@Mod.EventBusSubscriber(modid = ExpandedStorage.MOD_ID, bus = MOD)
 public class ModContent
 {
-	public static ContainerType<ScrollableContainer> SCROLLABLE_CONTAINER_TYPE;
-	public static Pair<OldChestBlock, BlockItem> OLD_WOOD_CHEST;
-	public static Pair<OldChestBlock, BlockItem> OLD_IRON_CHEST;
-	public static Pair<OldChestBlock, BlockItem> OLD_GOLD_CHEST;
-	public static Pair<OldChestBlock, BlockItem> OLD_DIAMOND_CHEST;
-	public static Pair<OldChestBlock, BlockItem> OLD_OBSIDIAN_CHEST;
+	public static final ContainerType<ScrollableContainer> SCROLLABLE_CONTAINER_TYPE;
+	public static final Pair<OldChestBlock, BlockItem> OLD_WOOD_CHEST;
+	public static final Pair<OldChestBlock, BlockItem> OLD_IRON_CHEST;
+	public static final Pair<OldChestBlock, BlockItem> OLD_GOLD_CHEST;
+	public static final Pair<OldChestBlock, BlockItem> OLD_DIAMOND_CHEST;
+	public static final Pair<OldChestBlock, BlockItem> OLD_OBSIDIAN_CHEST;
 
-	public static Pair<CursedChestBlock, BlockItem> WOOD_CHEST;
-	public static Pair<CursedChestBlock, BlockItem> PUMPKIN_CHEST;
-	public static Pair<CursedChestBlock, BlockItem> IRON_CHEST;
-	public static Pair<CursedChestBlock, BlockItem> GOLD_CHEST;
-	public static Pair<CursedChestBlock, BlockItem> DIAMOND_CHEST;
-	public static Pair<CursedChestBlock, BlockItem> OBSIDIAN_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> WOOD_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> PUMPKIN_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> IRON_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> GOLD_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> DIAMOND_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> OBSIDIAN_CHEST;
 
-	public static CustomTileEntityType<CursedChestTileEntity> CURSED_CHEST_TE;
-	public static CustomTileEntityType<OldChestTileEntity> OLD_CHEST_TE;
+	public static final CustomTileEntityType<CursedChestTileEntity> CURSED_CHEST_TE;
+	public static final CustomTileEntityType<OldChestTileEntity> OLD_CHEST_TE;
 
-	public static ChestMutatorItem CHEST_MUTATOR;
+	public static final ChestMutatorItem CHEST_MUTATOR;
 
-	public static ChestConversionItem CONVERSION_KIT_WOOD_IRON;
-	public static ChestConversionItem CONVERSION_KIT_WOOD_GOLD;
-	public static ChestConversionItem CONVERSION_KIT_WOOD_DIAMOND;
-	public static ChestConversionItem CONVERSION_KIT_WOOD_OBSIDIAN;
+	public static final ChestConversionItem CONVERSION_KIT_WOOD_IRON;
+	public static final ChestConversionItem CONVERSION_KIT_WOOD_GOLD;
+	public static final ChestConversionItem CONVERSION_KIT_WOOD_DIAMOND;
+	public static final ChestConversionItem CONVERSION_KIT_WOOD_OBSIDIAN;
 
-	public static ChestConversionItem CONVERSION_KIT_IRON_GOLD;
-	public static ChestConversionItem CONVERSION_KIT_IRON_DIAMOND;
-	public static ChestConversionItem CONVERSION_KIT_IRON_OBSIDIAN;
+	public static final ChestConversionItem CONVERSION_KIT_IRON_GOLD;
+	public static final ChestConversionItem CONVERSION_KIT_IRON_DIAMOND;
+	public static final ChestConversionItem CONVERSION_KIT_IRON_OBSIDIAN;
 
-	public static ChestConversionItem CONVERSION_KIT_GOLD_DIAMOND;
-	public static ChestConversionItem CONVERSION_KIT_GOLD_OBSIDIAN;
+	public static final ChestConversionItem CONVERSION_KIT_GOLD_DIAMOND;
+	public static final ChestConversionItem CONVERSION_KIT_GOLD_OBSIDIAN;
 
-	public static ChestConversionItem CONVERSION_KIT_DIAMOND_OBSIDIAN;
+	public static final ChestConversionItem CONVERSION_KIT_DIAMOND_OBSIDIAN;
 
-	public static void initializeContent()
+	static
 	{
 		OLD_WOOD_CHEST = registerOld(Blocks.OAK_PLANKS, "wood", 3);
 		OLD_IRON_CHEST = registerOld(Blocks.IRON_BLOCK, "iron", 6);
@@ -109,23 +113,26 @@ public class ModContent
 	private static Pair<CursedChestBlock, BlockItem> register(Block copy, String name, int rows)
 	{
 		ResourceLocation registryId = ExpandedStorage.getRl(name + "_chest");
-		CursedChestBlock block = new CursedChestBlock(Block.Properties.from(copy)); block.setRegistryName(registryId);
+		CursedChestBlock block = new CursedChestBlock(Block.Properties.from(copy));
+		block.setRegistryName(registryId);
 		BlockItem item = new BlockItem(block, new Item.Properties().setTEISR(() -> CursedChestTileEntityItemStackRenderer::new).group(ExpandedStorage.group));
 		item.setRegistryName(registryId);
 		Registries.MODELED.register(registryId, new Registries.ModeledTierData(rows * 9, registryId,
 				new TranslationTextComponent("container.expandedstorage." + name + "_chest"),
-				ExpandedStorage.getRl("textures/entity/" + name + "_chest/single.png"),
-				ExpandedStorage.getRl("textures/entity/" + name + "_chest/vanilla.png"),
-				ExpandedStorage.getRl("textures/entity/" + name + "_chest/tall.png"),
-				ExpandedStorage.getRl("textures/entity/" + name + "_chest/long.png")));
+				ExpandedStorage.getRl("entity/" + name + "_chest/single"),
+				ExpandedStorage.getRl("entity/" + name + "_chest/vanilla"),
+				ExpandedStorage.getRl("entity/" + name + "_chest/tall"),
+				ExpandedStorage.getRl("entity/" + name + "_chest/long")));
 		return new Pair<>(block, item);
 	}
 
 	private static Pair<OldChestBlock, BlockItem> registerOld(Block copy, String name, int rows)
 	{
 		ResourceLocation registryId = ExpandedStorage.getRl("old_" + name + "_chest");
-		OldChestBlock block = new OldChestBlock(Block.Properties.from(copy)); block.setRegistryName(registryId);
-		BlockItem item = new BlockItem(block, new Item.Properties().group(ExpandedStorage.group)); item.setRegistryName(registryId);
+		OldChestBlock block = new OldChestBlock(Block.Properties.from(copy));
+		block.setRegistryName(registryId);
+		BlockItem item = new BlockItem(block, new Item.Properties().group(ExpandedStorage.group));
+		item.setRegistryName(registryId);
 		Registries.OLD.register(ExpandedStorage.getRl(name + "_chest"), new Registries.TierData(rows * 9, registryId,
 				new TranslationTextComponent("container.expandedstorage." + name + "_chest")));
 		return new Pair<>(block, item);

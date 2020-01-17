@@ -1,0 +1,25 @@
+{
+	"variants": {
+		"type=single": {
+			"model": "expandedstorage:block/single_christmas_chest"
+		},
+		"type=left": {
+			"model": "expandedstorage:block/vanilla_christmas_chest"
+		},
+		"type=right": {
+			"model": "expandedstorage:block/vanilla_christmas_chest"
+		},
+		"type=top": {
+			"model": "expandedstorage:block/tall_christmas_chest"
+		},
+		"type=bottom": {
+			"model": "expandedstorage:block/tall_christmas_chest"
+		},
+		"type=front": {
+			"model": "expandedstorage:block/long_christmas_chest"
+		},
+		"type=back": {
+			"model": "expandedstorage:block/long_christmas_chest"
+		}
+	}
+}

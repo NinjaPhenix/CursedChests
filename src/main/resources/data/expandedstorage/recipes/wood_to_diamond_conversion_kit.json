@@ -1,22 +1,22 @@
 {
-	"type": "crafting_shaped",
-	"pattern": [
-		"GGG",
-		"DKD",
-		"GGG"
-	],
-	"key": {
-		"K": {
-			"item": "expandedstorage:wood_to_gold_conversion_kit"
-		},
-		"D": {
-			"item": "minecraft:diamond"
-		},
-		"G": {
-			"tag": "c:glass_blocks"
-		}
-	},
-	"result": {
-		"item": "expandedstorage:wood_to_diamond_conversion_kit"
-	}
+  "type": "crafting_shaped",
+  "pattern": [
+    "GGG",
+    "DKD",
+    "GGG"
+  ],
+  "key": {
+    "K": {
+      "item": "expandedstorage:wood_to_gold_conversion_kit"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "result": {
+    "item": "expandedstorage:wood_to_diamond_conversion_kit"
+  }
 }

@@ -1,19 +1,47 @@
 package ninjaphenix.expandedstorage.client;
 
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.ModContent;
+import ninjaphenix.expandedstorage.api.Registries;
+import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 import ninjaphenix.expandedstorage.client.render.CursedChestRenderer;
+import ninjaphenix.expandedstorage.client.render.CursedChestTileEntityItemStackRenderer;
 
+@OnlyIn(Dist.CLIENT)
 public class ExpandedStorageClient
 {
-	public static final ResourceLocation ATLAS_TEXTURE = ExpandedStorage.getRl("chest_atlas_texture");
-
-	public static void init()
+	@SubscribeEvent
+	public static void setup(FMLClientSetupEvent event)
 	{
-		ClientRegistry.bindTileEntityRenderer(ModContent.CURSED_CHEST_TE, new CursedChestRenderer(TileEntityRendererDispatcher.instance));
+		CursedChestRenderer renderer = new CursedChestRenderer(TileEntityRendererDispatcher.instance);
+		ClientRegistry.bindTileEntityRenderer(ModContent.CURSED_CHEST_TE, renderer);
+		CursedChestTileEntityItemStackRenderer.renderer = renderer;
 	}
 
+	@SubscribeEvent
+	public static void preStitchTextures(TextureStitchEvent.Pre event)
+	{
+		if (!event.getMap().func_229223_g_().equals(Atlases.field_228747_f_)) return;
+		for (ResourceLocation entry : Registries.MODELED.keySet())
+		{
+			if (entry.getNamespace().equals(ExpandedStorage.MOD_ID))
+			{
+				if (entry.getPath().equals("null")) continue;
+				//noinspection OptionalGetWithoutIsPresent
+				Registries.ModeledTierData data = Registries.MODELED.getValue(entry).get();
+				for (CursedChestType value : CursedChestType.values())
+					if (value.isRenderedType())
+						event.addSprite(new ResourceLocation(ExpandedStorage.MOD_ID, data.getChestTexture(value).getPath()));
+			}
+		}
+	}
 }

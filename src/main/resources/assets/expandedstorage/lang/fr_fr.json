@@ -19,5 +19,10 @@
   "item.expandedstorage.iron_to_obsidian_conversion_kit": "Amélioration Fer en Obsidienne",
   "item.expandedstorage.gold_to_diamond_conversion_kit": "Amélioration Or en Diamant",
   "item.expandedstorage.gold_to_obsidian_conversion_kit": "Amélioration Or en Obsidienne",
-  "item.expandedstorage.diamond_to_obsidian_conversion_kit": "Amélioration Diamant en Obsidienne"
+  "item.expandedstorage.diamond_to_obsidian_conversion_kit": "Amélioration Diamant en Obsidienne",
+  "item.expandedstorage.chest_mutator": "Chest Mutator",
+  "tooltip.expandedstorage.chest_mutator.merge": "Merge",
+  "tooltip.expandedstorage.chest_mutator.unmerge": "Unmerge",
+  "tooltip.expandedstorage.chest_mutator.rotate": "Rotate",
+  "tooltip.expandedstorage.tool_mode": "Tool Mode: %s"
 }
