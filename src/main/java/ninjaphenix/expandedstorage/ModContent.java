@@ -43,6 +43,7 @@ public class ModContent
 
 	public static final Pair<CursedChestBlock, BlockItem> WOOD_CHEST;
 	public static final Pair<CursedChestBlock, BlockItem> PUMPKIN_CHEST;
+	public static final Pair<CursedChestBlock, BlockItem> CHRISTMAS_CHEST;
 	public static final Pair<CursedChestBlock, BlockItem> IRON_CHEST;
 	public static final Pair<CursedChestBlock, BlockItem> GOLD_CHEST;
 	public static final Pair<CursedChestBlock, BlockItem> DIAMOND_CHEST;
@@ -77,6 +78,7 @@ public class ModContent
 
 		WOOD_CHEST = register(Blocks.OAK_PLANKS, "wood", 3);
 		PUMPKIN_CHEST = register(Blocks.CARVED_PUMPKIN, "pumpkin", 3);
+		CHRISTMAS_CHEST = register(Blocks.OAK_PLANKS, "christmas", 3);
 		IRON_CHEST = register(Blocks.IRON_BLOCK, "iron", 6);
 		GOLD_CHEST = register(Blocks.GOLD_BLOCK, "gold", 9);
 		DIAMOND_CHEST = register(Blocks.DIAMOND_BLOCK, "diamond", 12);
@@ -145,6 +147,7 @@ public class ModContent
 		registry.registerAll(
 				WOOD_CHEST.getFirst(),
 				PUMPKIN_CHEST.getFirst(),
+				CHRISTMAS_CHEST.getFirst(),
 				IRON_CHEST.getFirst(),
 				GOLD_CHEST.getFirst(),
 				DIAMOND_CHEST.getFirst(),
@@ -164,6 +167,7 @@ public class ModContent
 		registry.registerAll(
 				WOOD_CHEST.getSecond(),
 				PUMPKIN_CHEST.getSecond(),
+				CHRISTMAS_CHEST.getSecond(),
 				IRON_CHEST.getSecond(),
 				GOLD_CHEST.getSecond(),
 				DIAMOND_CHEST.getSecond(),
