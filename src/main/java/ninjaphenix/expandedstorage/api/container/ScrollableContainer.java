@@ -16,6 +16,7 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.network.IContainerFactory;
 import ninjaphenix.expandedstorage.ModContent;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class ScrollableContainer extends Container
@@ -33,14 +34,13 @@ public class ScrollableContainer extends Container
 		this.inventory = inventory;
 		this.containerName = containerName;
 		realRows = inventory.getSizeInventory() / 9;
-		rows = realRows > 6 ? 6 : realRows;
+		rows = Math.min(realRows, 6);
 		if (FMLLoader.getDist() == Dist.CLIENT) unsortedToSortedSlotMap = new Integer[realRows * 9];
 		int int_3 = (rows - 4) * 18;
 		inventory.openInventory(playerInventory.player);
 		for (int y = 0; y < realRows; ++y)
 		{
-			int yPos = -2000;
-			if (y < rows) yPos = 18 + y * 18;
+			int yPos = y < rows ? 18 + y * 18 : -2000;
 			for (int x = 0; x < 9; ++x)
 			{
 				int slot = x + 9 * y;
@@ -88,26 +88,37 @@ public class ScrollableContainer extends Container
 		int index = 0;
 		if (termChanged && !searchTerm.equals("")) Arrays.sort(unsortedToSortedSlotMap, this::compare);
 		else if (termChanged) Arrays.sort(unsortedToSortedSlotMap);
-		for (Integer slotID : unsortedToSortedSlotMap)
+		try
 		{
-			Slot slot = inventorySlots.get(slotID);
-			int y = (index / 9) - offset;
-			slot.xPos = 8 + 18 * (index % 9);
-			slot.yPos = (y >= rows || y < 0) ? -2000 : 18 + 18 * y;
-			index++;
+			Field xField = Slot.class.getField("xPos");
+			Field yField = Slot.class.getField("yPos");
+
+			for (Integer slotID : unsortedToSortedSlotMap)
+			{
+				Slot slot = inventorySlots.get(slotID);
+				int y = (index / 9) - offset;
+				if (!xField.isAccessible()) xField.setAccessible(true);
+				if (!yField.isAccessible()) yField.setAccessible(true);
+				xField.set(slot, 8 + 18 * (index % 9));
+				yField.set(slot, (y >= rows || y < 0) ? -2000 : 18 + 18 * y);
+				index++;
+			}
 		}
+		catch (NoSuchFieldException | IllegalAccessException ignored) { }
+
 	}
 
 	private int compare(Integer a, Integer b)
 	{
 		if (a == null || b == null) return 0;
-		ItemStack stack_a = inventorySlots.get(a).getStack();
-		ItemStack stack_b = inventorySlots.get(b).getStack();
+		final ItemStack stack_a = inventorySlots.get(a).getStack();
+		final ItemStack stack_b = inventorySlots.get(b).getStack();
 		if (stack_a.isEmpty() && !stack_b.isEmpty()) return 1;
 		if (!stack_a.isEmpty() && stack_b.isEmpty()) return -1;
-		if (stack_a.isEmpty() && stack_b.isEmpty()) return 0;
-		return stack_a.getDisplayName().getString().toLowerCase().contains(searchTerm) ? -1 :
-				stack_b.getDisplayName().getString().toLowerCase().contains(searchTerm) ? 1 : 0;
+		if (stack_a.isEmpty()) return 0; // && stack_b.isEmpty() -- unneeded
+		final boolean stack_a_matches = stack_a.getDisplayName().getString().toLowerCase().contains(searchTerm);
+		final boolean stack_b_matches = stack_b.getDisplayName().getString().toLowerCase().contains(searchTerm);
+		return stack_a_matches && stack_b_matches ? 0 : stack_b_matches ? 1 : -1;
 	}
 
 	@Override

@@ -284,7 +284,7 @@ public class ChestMutatorItem extends ChestModifierItem
 	@Override
 	protected ActionResult<ItemStack> useModifierInAir(World world, PlayerEntity player, Hand hand)
 	{
-		if (player.isSneaking())
+		if (player.isCrouching())
 		{
 			ItemStack stack = player.getHeldItem(hand);
 			CompoundNBT tag = stack.getOrCreateTag();

@@ -98,6 +98,6 @@ public abstract class ChestModifierItem extends Item
 
 	protected ActionResult<ItemStack> useModifierInAir(World world, PlayerEntity player, Hand hand)
 	{
-		return ActionResult.newResult(ActionResultType.PASS, player.getHeldItem(hand));
+		return ActionResult.func_226250_c_(player.getHeldItem(hand));
 	}
 }

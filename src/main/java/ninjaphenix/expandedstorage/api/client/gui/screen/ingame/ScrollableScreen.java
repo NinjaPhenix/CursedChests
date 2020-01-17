@@ -1,6 +1,6 @@
 package ninjaphenix.expandedstorage.api.client.gui.screen.ingame;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -80,7 +80,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float lastFrameDuration, int mouseX, int mouseY)
 	{
-		GlStateManager.color4f(1, 1, 1, 1);
+		RenderSystem.color4f(1, 1, 1, 1);
 		minecraft.getTextureManager().bindTexture(BASE_TEXTURE);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
