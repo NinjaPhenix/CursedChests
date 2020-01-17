@@ -184,7 +184,7 @@ public abstract class AbstractChestBlock extends Block
 		CursedChestType chestType = CursedChestType.SINGLE;
 		Direction direction_1 = context.getPlacementHorizontalFacing().getOpposite();
 		Direction direction_2 = context.getFace();
-		boolean shouldCancelInteraction = context.func_225518_g_(); // Is sneaking
+		boolean shouldCancelInteraction = context.isPlacerSneaking();
 		if (shouldCancelInteraction)
 		{
 			BlockState state;
@@ -288,8 +288,9 @@ public abstract class AbstractChestBlock extends Block
 		}
 	}
 
-	@Override // Block activated / used
-	public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit)
+
+	@Override
+	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit)
 	{
 		if (!world.isRemote)
 		{
@@ -316,7 +317,7 @@ public abstract class AbstractChestBlock extends Block
 			}
 
 		}
-		return ActionResultType.SUCCESS;
+		return true;
 	}
 
 	@Override

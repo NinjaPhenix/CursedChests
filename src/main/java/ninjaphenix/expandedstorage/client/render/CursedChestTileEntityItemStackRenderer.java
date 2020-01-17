@@ -1,8 +1,6 @@
 package ninjaphenix.expandedstorage.client.render;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
@@ -17,18 +15,18 @@ public class CursedChestTileEntityItemStackRenderer extends ItemStackTileEntityR
 	private static final CursedChestTileEntity cursedChestRenderEntity = new CursedChestTileEntity();
 
 	@Override
-	public void func_228364_a_(ItemStack stack, MatrixStack matrix, IRenderTypeBuffer buffer, int x, int y)
+	public void renderByItem(ItemStack stack)
 	{
 		Block block = Block.getBlockFromItem(stack.getItem());
 		if (block instanceof CursedChestBlock)
 		{
 			ResourceLocation id = ForgeRegistries.BLOCKS.getKey(block);
 			cursedChestRenderEntity.setBlock(id);
-			TileEntityRendererDispatcher.instance.func_228852_a_(cursedChestRenderEntity, matrix, buffer, x, y);
+			TileEntityRendererDispatcher.instance.renderAsItem(cursedChestRenderEntity);
 		}
 		else
 		{
-			super.func_228364_a_(stack, matrix, buffer, x, y);
+			super.renderByItem(stack);
 		}
 	}
 }
