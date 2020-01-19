@@ -25,8 +25,10 @@ public class ScrollableContainer extends Container
 	private final IInventory inventory;
 	private final int rows;
 	private final int realRows;
-	@OnlyIn(Dist.CLIENT) private String searchTerm = "";
-	@OnlyIn(Dist.CLIENT) private Integer[] unsortedToSortedSlotMap;
+	// sideonly client
+	private String searchTerm = "";
+	// sideonly client
+	private Integer[] unsortedToSortedSlotMap;
 
 	public ScrollableContainer(int windowId, PlayerInventory playerInventory, IInventory inventory, ITextComponent containerName)
 	{

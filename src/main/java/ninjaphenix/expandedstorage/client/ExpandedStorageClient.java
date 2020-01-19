@@ -22,9 +22,10 @@ public class ExpandedStorageClient
 	@SubscribeEvent
 	public static void setup(FMLClientSetupEvent event)
 	{
-		CursedChestRenderer renderer = new CursedChestRenderer(TileEntityRendererDispatcher.instance);
-		ClientRegistry.bindTileEntityRenderer(ModContent.CURSED_CHEST_TE, renderer);
-		CursedChestTileEntityItemStackRenderer.renderer = renderer;
+		ClientRegistry.bindTileEntityRenderer(ModContent.CURSED_CHEST_TE, CursedChestRenderer::new);
+		// Work around for TileEntityRendererDispatcher.instance.func_228852_a_ not working because
+		// the renders map for some reason doesn't contain my tile entity type despite being registered literally above.
+		CursedChestTileEntityItemStackRenderer.renderer = new CursedChestRenderer(TileEntityRendererDispatcher.instance);
 	}
 
 	@SubscribeEvent
