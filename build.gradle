@@ -18,7 +18,7 @@ group 'ninjaphenix'
 version = "${mod_version}+${minecraft_version}"
 
 minecraft {
-	mappings channel: 'snapshot', version: '20191218-1.14.3'
+	mappings channel: 'snapshot', version: '20200120-1.15.1'
 
 	runs {
 		client {

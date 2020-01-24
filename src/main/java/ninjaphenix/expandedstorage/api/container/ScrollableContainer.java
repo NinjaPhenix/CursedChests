@@ -14,6 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.network.IContainerFactory;
+import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.ModContent;
 
 import java.lang.reflect.Field;
@@ -92,8 +93,8 @@ public class ScrollableContainer extends Container
 		else if (termChanged) Arrays.sort(unsortedToSortedSlotMap);
 		try
 		{
-			Field xField = Slot.class.getField("xPos");
-			Field yField = Slot.class.getField("yPos");
+			Field xField = Slot.class.getField("field_75223_e");
+			Field yField = Slot.class.getField("field_75221_f");
 
 			for (Integer slotID : unsortedToSortedSlotMap)
 			{
@@ -106,7 +107,11 @@ public class ScrollableContainer extends Container
 				index++;
 			}
 		}
-		catch (NoSuchFieldException | IllegalAccessException ignored) { }
+		catch (NoSuchFieldException | IllegalAccessException ignored)
+		{
+			ExpandedStorage.LOGGER
+					.error("[Expanded Storage] Could not find slot fields, scrolling will not work. Please report to NinjaPhenix on curseforge or github.");
+		}
 
 	}
 
