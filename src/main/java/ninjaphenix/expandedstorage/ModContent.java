@@ -117,7 +117,7 @@ public class ModContent
 		ResourceLocation registryId = ExpandedStorage.getRl(name + "_chest");
 		CursedChestBlock block = new CursedChestBlock(Block.Properties.from(copy));
 		block.setRegistryName(registryId);
-		BlockItem item = new BlockItem(block, new Item.Properties().setTEISR(() -> CursedChestTileEntityItemStackRenderer::new).group(ExpandedStorage.group));
+		BlockItem item = new BlockItem(block, new Item.Properties().setISTER(() -> CursedChestTileEntityItemStackRenderer::new).group(ExpandedStorage.group));
 		item.setRegistryName(registryId);
 		Registries.MODELED.register(registryId, new Registries.ModeledTierData(rows * 9, registryId,
 				new TranslationTextComponent("container.expandedstorage." + name + "_chest"),
