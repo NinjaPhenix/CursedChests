@@ -1,14 +1,14 @@
 pluginManagement {
-    repositories {
-        jcenter()
-        maven {
-            name = 'FabricMC'
-            url = 'https://maven.fabricmc.net/'
-        }
-        maven {
-            name = 'Modmuss'
-            url = 'https://maven.modmuss50.me/'
-        }
-        gradlePluginPortal()
-    }
+	repositories {
+		jcenter()
+		maven {
+			name = 'FabricMC'
+			url = 'https://maven.fabricmc.net/'
+		}
+		maven {
+			name = 'Modmuss'
+			url = 'https://maven.modmuss50.me/'
+		}
+		gradlePluginPortal()
+	}
 }

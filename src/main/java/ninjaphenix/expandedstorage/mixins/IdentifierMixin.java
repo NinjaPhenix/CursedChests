@@ -13,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Identifier.class)
 public class IdentifierMixin
 {
-    @Mutable @Shadow @Final protected String namespace;
+	@Mutable @Shadow @Final protected String namespace;
 
-    @Inject(method = "<init>([Ljava/lang/String;)V", at = @At("RETURN"))
-    private void init(String[] strings_1, CallbackInfo ci) { if (namespace.equals("cursedchests")) namespace = ExpandedStorage.MOD_ID; }
+	@Inject(method = "<init>([Ljava/lang/String;)V", at = @At("RETURN"))
+	private void init(String[] strings_1, CallbackInfo ci) { if (namespace.equals("cursedchests")) { namespace = ExpandedStorage.MOD_ID; } }
 }

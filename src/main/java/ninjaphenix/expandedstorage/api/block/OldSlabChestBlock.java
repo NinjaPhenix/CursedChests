@@ -20,27 +20,27 @@ import static net.minecraft.state.property.Properties.SLAB_TYPE;
 public class OldSlabChestBlock extends AbstractSlabChestBlock
 {
 
-    public OldSlabChestBlock(Settings settings) { super(settings); }
+	public OldSlabChestBlock(Settings settings) { super(settings); }
 
-    @Override
-    public BlockEntity createBlockEntity(BlockView view)
-    {
-        final Identifier id = Registry.BLOCK.getId(this);
-        return new OldSlabChestBlockEntity(new Identifier(id.getNamespace(), id.getPath().substring(4, id.getPath().length() - 5)));
-    }
+	@Override
+	public BlockEntity createBlockEntity(BlockView view)
+	{
+		final Identifier id = Registry.BLOCK.getId(this);
+		return new OldSlabChestBlockEntity(new Identifier(id.getNamespace(), id.getPath().substring(4, id.getPath().length() - 5)));
+	}
 
-    @Override
-    public boolean hasSidedTransparency(BlockState state) { return state.get(SLAB_TYPE) != SlabType.DOUBLE; }
+	@Override
+	public boolean hasSidedTransparency(BlockState state) { return state.get(SLAB_TYPE) != SlabType.DOUBLE; }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public SimpleRegistry<Registries.TierData> getDataRegistry() { return Registries.OLD_SLAB; }
+	@Override
+	@SuppressWarnings("unchecked")
+	public SimpleRegistry<Registries.TierData> getDataRegistry() { return Registries.OLD_SLAB; }
 
-    @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos)
-    {
-        BlockEntity be = world.getBlockEntity(pos);
-        if (be instanceof OldSlabChestBlockEntity) return (OldSlabChestBlockEntity) be;
-        return null;
-    }
+	@Override
+	public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos)
+	{
+		BlockEntity be = world.getBlockEntity(pos);
+		if (be instanceof OldSlabChestBlockEntity) { return (OldSlabChestBlockEntity) be; }
+		return null;
+	}
 }

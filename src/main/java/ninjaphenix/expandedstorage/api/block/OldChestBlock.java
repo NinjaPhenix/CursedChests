@@ -12,16 +12,16 @@ import ninjaphenix.expandedstorage.api.block.entity.OldChestBlockEntity;
 
 public class OldChestBlock extends AbstractChestBlock
 {
-    public OldChestBlock(Settings settings) { super(settings); }
+	public OldChestBlock(Settings settings) { super(settings); }
 
-    @Override
-    public BlockEntity createBlockEntity(BlockView view)
-    {
-        Identifier blockId = Registry.BLOCK.getId(this);
-        return new OldChestBlockEntity(new Identifier(blockId.getNamespace(), blockId.getPath().substring(4)));
-    }
+	@Override
+	public BlockEntity createBlockEntity(BlockView view)
+	{
+		Identifier blockId = Registry.BLOCK.getId(this);
+		return new OldChestBlockEntity(new Identifier(blockId.getNamespace(), blockId.getPath().substring(4)));
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public SimpleRegistry<TierData> getDataRegistry() { return Registries.OLD_CHEST; }
+	@SuppressWarnings("unchecked")
+	@Override
+	public SimpleRegistry<TierData> getDataRegistry() { return Registries.OLD_CHEST; }
 }

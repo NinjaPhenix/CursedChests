@@ -17,86 +17,86 @@ import java.util.Iterator;
 
 public abstract class AbstractChestBlockEntity extends LootableContainerBlockEntity implements SidedInventory
 {
-    protected Text defaultContainerName;
-    protected int inventorySize;
-    protected DefaultedList<ItemStack> inventory;
-    protected int[] SLOTS;
+	protected Text defaultContainerName;
+	protected int inventorySize;
+	protected DefaultedList<ItemStack> inventory;
+	protected int[] SLOTS;
 
-    // May be Identifier("expandedstorage", "null")
-    protected Identifier block;
+	// May be Identifier("expandedstorage", "null")
+	protected Identifier block;
 
-    protected AbstractChestBlockEntity(BlockEntityType type, Identifier block)
-    {
-        super(type);
-        this.initialize(block);
-    }
+	protected AbstractChestBlockEntity(BlockEntityType type, Identifier block)
+	{
+		super(type);
+		this.initialize(block);
+	}
 
-    protected void initialize(Identifier block) { }
+	protected void initialize(Identifier block) { }
 
-    public Identifier getBlock() { return block; }
+	public Identifier getBlock() { return block; }
 
-    public void setBlock(Identifier block) { this.block = block; }
+	public void setBlock(Identifier block) { this.block = block; }
 
-    @Override
-    protected DefaultedList<ItemStack> getInvStackList() { return inventory; }
+	@Override
+	protected DefaultedList<ItemStack> getInvStackList() { return inventory; }
 
-    @Override
-    public void setInvStackList(DefaultedList<ItemStack> inventory) { this.inventory = inventory; }
+	@Override
+	public void setInvStackList(DefaultedList<ItemStack> inventory) { this.inventory = inventory; }
 
-    @Override
-    protected Container createContainer(int i, PlayerInventory playerInventory) { return null; }
+	@Override
+	protected Container createContainer(int i, PlayerInventory playerInventory) { return null; }
 
-    @Override
-    public int[] getInvAvailableSlots(Direction side) { return SLOTS; }
+	@Override
+	public int[] getInvAvailableSlots(Direction side) { return SLOTS; }
 
-    @Override
-    public boolean canInsertInvStack(int slot, ItemStack stack, Direction direction) { return this.isValidInvStack(slot, stack); }
+	@Override
+	public boolean canInsertInvStack(int slot, ItemStack stack, Direction direction) { return this.isValidInvStack(slot, stack); }
 
-    @Override
-    public boolean canExtractInvStack(int slot, ItemStack stack, Direction direction) { return true; }
+	@Override
+	public boolean canExtractInvStack(int slot, ItemStack stack, Direction direction) { return true; }
 
-    @Override
-    public int getInvSize() { return inventorySize; }
+	@Override
+	public int getInvSize() { return inventorySize; }
 
-    @Override
-    protected Text getContainerName() { return defaultContainerName; }
+	@Override
+	protected Text getContainerName() { return defaultContainerName; }
 
-    @Override
-    public boolean isInvEmpty()
-    {
-        Iterator<ItemStack> inventoryIterator = inventory.iterator();
-        ItemStack stack;
-        do
-        {
-            if (!inventoryIterator.hasNext()) return true;
-            stack = inventoryIterator.next();
-        } while (stack.isEmpty());
-        return false;
-    }
+	@Override
+	public boolean isInvEmpty()
+	{
+		Iterator<ItemStack> inventoryIterator = inventory.iterator();
+		ItemStack stack;
+		do
+		{
+			if (!inventoryIterator.hasNext()) { return true; }
+			stack = inventoryIterator.next();
+		} while (stack.isEmpty());
+		return false;
+	}
 
-    @Override
-    public void fromTag(CompoundTag tag)
-    {
-        super.fromTag(tag);
-        Identifier id = new Identifier(tag.getString("type"));
-        this.initialize(id);
-        if (!deserializeLootTable(tag)) Inventories.fromTag(tag, inventory);
-    }
+	@Override
+	public void fromTag(CompoundTag tag)
+	{
+		super.fromTag(tag);
+		Identifier id = new Identifier(tag.getString("type"));
+		this.initialize(id);
+		if (!deserializeLootTable(tag)) { Inventories.fromTag(tag, inventory); }
+	}
 
-    @Override
-    public CompoundTag toTag(CompoundTag tag)
-    {
-        super.toTag(tag);
-        tag.putString("type", block.toString());
-        if (!serializeLootTable(tag)) Inventories.toTag(tag, inventory);
-        return tag;
-    }
+	@Override
+	public CompoundTag toTag(CompoundTag tag)
+	{
+		super.toTag(tag);
+		tag.putString("type", block.toString());
+		if (!serializeLootTable(tag)) { Inventories.toTag(tag, inventory); }
+		return tag;
+	}
 
-    @Override
-    public CompoundTag toInitialChunkDataTag()
-    {
-        CompoundTag initialChunkTag = super.toTag(new CompoundTag());
-        initialChunkTag.putString("type", block.toString());
-        return initialChunkTag;
-    }
+	@Override
+	public CompoundTag toInitialChunkDataTag()
+	{
+		CompoundTag initialChunkTag = super.toTag(new CompoundTag());
+		initialChunkTag.putString("type", block.toString());
+		return initialChunkTag;
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "expandedstorage:block/wood_chest"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "expandedstorage:block/wood_chest"
+		}
+	}
 }

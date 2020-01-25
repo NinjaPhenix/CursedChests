@@ -1,15 +1,15 @@
 {
-  "required": true,
-  "package": "ninjaphenix.expandedstorage.mixins",
-  "plugin": "ninjaphenix.expandedstorage.ExpandedStorageMixinPlugin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "IdentifierMixin",
-    "SlotMixin",
-    "ToweletteSupportMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "minVersion": "0.7.11"
+	"required": true,
+	"package": "ninjaphenix.expandedstorage.mixins",
+	"plugin": "ninjaphenix.expandedstorage.ExpandedStorageMixinPlugin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"IdentifierMixin",
+		"SlotMixin",
+		"ToweletteSupportMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"minVersion": "0.7.11"
 }

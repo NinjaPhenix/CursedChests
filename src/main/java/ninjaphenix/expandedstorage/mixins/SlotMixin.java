@@ -11,12 +11,12 @@ import org.spongepowered.asm.mixin.Shadow;
 public class SlotMixin implements SlotAccessor
 {
 
-    @Mutable @Shadow @Final public int xPosition;
-    @Mutable @Shadow @Final public int yPosition;
+	@Mutable @Shadow @Final public int xPosition;
+	@Mutable @Shadow @Final public int yPosition;
 
-    @Override
-    public void setX(int x) { xPosition = x; }
+	@Override
+	public void setX(int x) { xPosition = x; }
 
-    @Override
-    public void setY(int y) { yPosition = y; }
+	@Override
+	public void setY(int y) { yPosition = y; }
 }

@@ -15,22 +15,22 @@ import ninjaphenix.expandedstorage.api.block.entity.SlabChestBlockEntity;
 
 public final class ExpandedStorageAPI
 {
-    public static final BlockEntityType<CursedChestBlockEntity> CURSED_CHEST;
-    public static final BlockEntityType<OldChestBlockEntity> OLD_CURSED_CHEST;
-    public static final BlockEntityType<SlabChestBlockEntity> SLAB_CHEST;
-    public static final BlockEntityType<OldSlabChestBlockEntity> OLD_SLAB_CHEST;
+	public static final BlockEntityType<CursedChestBlockEntity> CURSED_CHEST;
+	public static final BlockEntityType<OldChestBlockEntity> OLD_CURSED_CHEST;
+	public static final BlockEntityType<SlabChestBlockEntity> SLAB_CHEST;
+	public static final BlockEntityType<OldSlabChestBlockEntity> OLD_SLAB_CHEST;
 
-    static
-    {
-        CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "cursed_chest"), new CustomBlockEntityType<>(
-                CursedChestBlockEntity::new, (b) -> b instanceof CursedChestBlock));
-        OLD_CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_cursed_chest"), new CustomBlockEntityType<>(
-                OldChestBlockEntity::new, (b) -> b instanceof OldChestBlock));
-        SLAB_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "slab_chest"), new CustomBlockEntityType<>(
-                SlabChestBlockEntity::new, (b) -> b instanceof SlabChestBlock));
-        OLD_SLAB_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_slab_chest"), new CustomBlockEntityType<>(
-                OldSlabChestBlockEntity::new, (b) -> b instanceof OldSlabChestBlock));
-    }
+	static
+	{
+		CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "cursed_chest"), new CustomBlockEntityType<>(
+				CursedChestBlockEntity::new, (b) -> b instanceof CursedChestBlock));
+		OLD_CURSED_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_cursed_chest"), new CustomBlockEntityType<>(
+				OldChestBlockEntity::new, (b) -> b instanceof OldChestBlock));
+		SLAB_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "slab_chest"), new CustomBlockEntityType<>(
+				SlabChestBlockEntity::new, (b) -> b instanceof SlabChestBlock));
+		OLD_SLAB_CHEST = Registry.register(Registry.BLOCK_ENTITY, new Identifier("expandedstorage", "old_slab_chest"), new CustomBlockEntityType<>(
+				OldSlabChestBlockEntity::new, (b) -> b instanceof OldSlabChestBlock));
+	}
 
-    private ExpandedStorageAPI() { }
+	private ExpandedStorageAPI() { }
 }

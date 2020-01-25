@@ -17,33 +17,33 @@ import ninjaphenix.expandedstorage.api.block.entity.SlabChestBlockEntity;
 
 public class SlabChestBlock extends AbstractSlabChestBlock
 {
-    public SlabChestBlock(Settings settings)
-    {
-        super(settings);
-        DOUBLE_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
-        BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 7, 15);
-        TOP_SHAPE = Block.createCuboidShape(1, 7, 1, 15, 14, 15);
-    }
+	public SlabChestBlock(Settings settings)
+	{
+		super(settings);
+		DOUBLE_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 14, 15);
+		BOTTOM_SHAPE = Block.createCuboidShape(1, 0, 1, 15, 7, 15);
+		TOP_SHAPE = Block.createCuboidShape(1, 7, 1, 15, 14, 15);
+	}
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
+	@Override
+	public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
-    @Override
-    public BlockEntity createBlockEntity(BlockView view)
-    {
-        final Identifier id = Registry.BLOCK.getId(this);
-        return new SlabChestBlockEntity(new Identifier(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - 5)));
-    }
+	@Override
+	public BlockEntity createBlockEntity(BlockView view)
+	{
+		final Identifier id = Registry.BLOCK.getId(this);
+		return new SlabChestBlockEntity(new Identifier(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - 5)));
+	}
 
-    @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos)
-    {
-        BlockEntity be = world.getBlockEntity(pos);
-        if (be instanceof SlabChestBlockEntity) return (SlabChestBlockEntity) be;
-        return null;
-    }
+	@Override
+	public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos)
+	{
+		BlockEntity be = world.getBlockEntity(pos);
+		if (be instanceof SlabChestBlockEntity) { return (SlabChestBlockEntity) be; }
+		return null;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public SimpleRegistry<Registries.SlabTierData> getDataRegistry() { return Registries.SLAB; }
+	@Override
+	@SuppressWarnings("unchecked")
+	public SimpleRegistry<Registries.SlabTierData> getDataRegistry() { return Registries.SLAB; }
 }

@@ -16,6 +16,6 @@ import java.util.function.Consumer;
 @Environment(EnvType.CLIENT)
 public class TexturedRenderLayersMixin
 {
-    @Inject(at = @At("HEAD"), method = "addDefaultTextures(Ljava/util/function/Consumer;)V")
-    private static void method(Consumer<SpriteIdentifier> consumer, CallbackInfo ci) { ExpandedStorageClient.makeAtlases(consumer); }
+	@Inject(at = @At("HEAD"), method = "addDefaultTextures(Ljava/util/function/Consumer;)V")
+	private static void method(Consumer<SpriteIdentifier> consumer, CallbackInfo ci) { ExpandedStorageClient.makeAtlases(consumer); }
 }

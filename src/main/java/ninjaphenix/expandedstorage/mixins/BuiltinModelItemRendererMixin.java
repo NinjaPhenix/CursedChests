@@ -25,30 +25,30 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 public class BuiltinModelItemRendererMixin
 {
-    private static final CursedChestBlockEntity CURSED_CHEST_RENDER_ENTITY = new CursedChestBlockEntity();
-    private static final SlabChestBlockEntity SLAB_CHEST_RENDER_ENTITY = new SlabChestBlockEntity();
+	private static final CursedChestBlockEntity CURSED_CHEST_RENDER_ENTITY = new CursedChestBlockEntity();
+	private static final SlabChestBlockEntity SLAB_CHEST_RENDER_ENTITY = new SlabChestBlockEntity();
 
-    @Inject(at = @At("HEAD"), method = "render", cancellable = true)
-    private void render(ItemStack itemStack, MatrixStack matrixStack, VertexConsumerProvider consumerProvider, int light, int overlay,
-            CallbackInfo info)
-    {
-        Item item = itemStack.getItem();
-        if (item instanceof BlockItem)
-        {
-            Block block = ((BlockItem) item).getBlock();
-            if (block instanceof CursedChestBlock)
-            {
-                CURSED_CHEST_RENDER_ENTITY.setBlock(Registry.BLOCK.getId(block));
-                BlockEntityRenderDispatcher.INSTANCE.renderEntity(CURSED_CHEST_RENDER_ENTITY, matrixStack, consumerProvider, light, overlay);
-                info.cancel();
-            }
-            else if (block instanceof SlabChestBlock)
-            {
-                final Identifier id = Registry.BLOCK.getId(block);
-                SLAB_CHEST_RENDER_ENTITY.setBlock(new Identifier(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - 5)));
-                BlockEntityRenderDispatcher.INSTANCE.renderEntity(SLAB_CHEST_RENDER_ENTITY, matrixStack, consumerProvider, light, overlay);
-                info.cancel();
-            }
-        }
-    }
+	@Inject(at = @At("HEAD"), method = "render", cancellable = true)
+	private void render(ItemStack itemStack, MatrixStack matrixStack, VertexConsumerProvider consumerProvider, int light, int overlay,
+			CallbackInfo info)
+	{
+		Item item = itemStack.getItem();
+		if (item instanceof BlockItem)
+		{
+			Block block = ((BlockItem) item).getBlock();
+			if (block instanceof CursedChestBlock)
+			{
+				CURSED_CHEST_RENDER_ENTITY.setBlock(Registry.BLOCK.getId(block));
+				BlockEntityRenderDispatcher.INSTANCE.renderEntity(CURSED_CHEST_RENDER_ENTITY, matrixStack, consumerProvider, light, overlay);
+				info.cancel();
+			}
+			else if (block instanceof SlabChestBlock)
+			{
+				final Identifier id = Registry.BLOCK.getId(block);
+				SLAB_CHEST_RENDER_ENTITY.setBlock(new Identifier(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - 5)));
+				BlockEntityRenderDispatcher.INSTANCE.renderEntity(SLAB_CHEST_RENDER_ENTITY, matrixStack, consumerProvider, light, overlay);
+				info.cancel();
+			}
+		}
+	}
 }

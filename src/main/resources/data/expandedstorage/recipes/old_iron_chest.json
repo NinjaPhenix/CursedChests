@@ -1,19 +1,19 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "III",
-    "ICI",
-    "III"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "C": {
-      "item": "expandedstorage:old_wood_chest"
-    }
-  },
-  "result": {
-    "item": "expandedstorage:old_iron_chest"
-  }
+	"type": "crafting_shaped",
+	"pattern": [
+		"III",
+		"ICI",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:iron_ingot"
+		},
+		"C": {
+			"item": "expandedstorage:old_wood_chest"
+		}
+	},
+	"result": {
+		"item": "expandedstorage:old_iron_chest"
+	}
 }

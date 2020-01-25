@@ -1,5 +1,5 @@
 {
-  "textures": {
-    "particle": "expandedstorage:block/old_gold_chest/chest_front"
-  }
+	"textures": {
+		"particle": "expandedstorage:block/old_gold_chest/chest_front"
+	}
 }
