@@ -36,7 +36,7 @@ public class CursedChestRenderer extends TileEntityRenderer<CursedChestTileEntit
 	public CursedChestRenderer(TileEntityRendererDispatcher p_i226006_1_) { super(p_i226006_1_); }
 
 	@Override
-	public void func_225616_a_(CursedChestTileEntity te, float v, MatrixStack stack, IRenderTypeBuffer buffer, int x, int y)
+	public void render(CursedChestTileEntity te, float v, MatrixStack stack, IRenderTypeBuffer buffer, int x, int y)
 	{
 		BlockState state = te.hasWorld() ? te.getBlockState() : defaultState;
 		CursedChestType chestType = state.get(CursedChestBlock.TYPE);
@@ -44,17 +44,17 @@ public class CursedChestRenderer extends TileEntityRenderer<CursedChestTileEntit
 		if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) model = tallChestModel;
 		else if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) model = longChestModel;
 		else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) model = vanillaChestModel;
-		stack.func_227860_a_();
-		stack.func_227861_a_(0.5D, 0.5D, 0.5D);
-		stack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
-		stack.func_227861_a_(-0.5D, -0.5D, -0.5D);
+		stack.push();
+		stack.translate(0.5D, 0.5D, 0.5D);
+		stack.rotate(Vector3f.YP.rotationDegrees(-state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
+		stack.translate(-0.5D, -0.5D, -0.5D);
 		model.setLidPitch(te.getLidAngle(v));
-		if (chestType == CursedChestType.BACK) stack.func_227861_a_(0.0D, 0.0D, 1.0D);
-		else if (chestType == CursedChestType.TOP) stack.func_227861_a_(0.0D, -1.0D, 0.0D);
-		else if (chestType == CursedChestType.RIGHT) stack.func_227861_a_(-1.0D, 0.0D, 0.0D);
+		if (chestType == CursedChestType.BACK) stack.translate(0.0D, 0.0D, 1.0D);
+		else if (chestType == CursedChestType.TOP) stack.translate(0.0D, -1.0D, 0.0D);
+		else if (chestType == CursedChestType.RIGHT) stack.translate(-1.0D, 0.0D, 0.0D);
 		//noinspection OptionalGetWithoutIsPresent
-		Material material = new Material(Atlases.field_228747_f_, Registries.MODELED.getValue(te.getBlock()).get().getChestTexture(chestType));
-		model.render(stack, material.func_229311_a_(buffer, RenderType::func_228638_b_), x, y);
-		stack.func_227865_b_();
+		Material material = new Material(Atlases.CHEST_ATLAS, Registries.MODELED.getValue(te.getBlock()).get().getChestTexture(chestType));
+		model.render(stack, material.getBuffer(buffer, RenderType::entityCutout), x, y);
+		stack.pop();
 	}
 }

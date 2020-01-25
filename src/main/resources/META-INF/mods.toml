@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[31,)"
 issueTrackerURL="https://github.com/NinjaPhenix/ExpandedStorage/issues"
 [[mods]] #mandatory
 modId="expandedstorage"
@@ -19,12 +19,12 @@ description='''
 [[dependencies.expandedstorage]]
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[30.0.50,)" #mandatory
+    versionRange="[31,)" #mandatory
     ordering="NONE"
     side="BOTH"
 [[dependencies.expandedstorage]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.1]"
+    versionRange="[1.15.2]"
     ordering="NONE"
     side="BOTH"

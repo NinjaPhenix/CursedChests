@@ -16,7 +16,7 @@ public class SingleChestModel extends Model
 
 	public SingleChestModel(int textureWidth, int textureHeight)
 	{
-		super(RenderType::func_228638_b_);
+		super(RenderType::entityCutout);
 		this.textureWidth = textureWidth;
 		this.textureHeight = textureHeight;
 		lid = new ModelRenderer(this, 0, 0);
@@ -26,10 +26,10 @@ public class SingleChestModel extends Model
 	public SingleChestModel()
 	{
 		this(64, 48);
-		lid.func_228301_a_(0, 0, 0, 14, 5, 14, 0);
-		lid.func_228301_a_(6, -2, 14, 2, 4, 1, 0);
+		lid.addBox(0, 0, 0, 14, 5, 14, 0);
+		lid.addBox(6, -2, 14, 2, 4, 1, 0);
 		lid.setRotationPoint(1, 9, 1);
-		base.func_228301_a_(0, 0, 0, 14, 10, 14, 0);
+		base.addBox(0, 0, 0, 14, 10, 14, 0);
 		base.setRotationPoint(1, 0, 1);
 	}
 
@@ -39,15 +39,12 @@ public class SingleChestModel extends Model
 		lid.rotateAngleX = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
 	}
 
-	public void render(MatrixStack stack, IVertexBuilder builder, int i, int j)
-	{
-		func_225598_a_(stack, builder, i, j, 1, 1, 1, 1);
-	}
+	public void render(MatrixStack stack, IVertexBuilder builder, int i, int j) { render(stack, builder, i, j, 1, 1, 1, 1); }
 
 	@Override
-	public void func_225598_a_(MatrixStack stack, IVertexBuilder builder, int i, int j, float r, float g, float b, float f)
+	public void render(MatrixStack stack, IVertexBuilder builder, int i, int j, float r, float g, float b, float f)
 	{
-		base.func_228308_a_(stack, builder, i, j);
-		lid.func_228308_a_(stack, builder, i, j);
+		base.render(stack, builder, i, j);
+		lid.render(stack, builder, i, j);
 	}
 }

@@ -31,7 +31,7 @@ public class ExpandedStorageClient
 	@SubscribeEvent
 	public static void preStitchTextures(TextureStitchEvent.Pre event)
 	{
-		if (!event.getMap().func_229223_g_().equals(Atlases.field_228747_f_)) return;
+		if (!event.getMap().getBasePath().equals(Atlases.CHEST_ATLAS)) return;
 		for (ResourceLocation entry : Registries.MODELED.keySet())
 		{
 			if (entry.getNamespace().equals(ExpandedStorage.MOD_ID))

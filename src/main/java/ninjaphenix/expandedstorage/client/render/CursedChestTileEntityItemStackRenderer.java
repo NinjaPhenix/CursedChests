@@ -16,16 +16,16 @@ public class CursedChestTileEntityItemStackRenderer extends ItemStackTileEntityR
 	public static CursedChestRenderer renderer;
 
 	@Override
-	public void func_228364_a_(ItemStack stack, MatrixStack matrix, IRenderTypeBuffer buffer, int x, int y)
+	public void render(ItemStack stack, MatrixStack matrix, IRenderTypeBuffer buffer, int x, int y)
 	{
 		Block block = Block.getBlockFromItem(stack.getItem());
 		if (block instanceof CursedChestBlock)
 		{
 			ResourceLocation id = ForgeRegistries.BLOCKS.getKey(block);
 			cursedChestRenderEntity.setBlock(id);
-			renderer.func_225616_a_(cursedChestRenderEntity, 0, matrix, buffer, x, y);
+			renderer.render(cursedChestRenderEntity, 0, matrix, buffer, x, y);
 			//Doesn't work for some reason
-			//TileEntityRendererDispatcher.instance.func_228852_a_(cursedChestRenderEntity, matrix, buffer, x, y);
+			//TileEntityRendererDispatcher.instance.renderNullable(cursedChestRenderEntity, matrix, buffer, x, y);
 		}
 	}
 }
