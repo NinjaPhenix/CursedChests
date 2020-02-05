@@ -28,9 +28,9 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.Registries;
+import ninjaphenix.expandedstorage.api.block.AbstractChestBlock;
 import ninjaphenix.expandedstorage.api.block.CursedChestBlock;
-import ninjaphenix.expandedstorage.api.block.base.AbstractChestBlock;
-import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
+import ninjaphenix.expandedstorage.api.block.misc.CursedChestType;
 import ninjaphenix.expandedstorage.api.item.ChestModifierItem;
 
 import java.util.List;
@@ -172,7 +172,7 @@ public class ChestMutatorItem extends ChestModifierItem
 							{
 								if (!world.isClient)
 								{
-									Registries.TierData entry = Registries.MODELED.get(ExpandedStorage.getId("wood_chest"));
+									Registries.TierData entry = Registries.CHEST.get(ExpandedStorage.getId("wood_chest"));
 									BlockState defState = Registry.BLOCK.get(entry.getBlockId())
 																		.getDefaultState().with(FACING, state.get(FACING));
 									CursedChestType mainChestType = AbstractChestBlock

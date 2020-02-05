@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "expandedstorage:block/iron_chest"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "expandedstorage:block/iron_chest"
+    }
+  }
 }

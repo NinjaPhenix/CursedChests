@@ -1,19 +1,19 @@
 {
-	"type": "crafting_shaped",
-	"pattern": [
-		"GGG",
-		"GKG",
-		"GGG"
-	],
-	"key": {
-		"K": {
-			"item": "expandedstorage:wood_to_iron_conversion_kit"
-		},
-		"G": {
-			"item": "minecraft:gold_ingot"
-		}
-	},
-	"result": {
-		"item": "expandedstorage:wood_to_gold_conversion_kit"
-	}
+  "type": "crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GKG",
+    "GGG"
+  ],
+  "key": {
+    "K": {
+      "item": "expandedstorage:wood_to_iron_conversion_kit"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "expandedstorage:wood_to_gold_conversion_kit"
+  }
 }

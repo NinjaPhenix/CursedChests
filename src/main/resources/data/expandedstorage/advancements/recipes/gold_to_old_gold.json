@@ -1,32 +1,32 @@
 {
-	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"expandedstorage:gold_to_old_gold"
-		]
-	},
-	"criteria": {
-		"has_chest": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"item": "expandedstorage:gold_chest"
-					}
-				]
-			}
-		},
-		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
-			"conditions": {
-				"recipe": "expandedstorage:gold_to_old_gold"
-			}
-		}
-	},
-	"requirements": [
-		[
-			"has_chest",
-			"has_the_recipe"
-		]
-	]
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "expandedstorage:gold_to_old_gold"
+    ]
+  },
+  "criteria": {
+    "has_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "expandedstorage:gold_chest"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "expandedstorage:gold_to_old_gold"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chest",
+      "has_the_recipe"
+    ]
+  ]
 }

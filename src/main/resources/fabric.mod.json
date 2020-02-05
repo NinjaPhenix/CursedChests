@@ -1,43 +1,38 @@
 {
-	"schemaVersion": 1,
-	"id": "expandedstorage",
-	"version": "${version}",
-	"name": "ExpandedStorage",
-	"description": "Adds new storage blocks with varying capacities.",
-	"authors": [
-		"NinjaPhenix"
-	],
-	"contact": {
-		"homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage",
-		"sources": "https://github.com/NinjaPhenix/ExpandedStorage/tree/1.15-snapshot"
-	},
-	"license": "MIT",
-	"icon": "assets/expandedstorage/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"ninjaphenix.expandedstorage.ExpandedStorage"
-		],
-		"client": [
-			"ninjaphenix.expandedstorage.client.ExpandedStorageClient"
-		],
-		"rei_plugins_v0": [
-			"ninjaphenix.expandedstorage.client.ExpandedStorageREIPlugin"
-		]
-	},
-	"mixins": [
-		{
-			"config": "expandedstorage.mixins.common.json",
-			"environment": "*"
-		},
-		{
-			"config": "expandedstorage.mixins.client.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.6.2",
-		"fabric": ">=0.4.0",
-		"minecraft": ">=1.15-rc.6"
-	}
+  "schemaVersion": 1,
+  "id": "expandedstorage",
+  "version": "${version}",
+  "name": "ExpandedStorage",
+  "description": "Adds new storage blocks with varying capacities.",
+  "authors": [
+    "NinjaPhenix"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage",
+    "sources": "https://github.com/NinjaPhenix/ExpandedStorage/tree/1.15-snapshot"
+  },
+  "license": "MIT",
+  "icon": "assets/expandedstorage/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "expandedstorage_plugins_v0": [
+      "ninjaphenix.expandedstorage.ExpandedStorage"
+    ],
+    "client": [
+      "ninjaphenix.expandedstorage.client.ExpandedStorageClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "expandedstorage.mixins.common.json",
+      "environment": "*"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.6.2",
+    "fabric": ">=0.4.23",
+    "minecraft": ">=1.15.1",
+    "expandedstorageapi": ">=0.0.3 <1.0.0",
+    "ninjaphenix-container-lib": ">=0.1.2 <1.0.0"
+  }
 }

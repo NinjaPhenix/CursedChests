@@ -1,8 +1,0 @@
-{
-	"parent": "expandedstorage:block/old_chest/slab_top",
-	"textures": {
-		"top": "expandedstorage:block/old_wood_chest/chest_top",
-		"side": "expandedstorage:block/old_wood_chest/chest_side_slab",
-		"front": "expandedstorage:block/old_wood_chest/chest_front_slab"
-	}
-}
