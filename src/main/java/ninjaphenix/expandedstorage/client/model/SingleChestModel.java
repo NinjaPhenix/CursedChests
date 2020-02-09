@@ -14,11 +14,11 @@ public class SingleChestModel extends Model
 	protected ModelRenderer lid;
 	protected ModelRenderer base;
 
-	public SingleChestModel(int textureWidth, int textureHeight)
+	public SingleChestModel(final int width, final int height)
 	{
 		super(RenderType::entityCutout);
-		this.textureWidth = textureWidth;
-		this.textureHeight = textureHeight;
+		textureWidth = width;
+		textureHeight = height;
 		lid = new ModelRenderer(this, 0, 0);
 		base = new ModelRenderer(this, 0, 19);
 	}
@@ -39,10 +39,11 @@ public class SingleChestModel extends Model
 		lid.rotateAngleX = -((1.0F - pitch * pitch * pitch) * 1.5707964F);
 	}
 
-	public void render(MatrixStack stack, IVertexBuilder builder, int i, int j) { render(stack, builder, i, j, 1, 1, 1, 1); }
+	public void render(final MatrixStack stack, final IVertexBuilder builder, final int i, final int j) { render(stack, builder, i, j, 1, 1, 1, 1); }
 
 	@Override
-	public void render(MatrixStack stack, IVertexBuilder builder, int i, int j, float r, float g, float b, float f)
+	public void render(final MatrixStack stack, final IVertexBuilder builder, final int i, final int j,
+			final float r, final float g, final float b, final float f)
 	{
 		base.render(stack, builder, i, j);
 		lid.render(stack, builder, i, j);

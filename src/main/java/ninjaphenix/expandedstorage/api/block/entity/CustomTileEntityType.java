@@ -11,7 +11,6 @@ public class CustomTileEntityType<T extends TileEntity> extends TileEntityType<T
 {
 	Predicate<Block> predicate;
 
-	@SuppressWarnings("ConstantConditions")
 	public CustomTileEntityType(Supplier<? extends T> supplier_1, Predicate<Block> supports)
 	{
 		super(supplier_1, null, null);
@@ -19,8 +18,5 @@ public class CustomTileEntityType<T extends TileEntity> extends TileEntityType<T
 	}
 
 	@Override
-	public boolean isValidBlock(Block block)
-	{
-		return predicate.test(block);
-	}
+	public boolean isValidBlock(final Block block) { return predicate.test(block); }
 }

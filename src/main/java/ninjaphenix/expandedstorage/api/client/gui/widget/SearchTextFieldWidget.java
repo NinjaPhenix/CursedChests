@@ -10,14 +10,14 @@ public class SearchTextFieldWidget extends TextFieldWidget
 {
 	private boolean ignoreNextChar;
 
-	public SearchTextFieldWidget(FontRenderer fontRenderer, int x, int y, int width, int height, String message)
+	public SearchTextFieldWidget(final FontRenderer fontRenderer, final int x, final int y, final int width, final int height, final String message)
 	{
 		super(fontRenderer, x, y, width, height, message);
 		ignoreNextChar = false;
 	}
 
 	@Override
-	public boolean mouseClicked(double x, double y, int button)
+	public boolean mouseClicked(final double x, final double y, final int button)
 	{
 		if (getVisible() && button == 1 && clicked(x, y))
 		{
@@ -28,17 +28,17 @@ public class SearchTextFieldWidget extends TextFieldWidget
 	}
 
 	@Override
-	public boolean charTyped(char character, int int_1)
+	public boolean charTyped(final char character, final int i)
 	{
 		if (ignoreNextChar)
 		{
 			ignoreNextChar = false;
 			return false;
 		}
-		return super.charTyped(character, int_1);
+		return super.charTyped(character, i);
 	}
 
-	public boolean mouseInBounds(double x, double y) { return clicked(x, y); }
+	public boolean mouseInBounds(final double x, final double y) { return clicked(x, y); }
 
 	public void ignoreNextChar() { ignoreNextChar = true; }
 }

@@ -20,7 +20,7 @@ import ninjaphenix.expandedstorage.client.render.CursedChestTileEntityItemStackR
 public class ExpandedStorageClient
 {
 	@SubscribeEvent
-	public static void setup(FMLClientSetupEvent event)
+	public static void setup(final FMLClientSetupEvent event)
 	{
 		ClientRegistry.bindTileEntityRenderer(ModContent.CURSED_CHEST_TE, CursedChestRenderer::new);
 		// Work around for TileEntityRendererDispatcher.instance.func_228852_a_ not working because
@@ -29,19 +29,23 @@ public class ExpandedStorageClient
 	}
 
 	@SubscribeEvent
-	public static void preStitchTextures(TextureStitchEvent.Pre event)
+	public static void preStitchTextures(final TextureStitchEvent.Pre event)
 	{
-		if (!event.getMap().getBasePath().equals(Atlases.CHEST_ATLAS)) return;
+		if (!event.getMap().getBasePath().equals(Atlases.CHEST_ATLAS)) { return; }
 		for (ResourceLocation entry : Registries.MODELED.keySet())
 		{
 			if (entry.getNamespace().equals(ExpandedStorage.MOD_ID))
 			{
-				if (entry.getPath().equals("null")) continue;
+				if (entry.getPath().equals("null")) { continue; }
 				//noinspection OptionalGetWithoutIsPresent
-				Registries.ModeledTierData data = Registries.MODELED.getValue(entry).get();
+				final Registries.ModeledTierData data = Registries.MODELED.getValue(entry).get();
 				for (CursedChestType value : CursedChestType.values())
+				{
 					if (value.isRenderedType())
+					{
 						event.addSprite(new ResourceLocation(ExpandedStorage.MOD_ID, data.getChestTexture(value).getPath()));
+					}
+				}
 			}
 		}
 	}

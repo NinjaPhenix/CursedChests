@@ -10,14 +10,11 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import ninjaphenix.expandedstorage.client.ExpandedStorageClient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod("expandedstorage")
 public class ExpandedStorage
 {
 	public static final String MOD_ID = "expandedstorage";
-	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final ItemGroup group = new ItemGroup(MOD_ID)
 	{
 		@OnlyIn(Dist.CLIENT)
@@ -25,7 +22,7 @@ public class ExpandedStorage
 		public ItemStack createIcon() { return new ItemStack(ModContent.DIAMOND_CHEST.getSecond()); }
 	};
 
-	public static ResourceLocation getRl(String path) { return new ResourceLocation(MOD_ID, path); }
+	public static ResourceLocation getRl(final String path) { return new ResourceLocation(MOD_ID, path); }
 
 	public ExpandedStorage()
 	{

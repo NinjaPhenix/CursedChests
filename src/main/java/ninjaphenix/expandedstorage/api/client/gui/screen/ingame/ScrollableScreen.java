@@ -26,7 +26,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	private SearchTextFieldWidget searchBox;
 	private String searchBoxOldText;
 
-	public ScrollableScreen(ScrollableContainer container, PlayerInventory playerInventory, ITextComponent containerTitle)
+	public ScrollableScreen(final ScrollableContainer container, final PlayerInventory playerInventory, final ITextComponent containerTitle)
 	{
 		super(container, playerInventory, containerTitle);
 		totalRows = container.getRows();
@@ -50,7 +50,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 		searchBox.setTextColor(16777215);
 		searchBox.setResponder(str ->
 		{
-			if (str.equals(searchBoxOldText)) return;
+			if (str.equals(searchBoxOldText)) { return; }
 			container.setSearchTerm(str);
 			progress = 0;
 			topRow = 0;
@@ -62,7 +62,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	public void tick() { searchBox.tick(); }
 
 	@Override
-	public void render(int mouseX, int mouseY, float lastFrameDuration)
+	public void render(final int mouseX, final int mouseY, final float lastFrameDuration)
 	{
 		renderBackground();
 		drawGuiContainerBackgroundLayer(lastFrameDuration, mouseX, mouseY);
@@ -71,14 +71,14 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY)
 	{
 		font.drawString(title.getFormattedText(), 8, 6, 4210752);
 		font.drawString(playerInventory.getDisplayName().getFormattedText(), 8, ySize - 94, 4210752);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float lastFrameDuration, int mouseX, int mouseY)
+	protected void drawGuiContainerBackgroundLayer(final float lastFrameDuration, final int mouseX, final int mouseY)
 	{
 		RenderSystem.color4f(1, 1, 1, 1);
 		minecraft.getTextureManager().bindTexture(BASE_TEXTURE);
@@ -97,7 +97,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	}
 
 	@Override
-	public boolean mouseScrolled(double mouseX, double mouseY, double scrollDelta)
+	public boolean mouseScrolled(final double mouseX, final double mouseY, final double scrollDelta)
 	{
 		if (hasScrollbar())
 		{
@@ -109,25 +109,25 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	}
 
 	@Override
-	protected boolean hasClickedOutside(double mouseX, double mouseY, int left, int top, int mouseButton)
+	protected boolean hasClickedOutside(final double mouseX, final double mouseY, final int left, final int top, final int mouseButton)
 	{
 		boolean left_up_down = mouseX < left || mouseY < top || mouseY > top + height;
 		boolean right = mouseX > left + width;
-		if (hasScrollbar()) right = (right && mouseY > top + 132) || mouseX > left + width + 18;
+		if (hasScrollbar()) { right = (right && mouseY > top + 132) || mouseX > left + width + 18; }
 		return left_up_down || right;
 	}
 
 	@Override
-	public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY)
+	public boolean mouseDragged(final double mouseX, final double mouseY, final int button, final double deltaX, final double deltaY)
 	{
-		if (!dragging) return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+		if (!dragging) { return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY); }
 		progress = MathHelper.clamp((mouseY - guiTop - 25.5) / 90, 0, 1);
 		setTopRow((int) (progress * (totalRows - 6)));
 		return true;
 	}
 
 	@Override
-	public boolean mouseClicked(double mouseX, double mouseY, int button)
+	public boolean mouseClicked(final double mouseX, final double mouseY, final int button)
 	{
 		if (searchBox.isFocused() && !searchBox.mouseInBounds(mouseX, mouseY) && button == 0)
 		{
@@ -143,20 +143,20 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	}
 
 	@Override
-	public boolean mouseReleased(double mouseX, double mouseY, int button)
+	public boolean mouseReleased(final double mouseX, final double mouseY, final int button)
 	{
-		if (dragging && button == 0) dragging = false;
+		if (dragging && button == 0) { dragging = false; }
 		return super.mouseReleased(mouseX, mouseY, button);
 	}
 
-	private void setTopRow(int row)
+	private void setTopRow(final int row)
 	{
 		topRow = MathHelper.clamp(row, 0, totalRows - 6);
 		container.updateSlotPositions(topRow, false);
 	}
 
 	@Override
-	public boolean keyPressed(int keyCode, int scanCode, int modifiers)
+	public boolean keyPressed(final int keyCode, final int scanCode, final int modifiers)
 	{
 		if (keyCode == 256)
 		{
@@ -178,14 +178,14 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	}
 
 	@Override
-	public boolean charTyped(char character, int int_1)
+	public boolean charTyped(final char character, int int_1)
 	{
-		if (searchBox.isFocused()) return searchBox.charTyped(character, int_1);
+		if (searchBox.isFocused()) { return searchBox.charTyped(character, int_1); }
 		return super.charTyped(character, int_1);
 	}
 
 	@Override
-	public void resize(Minecraft client, int width, int height)
+	public void resize(final Minecraft client, final int width, final int height)
 	{
 		String text = searchBox.getText();
 		boolean focused = searchBox.isFocused();

@@ -29,14 +29,14 @@ public class ScrollableContainer extends Container
 	// sideonly client
 	private Integer[] unsortedToSortedSlotMap;
 
-	public ScrollableContainer(int windowId, PlayerInventory playerInventory, IInventory inventory, ITextComponent containerName)
+	public ScrollableContainer(final int windowId, final PlayerInventory playerInventory, final IInventory inventory, final ITextComponent containerName)
 	{
 		super(ModContent.SCROLLABLE_CONTAINER_TYPE, windowId);
 		this.inventory = inventory;
 		this.containerName = containerName;
 		realRows = inventory.getSizeInventory() / 9;
 		rows = Math.min(realRows, 6);
-		if (FMLLoader.getDist() == Dist.CLIENT) unsortedToSortedSlotMap = new Integer[realRows * 9];
+		if (FMLLoader.getDist() == Dist.CLIENT) { unsortedToSortedSlotMap = new Integer[realRows * 9]; }
 		int int_3 = (rows - 4) * 18;
 		inventory.openInventory(playerInventory.player);
 		for (int y = 0; y < realRows; ++y)
@@ -45,15 +45,15 @@ public class ScrollableContainer extends Container
 			for (int x = 0; x < 9; ++x)
 			{
 				int slot = x + 9 * y;
-				if (FMLLoader.getDist() == Dist.CLIENT) unsortedToSortedSlotMap[slot] = slot;
+				if (FMLLoader.getDist() == Dist.CLIENT) { unsortedToSortedSlotMap[slot] = slot; }
 				addSlot(new Slot(inventory, slot, 8 + x * 18, yPos));
 			}
 		}
-		for (int y = 0; y < 3; ++y) for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 103 + y * 18 + int_3));
-		for (int x = 0; x < 9; ++x) addSlot(new Slot(playerInventory, x, 8 + x * 18, 161 + int_3));
+		for (int y = 0; y < 3; ++y) { for (int x = 0; x < 9; ++x) { addSlot(new Slot(playerInventory, x + y * 9 + 9, 8 + x * 18, 103 + y * 18 + int_3)); } }
+		for (int x = 0; x < 9; ++x) { addSlot(new Slot(playerInventory, x, 8 + x * 18, 161 + int_3)); }
 	}
 
-	public ScrollableContainer(int windowId, PlayerInventory playerInventory)
+	public ScrollableContainer(final int windowId, final PlayerInventory playerInventory)
 	{
 		this(windowId, playerInventory, new Inventory(0), new TranslationTextComponent("error"));
 	}
@@ -67,82 +67,76 @@ public class ScrollableContainer extends Container
 	public ITextComponent getDisplayName() { return containerName; }
 
 	@Override
-	public boolean canInteractWith(PlayerEntity player) { return inventory.isUsableByPlayer(player); }
+	public boolean canInteractWith(final PlayerEntity player) { return inventory.isUsableByPlayer(player); }
 
 	@Override
-	public void onContainerClosed(PlayerEntity player)
+	public void onContainerClosed(final PlayerEntity player)
 	{
 		super.onContainerClosed(player);
 		inventory.closeInventory(player);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void setSearchTerm(String term)
+	public void setSearchTerm(final String term)
 	{
 		searchTerm = term.toLowerCase();
 		updateSlotPositions(0, true);
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public void updateSlotPositions(int offset, boolean termChanged)
+	public void updateSlotPositions(final int offset, final boolean termChanged)
 	{
-		int index = 0;
-		if (termChanged && !searchTerm.equals("")) Arrays.sort(unsortedToSortedSlotMap, this::compare);
-		else if (termChanged) Arrays.sort(unsortedToSortedSlotMap);
-		for (Integer slotID : unsortedToSortedSlotMap)
+		if (termChanged && !searchTerm.equals("")) { Arrays.sort(unsortedToSortedSlotMap, this::compare); }
+		else if (termChanged) { Arrays.sort(unsortedToSortedSlotMap); }
+		for (int i = 0; i < unsortedToSortedSlotMap.length; i++)
 		{
-			Slot slot = inventorySlots.get(slotID);
-			int y = (index / 9) - offset;
-			slot.xPos = 8 + 18 * (index % 9);
+			final Slot slot = inventorySlots.get(unsortedToSortedSlotMap[i]);
+			final int y = (i / 9) - offset;
+			slot.xPos = 8 + 18 * (i % 9);
 			slot.yPos = (y >= rows || y < 0) ? -2000 : 18 + 18 * y;
-			index++;
 		}
 	}
 
 	private int compare(Integer a, Integer b)
 	{
-		if (a == null || b == null) return 0;
+		if (a == null || b == null) { return 0; }
 		final ItemStack stack_a = inventorySlots.get(a).getStack();
 		final ItemStack stack_b = inventorySlots.get(b).getStack();
-		if (stack_a.isEmpty() && !stack_b.isEmpty()) return 1;
-		if (!stack_a.isEmpty() && stack_b.isEmpty()) return -1;
-		if (stack_a.isEmpty()) return 0; // && stack_b.isEmpty() -- unneeded
+		if (stack_a.isEmpty() && !stack_b.isEmpty()) { return 1; }
+		if (!stack_a.isEmpty() && stack_b.isEmpty()) { return -1; }
+		if (stack_a.isEmpty()) { return 0; }
 		final boolean stack_a_matches = stack_a.getDisplayName().getString().toLowerCase().contains(searchTerm);
 		final boolean stack_b_matches = stack_b.getDisplayName().getString().toLowerCase().contains(searchTerm);
 		return stack_a_matches && stack_b_matches ? 0 : stack_b_matches ? 1 : -1;
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(PlayerEntity player, int slotIndex)
+	public ItemStack transferStackInSlot(final PlayerEntity player, final int slotIndex)
 	{
 		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = inventorySlots.get(slotIndex);
+		final Slot slot = inventorySlots.get(slotIndex);
 		if (slot != null && slot.getHasStack())
 		{
-			ItemStack slotStack = slot.getStack();
+			final ItemStack slotStack = slot.getStack();
 			stack = slotStack.copy();
 			if (slotIndex < inventory.getSizeInventory())
 			{
-				if (!mergeItemStack(slotStack, inventory.getSizeInventory(), inventorySlots.size(), true)) return ItemStack.EMPTY;
+				if (!mergeItemStack(slotStack, inventory.getSizeInventory(), inventorySlots.size(), true)) { return ItemStack.EMPTY; }
 			}
-			else if (!mergeItemStack(slotStack, 0, inventory.getSizeInventory(), false))
-			{
-				return ItemStack.EMPTY;
-			}
-			if (slotStack.isEmpty()) slot.putStack(ItemStack.EMPTY);
-			else slot.onSlotChanged();
+			else if (!mergeItemStack(slotStack, 0, inventory.getSizeInventory(), false)) { return ItemStack.EMPTY; }
+			if (slotStack.isEmpty()) { slot.putStack(ItemStack.EMPTY); }
+			else { slot.onSlotChanged(); }
 		}
 		return stack;
 	}
 
 	public static class Factory implements IContainerFactory<ScrollableContainer>
 	{
-
 		@Override
-		public ScrollableContainer create(int windowId, PlayerInventory inv, PacketBuffer data)
+		public ScrollableContainer create(final int windowId, final PlayerInventory inv, final PacketBuffer data)
 		{
-			int invSize = data.readInt();
-			ITextComponent containerName = data.readTextComponent();
+			final int invSize = data.readInt();
+			final ITextComponent containerName = data.readTextComponent();
 			return new ScrollableContainer(windowId, inv, new Inventory(invSize), containerName);
 		}
 	}

@@ -112,12 +112,13 @@ public class ModContent
 		CONVERSION_KIT_DIAMOND_OBSIDIAN = getConversionItem(diamond, obsidian);
 	}
 
-	private static Pair<CursedChestBlock, BlockItem> register(Block copy, String name, int rows)
+	private static Pair<CursedChestBlock, BlockItem> register(final Block copy, final String name, final int rows)
 	{
-		ResourceLocation registryId = ExpandedStorage.getRl(name + "_chest");
-		CursedChestBlock block = new CursedChestBlock(Block.Properties.from(copy));
+		final ResourceLocation registryId = ExpandedStorage.getRl(name + "_chest");
+		final CursedChestBlock block = new CursedChestBlock(Block.Properties.from(copy));
 		block.setRegistryName(registryId);
-		BlockItem item = new BlockItem(block, new Item.Properties().setISTER(() -> CursedChestTileEntityItemStackRenderer::new).group(ExpandedStorage.group));
+		final BlockItem item = new BlockItem(block,
+				new Item.Properties().setISTER(() -> CursedChestTileEntityItemStackRenderer::new).group(ExpandedStorage.group));
 		item.setRegistryName(registryId);
 		Registries.MODELED.register(registryId, new Registries.ModeledTierData(rows * 9, registryId,
 				new TranslationTextComponent("container.expandedstorage." + name + "_chest"),
@@ -128,12 +129,12 @@ public class ModContent
 		return new Pair<>(block, item);
 	}
 
-	private static Pair<OldChestBlock, BlockItem> registerOld(Block copy, String name, int rows)
+	private static Pair<OldChestBlock, BlockItem> registerOld(final Block copy, final String name, final int rows)
 	{
-		ResourceLocation registryId = ExpandedStorage.getRl("old_" + name + "_chest");
-		OldChestBlock block = new OldChestBlock(Block.Properties.from(copy));
+		final ResourceLocation registryId = ExpandedStorage.getRl("old_" + name + "_chest");
+		final OldChestBlock block = new OldChestBlock(Block.Properties.from(copy));
 		block.setRegistryName(registryId);
-		BlockItem item = new BlockItem(block, new Item.Properties().group(ExpandedStorage.group));
+		final BlockItem item = new BlockItem(block, new Item.Properties().group(ExpandedStorage.group));
 		item.setRegistryName(registryId);
 		Registries.OLD.register(ExpandedStorage.getRl(name + "_chest"), new Registries.TierData(rows * 9, registryId,
 				new TranslationTextComponent("container.expandedstorage." + name + "_chest")));
@@ -143,7 +144,7 @@ public class ModContent
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
-		IForgeRegistry<Block> registry = event.getRegistry();
+		final IForgeRegistry<Block> registry = event.getRegistry();
 		registry.registerAll(
 				WOOD_CHEST.getFirst(),
 				PUMPKIN_CHEST.getFirst(),
@@ -163,7 +164,7 @@ public class ModContent
 	@SubscribeEvent
 	public static void registerBlockItems(final RegistryEvent.Register<Item> event)
 	{
-		IForgeRegistry<Item> registry = event.getRegistry();
+		final IForgeRegistry<Item> registry = event.getRegistry();
 		registry.registerAll(
 				WOOD_CHEST.getSecond(),
 				PUMPKIN_CHEST.getSecond(),
@@ -194,14 +195,14 @@ public class ModContent
 	@SubscribeEvent
 	public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event)
 	{
-		IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
+		final IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
 		registry.registerAll(CURSED_CHEST_TE, OLD_CHEST_TE);
 	}
 
 	@SubscribeEvent
 	public static void registerContainerTypes(final RegistryEvent.Register<ContainerType<?>> event)
 	{
-		IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
+		final IForgeRegistry<ContainerType<?>> registry = event.getRegistry();
 		registry.register(SCROLLABLE_CONTAINER_TYPE);
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> ModContent::registerScreenFactory);
 	}
@@ -209,9 +210,9 @@ public class ModContent
 	@OnlyIn(Dist.CLIENT)
 	public static void registerScreenFactory() { ScreenManager.registerFactory(SCROLLABLE_CONTAINER_TYPE, ScrollableScreen::new); }
 
-	private static ChestConversionItem getConversionItem(Pair<ResourceLocation, String> from, Pair<ResourceLocation, String> to)
+	private static ChestConversionItem getConversionItem(final Pair<ResourceLocation, String> from, final Pair<ResourceLocation, String> to)
 	{
-		ChestConversionItem conversionItem = new ChestConversionItem(from.getFirst(), to.getFirst());
+		final ChestConversionItem conversionItem = new ChestConversionItem(from.getFirst(), to.getFirst());
 		conversionItem.setRegistryName(ExpandedStorage.getRl(from.getSecond() + "_to_" + to.getSecond() + "_conversion_kit"));
 		return conversionItem;
 	}

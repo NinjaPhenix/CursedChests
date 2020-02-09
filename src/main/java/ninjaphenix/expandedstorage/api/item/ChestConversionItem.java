@@ -28,38 +28,38 @@ import ninjaphenix.expandedstorage.api.block.enums.CursedChestType;
 @SuppressWarnings({ "OptionalGetWithoutIsPresent", "ConstantConditions" })
 public class ChestConversionItem extends ChestModifierItem
 {
-	private ResourceLocation from, to;
+	private final ResourceLocation from, to;
 
-	public ChestConversionItem(ResourceLocation from, ResourceLocation to)
+	public ChestConversionItem(final ResourceLocation from, final ResourceLocation to)
 	{
 		super(new Item.Properties().group(ExpandedStorage.group).maxStackSize(16));
 		this.from = from;
 		this.to = to;
 	}
 
-	private void upgradeCursedChest(World world, BlockPos pos, BlockState state)
+	private void upgradeCursedChest(final World world, final BlockPos pos, final BlockState state)
 	{
 		AbstractChestTileEntity tileEntity = (AbstractChestTileEntity) world.getTileEntity(pos);
 		final SimpleRegistry<Registries.TierData> registry = ((AbstractChestBlock) state.getBlock()).getDataRegistry();
-		NonNullList<ItemStack> inventoryData = NonNullList.withSize(registry.getValue(to).get().getSlotCount(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> inventoryData = NonNullList.withSize(registry.getValue(to).get().getSlotCount(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(tileEntity.write(new CompoundNBT()), inventoryData);
 		world.removeTileEntity(pos);
 		BlockState newState = ForgeRegistries.BLOCKS.getValue(registry.getValue(to).get().getBlockId()).getDefaultState();
 		if (newState.getBlock() instanceof IWaterLoggable)
-			newState = newState.with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED));
+		{ newState = newState.with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)); }
 		world.setBlockState(pos, newState.with(BlockStateProperties.HORIZONTAL_FACING, state.get(BlockStateProperties.HORIZONTAL_FACING))
 										 .with(AbstractChestBlock.TYPE, state.get(AbstractChestBlock.TYPE)));
 		tileEntity = (AbstractChestTileEntity) world.getTileEntity(pos);
 		tileEntity.read(ItemStackHelper.saveAllItems(tileEntity.write(new CompoundNBT()), inventoryData));
 	}
 
-	private void upgradeChest(World world, BlockPos pos, BlockState state)
+	private void upgradeChest(final World world, final BlockPos pos, final BlockState state)
 	{
 		TileEntity tileEntity = world.getTileEntity(pos);
-		NonNullList<ItemStack> inventoryData = NonNullList.withSize(Registries.MODELED.getValue(from).get().getSlotCount(), ItemStack.EMPTY);
+		final NonNullList<ItemStack> inventoryData = NonNullList.withSize(Registries.MODELED.getValue(from).get().getSlotCount(), ItemStack.EMPTY);
 		ItemStackHelper.loadAllItems(tileEntity.write(new CompoundNBT()), inventoryData);
 		world.removeTileEntity(pos);
-		BlockState newState = ForgeRegistries.BLOCKS.getValue(Registries.MODELED.getValue(to).get().getBlockId()).getDefaultState();
+		final BlockState newState = ForgeRegistries.BLOCKS.getValue(Registries.MODELED.getValue(to).get().getBlockId()).getDefaultState();
 		world.setBlockState(pos, newState.with(BlockStateProperties.HORIZONTAL_FACING, state.get(BlockStateProperties.HORIZONTAL_FACING))
 										 .with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED))
 										 .with(AbstractChestBlock.TYPE, CursedChestType.valueOf(state.get(BlockStateProperties.CHEST_TYPE))));
@@ -68,19 +68,19 @@ public class ChestConversionItem extends ChestModifierItem
 	}
 
 	@Override
-	protected ActionResultType useModifierOnChestBlock(ItemUseContext context, BlockState mainState, BlockPos mainBlockPos, BlockState otherState,
-			BlockPos otherBlockPos)
+	protected ActionResultType useModifierOnChestBlock(final ItemUseContext context, final BlockState mainState, final BlockPos mainPos,
+			final BlockState otherState, final BlockPos otherPos)
 	{
-		World world = context.getWorld();
-		PlayerEntity player = context.getPlayer();
-		AbstractChestBlock chestBlock = (AbstractChestBlock) mainState.getBlock();
-		if (!chestBlock.getRegistryName().equals(chestBlock.getDataRegistry().getValue(from).get().getBlockId())) return ActionResultType.FAIL;
-		ItemStack handStack = player.getHeldItem(context.getHand());
-		if (otherBlockPos == null)
+		final World world = context.getWorld();
+		final PlayerEntity player = context.getPlayer();
+		final AbstractChestBlock chestBlock = (AbstractChestBlock) mainState.getBlock();
+		if (!chestBlock.getRegistryName().equals(chestBlock.getDataRegistry().getValue(from).get().getBlockId())) { return ActionResultType.FAIL; }
+		final ItemStack handStack = player.getHeldItem(context.getHand());
+		if (otherPos == null)
 		{
 			if (!world.isRemote)
 			{
-				upgradeCursedChest(world, mainBlockPos, mainState);
+				upgradeCursedChest(world, mainPos, mainState);
 				handStack.shrink(1);
 			}
 			return ActionResultType.SUCCESS;
@@ -89,8 +89,8 @@ public class ChestConversionItem extends ChestModifierItem
 		{
 			if (!world.isRemote)
 			{
-				upgradeCursedChest(world, otherBlockPos, world.getBlockState(otherBlockPos));
-				upgradeCursedChest(world, mainBlockPos, mainState);
+				upgradeCursedChest(world, otherPos, world.getBlockState(otherPos));
+				upgradeCursedChest(world, mainPos, mainState);
 				handStack.shrink(2);
 			}
 			return ActionResultType.SUCCESS;
@@ -99,19 +99,19 @@ public class ChestConversionItem extends ChestModifierItem
 	}
 
 	@Override
-	protected ActionResultType useModifierOnBlock(ItemUseContext context, BlockState state)
+	protected ActionResultType useModifierOnBlock(final ItemUseContext context, final BlockState state)
 	{
 		if (state.getBlock() == Blocks.CHEST && from.equals(ExpandedStorage.getRl("wood_chest")))
 		{
-			World world = context.getWorld();
-			BlockPos mainpos = context.getPos();
-			PlayerEntity player = context.getPlayer();
-			ItemStack handStack = player.getHeldItem(context.getHand());
+			final World world = context.getWorld();
+			final BlockPos mainPos = context.getPos();
+			final PlayerEntity player = context.getPlayer();
+			final ItemStack handStack = player.getHeldItem(context.getHand());
 			if (state.get(BlockStateProperties.CHEST_TYPE) == ChestType.SINGLE)
 			{
 				if (!world.isRemote)
 				{
-					upgradeChest(world, mainpos, state);
+					upgradeChest(world, mainPos, state);
 					handStack.shrink(1);
 				}
 				return ActionResultType.SUCCESS;
@@ -120,14 +120,18 @@ public class ChestConversionItem extends ChestModifierItem
 			{
 				BlockPos otherPos;
 				if (state.get(BlockStateProperties.CHEST_TYPE) == ChestType.RIGHT)
-					otherPos = mainpos.offset(state.get(BlockStateProperties.HORIZONTAL_FACING).rotateYCCW());
+				{
+					otherPos = mainPos.offset(state.get(BlockStateProperties.HORIZONTAL_FACING).rotateYCCW());
+				}
 				else if (state.get(BlockStateProperties.CHEST_TYPE) == ChestType.LEFT)
-					otherPos = mainpos.offset(state.get(BlockStateProperties.HORIZONTAL_FACING).rotateY());
-				else return ActionResultType.FAIL;
+				{
+					otherPos = mainPos.offset(state.get(BlockStateProperties.HORIZONTAL_FACING).rotateY());
+				}
+				else { return ActionResultType.FAIL; }
 				if (!world.isRemote)
 				{
 					upgradeChest(world, otherPos, world.getBlockState(otherPos));
-					upgradeChest(world, mainpos, state);
+					upgradeChest(world, mainPos, state);
 					handStack.shrink(2);
 				}
 				return ActionResultType.SUCCESS;

@@ -36,7 +36,7 @@ public class CursedChestBlock extends AbstractChestBlock implements IWaterLoggab
 	private static final VoxelShape C = Block.makeCuboidShape(1, 0, 1 - 16, 15, 14, 15);
 	private static final VoxelShape D = Block.makeCuboidShape(1, 0, 1, 15, 14, 31);
 
-	public CursedChestBlock(Properties properties)
+	public CursedChestBlock(final Properties properties)
 	{
 		super(properties);
 		setDefaultState(getDefaultState().with(WATERLOGGED, false));
@@ -44,13 +44,16 @@ public class CursedChestBlock extends AbstractChestBlock implements IWaterLoggab
 
 	@Nullable
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world)
+	public TileEntity createTileEntity(final BlockState state, final IBlockReader world)
 	{
 		return new CursedChestTileEntity(ForgeRegistries.BLOCKS.getKey(this));
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state); }
+	public IFluidState getFluidState(final BlockState state)
+	{
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+	}
 
 	@Override
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
@@ -60,7 +63,7 @@ public class CursedChestBlock extends AbstractChestBlock implements IWaterLoggab
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+	public VoxelShape getShape(final BlockState state, final IBlockReader reader, final BlockPos pos, final ISelectionContext context)
 	{
 		switch (state.get(TYPE))
 		{
@@ -122,22 +125,24 @@ public class CursedChestBlock extends AbstractChestBlock implements IWaterLoggab
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context)
+	public BlockState getStateForPlacement(final BlockItemUseContext context)
 	{
-		BlockState state = super.getStateForPlacement(context);
+		final BlockState state = super.getStateForPlacement(context);
 		return state.with(WATERLOGGED, context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState otherState, IWorld world, BlockPos pos, BlockPos otherPos)
+	public BlockState updatePostPlacement(final BlockState state, final Direction direction, final BlockState otherState, final IWorld world,
+			final BlockPos pos, final BlockPos otherPos)
 	{
-		if (state.get(WATERLOGGED)) world.getPendingFluidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+		if (state.get(WATERLOGGED)) { world.getPendingFluidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world)); }
 		return super.updatePostPlacement(state, direction, otherState, world, pos, otherPos);
 	}
 
 	@Override
-	public BlockRenderType getRenderType(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
+	public BlockRenderType getRenderType(final BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public SimpleRegistry<Registries.ModeledTierData> getDataRegistry() { return Registries.MODELED; }
 }

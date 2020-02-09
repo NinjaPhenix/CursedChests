@@ -33,25 +33,26 @@ public class CursedChestRenderer extends TileEntityRenderer<CursedChestTileEntit
 	private static final BlockState defaultState = ModContent.WOOD_CHEST.getFirst().getDefaultState().with(CursedChestBlock.FACING, Direction.SOUTH)
 																		.with(CursedChestBlock.TYPE, CursedChestType.SINGLE);
 
-	public CursedChestRenderer(TileEntityRendererDispatcher p_i226006_1_) { super(p_i226006_1_); }
+	public CursedChestRenderer(final TileEntityRendererDispatcher dispatcher) { super(dispatcher); }
 
+	// todo: look into why this isn't working with forge's ISTER
 	@Override
-	public void render(CursedChestTileEntity te, float v, MatrixStack stack, IRenderTypeBuffer buffer, int x, int y)
+	public void render(final CursedChestTileEntity te, final float v, final MatrixStack stack, final IRenderTypeBuffer buffer, final int x, final int y)
 	{
-		BlockState state = te.hasWorld() ? te.getBlockState() : defaultState;
-		CursedChestType chestType = state.get(CursedChestBlock.TYPE);
+		final BlockState state = te.hasWorld() ? te.getBlockState() : defaultState;
+		final CursedChestType chestType = state.get(CursedChestBlock.TYPE);
 		SingleChestModel model = singleChestModel;
-		if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) model = tallChestModel;
-		else if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) model = longChestModel;
-		else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) model = vanillaChestModel;
+		if (chestType == CursedChestType.BOTTOM || chestType == CursedChestType.TOP) { model = tallChestModel; }
+		else if (chestType == CursedChestType.FRONT || chestType == CursedChestType.BACK) { model = longChestModel; }
+		else if (chestType == CursedChestType.LEFT || chestType == CursedChestType.RIGHT) { model = vanillaChestModel; }
 		stack.push();
 		stack.translate(0.5D, 0.5D, 0.5D);
 		stack.rotate(Vector3f.YP.rotationDegrees(-state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
 		stack.translate(-0.5D, -0.5D, -0.5D);
 		model.setLidPitch(te.getLidAngle(v));
-		if (chestType == CursedChestType.BACK) stack.translate(0.0D, 0.0D, 1.0D);
-		else if (chestType == CursedChestType.TOP) stack.translate(0.0D, -1.0D, 0.0D);
-		else if (chestType == CursedChestType.RIGHT) stack.translate(-1.0D, 0.0D, 0.0D);
+		if (chestType == CursedChestType.BACK) { stack.translate(0.0D, 0.0D, 1.0D); }
+		else if (chestType == CursedChestType.TOP) { stack.translate(0.0D, -1.0D, 0.0D); }
+		else if (chestType == CursedChestType.RIGHT) { stack.translate(-1.0D, 0.0D, 0.0D); }
 		//noinspection OptionalGetWithoutIsPresent
 		Material material = new Material(Atlases.CHEST_ATLAS, Registries.MODELED.getValue(te.getBlock()).get().getChestTexture(chestType));
 		model.render(stack, material.getBuffer(buffer, RenderType::entityCutout), x, y);

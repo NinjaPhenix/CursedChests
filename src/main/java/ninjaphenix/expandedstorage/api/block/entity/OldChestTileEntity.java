@@ -15,10 +15,10 @@ public class OldChestTileEntity extends AbstractChestTileEntity
 		this(ExpandedStorage.getRl("null"));
 	}
 
-	public OldChestTileEntity(ResourceLocation block) { super(ModContent.OLD_CHEST_TE, block); }
+	public OldChestTileEntity(final ResourceLocation block) { super(ModContent.OLD_CHEST_TE, block); }
 
 	@Override
-	protected void initialize(ResourceLocation block)
+	protected void initialize(final ResourceLocation block)
 	{
 		this.block = block;
 		Registries.TierData data = Registries.OLD.getValue(block).get();
@@ -26,6 +26,6 @@ public class OldChestTileEntity extends AbstractChestTileEntity
 		inventorySize = data.getSlotCount();
 		inventory = NonNullList.withSize(inventorySize, ItemStack.EMPTY);
 		SLOTS = new int[inventorySize];
-		for (int i = 0; i < inventorySize; i++) SLOTS[i] = i;
+		for (int i = 0; i < inventorySize; i++) { SLOTS[i] = i; }
 	}
 }

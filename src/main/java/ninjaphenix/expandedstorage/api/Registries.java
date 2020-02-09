@@ -28,8 +28,8 @@ public class Registries
 
 	static
 	{
-		// Populates registries with null ids incase anything goes wrong. Idealy these should never present themselves.
-		ResourceLocation nullId = ExpandedStorage.getRl("null");
+		// Populates registries with null ids in case anything goes wrong. Ideally these should never present themselves.
+		final ResourceLocation nullId = ExpandedStorage.getRl("null");
 		MODELED.register(nullId, new ModeledTierData(0, nullId,
 				new TranslationTextComponent("container.expandedstorage.error"), nullId, nullId, nullId, nullId));
 		OLD.register(nullId, new TierData(0, nullId, new TranslationTextComponent("container.expandedstorage.error")));
@@ -70,9 +70,9 @@ public class Registries
 		 */
 		public ResourceLocation getChestTexture(CursedChestType type)
 		{
-			if (type == CursedChestType.BOTTOM || type == CursedChestType.TOP) return tallTexture;
-			else if (type == CursedChestType.LEFT || type == CursedChestType.RIGHT) return vanillaTexture;
-			else if (type == CursedChestType.FRONT || type == CursedChestType.BACK) return longTexture;
+			if (type == CursedChestType.BOTTOM || type == CursedChestType.TOP) { return tallTexture; }
+			else if (type == CursedChestType.LEFT || type == CursedChestType.RIGHT) { return vanillaTexture; }
+			else if (type == CursedChestType.FRONT || type == CursedChestType.BACK) { return longTexture; }
 			return singleTexture;
 		}
 	}
