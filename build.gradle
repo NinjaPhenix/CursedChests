@@ -18,8 +18,8 @@ group 'ninjaphenix'
 version = "${mod_version}+${minecraft_version}"
 
 minecraft {
-	mappings channel: 'snapshot', version: '20200124-1.15.1'
-
+	mappings channel: 'snapshot', version: '20200205-1.15.1'
+	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 	runs {
 		client {
 			workingDirectory project.file('run')
@@ -74,7 +74,7 @@ minecraft {
 }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.15.2-31.0.1'
+	minecraft 'net.minecraftforge:forge:1.15.2-31.1.0'
 }
 
 jar {

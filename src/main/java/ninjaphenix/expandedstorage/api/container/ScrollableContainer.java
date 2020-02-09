@@ -14,10 +14,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.network.IContainerFactory;
-import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.ModContent;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class ScrollableContainer extends Container
@@ -91,28 +89,14 @@ public class ScrollableContainer extends Container
 		int index = 0;
 		if (termChanged && !searchTerm.equals("")) Arrays.sort(unsortedToSortedSlotMap, this::compare);
 		else if (termChanged) Arrays.sort(unsortedToSortedSlotMap);
-		try
+		for (Integer slotID : unsortedToSortedSlotMap)
 		{
-			Field xField = Slot.class.getField("field_75223_e");
-			Field yField = Slot.class.getField("field_75221_f");
-
-			for (Integer slotID : unsortedToSortedSlotMap)
-			{
-				Slot slot = inventorySlots.get(slotID);
-				int y = (index / 9) - offset;
-				if (!xField.isAccessible()) xField.setAccessible(true);
-				if (!yField.isAccessible()) yField.setAccessible(true);
-				xField.set(slot, 8 + 18 * (index % 9));
-				yField.set(slot, (y >= rows || y < 0) ? -2000 : 18 + 18 * y);
-				index++;
-			}
+			Slot slot = inventorySlots.get(slotID);
+			int y = (index / 9) - offset;
+			slot.xPos = 8 + 18 * (index % 9);
+			slot.yPos = (y >= rows || y < 0) ? -2000 : 18 + 18 * y;
+			index++;
 		}
-		catch (NoSuchFieldException | IllegalAccessException ignored)
-		{
-			ExpandedStorage.LOGGER
-					.error("[Expanded Storage] Could not find slot fields, scrolling will not work. Please report to NinjaPhenix on curseforge or github.");
-		}
-
 	}
 
 	private int compare(Integer a, Integer b)
