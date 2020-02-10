@@ -29,9 +29,9 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.6.2",
-    "fabric": ">=0.4.23",
-    "minecraft": ">=1.15.1",
+		"fabricloader": ">=0.7.8",
+		"fabric": ">=0.4.30",
+		"minecraft": "~1.16-alpha.20.6.a",
     "expandedstorageapi": ">=0.0.3 <1.0.0",
     "ninjaphenix-container-lib": ">=0.1.2 <1.0.0"
   }

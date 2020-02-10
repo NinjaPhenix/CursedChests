@@ -27,12 +27,14 @@ public final class ModBlocks
 		chest(Blocks.GOLD_BLOCK, "gold_chest", 9);
 		diamond_chest = chest(Blocks.DIAMOND_BLOCK, "diamond_chest", 12);
 		chest(Blocks.OBSIDIAN, "obsidian_chest", 12);
+		chest(Blocks.NETHERITE_BLOCK, "netherite_chest", 15);
 
 		old(Blocks.OAK_PLANKS, "wood_chest", 3);
 		old(Blocks.IRON_BLOCK, "iron_chest", 6);
 		old(Blocks.GOLD_BLOCK, "gold_chest", 9);
 		old(Blocks.DIAMOND_BLOCK, "diamond_chest", 12);
 		old(Blocks.OBSIDIAN, "obsidian_chest", 12);
+		old(Blocks.NETHERITE_BLOCK, "netherite_chest", 15);
 	}
 
 	private ModBlocks() {}
