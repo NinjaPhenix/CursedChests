@@ -13,6 +13,8 @@ import ninjaphenix.expandedstorage.ExpandedStorage;
 import ninjaphenix.expandedstorage.api.client.gui.widget.SearchTextFieldWidget;
 import ninjaphenix.expandedstorage.api.container.ScrollableContainer;
 
+import java.util.Optional;
+
 @OnlyIn(Dist.CLIENT)
 public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 {
@@ -23,7 +25,7 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	private int topRow;
 	private double progress;
 	private boolean dragging;
-	private SearchTextFieldWidget searchBox;
+	private Optional<SearchTextFieldWidget> searchBox;
 	private String searchBoxOldText;
 
 	public ScrollableScreen(final ScrollableContainer container, final PlayerInventory playerInventory, final ITextComponent containerTitle)
@@ -43,14 +45,19 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	protected void init()
 	{
 		super.init();
-		if (hasScrollbar())
+		if (!hasScrollbar())
 		{
-			searchBox = addButton(new SearchTextFieldWidget(font, guiLeft + 82, guiTop + 127, 80, 8, ""));
-			searchBox.setMaxStringLength(50);
-			searchBox.setEnableBackgroundDrawing(false);
-			searchBox.setVisible(hasScrollbar());
-			searchBox.setTextColor(16777215);
-			searchBox.setResponder(str ->
+			searchBox = Optional.empty();
+		}
+		else
+		{
+			searchBox = Optional.of(addButton(new SearchTextFieldWidget(font, guiLeft + 82, guiTop + 127, 80, 8, "")));
+			final SearchTextFieldWidget box = searchBox.get();
+			box.setMaxStringLength(50);
+			box.setEnableBackgroundDrawing(false);
+			box.setVisible(hasScrollbar());
+			box.setTextColor(16777215);
+			box.setResponder(str ->
 			{
 				if (str.equals(searchBoxOldText)) { return; }
 				container.setSearchTerm(str);
@@ -58,13 +65,13 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 				topRow = 0;
 				searchBoxOldText = str;
 			});
-			this.setFocused(searchBox);
-			searchBox.setFocused2(true);
+			this.setFocused(box);
+			box.setFocused2(true);
 		}
 	}
 
 	@Override
-	public void tick() { searchBox.tick(); }
+	public void tick() { searchBox.ifPresent(SearchTextFieldWidget::tick); }
 
 	@Override
 	public void render(final int mouseX, final int mouseY, final float lastFrameDuration)
@@ -97,8 +104,8 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 			blit(x + 172, y, 0, 0, 22, 132);
 			blit(x + 174, (int) (y + 18 + 91 * progress), 22, 0, 12, 15);
 			blit(x + 79, y + 126, 34, 0, 90, 11);
-			searchBox.render(mouseX, mouseY, lastFrameDuration);
 		}
+		searchBox.ifPresent(searchTextFieldWidget -> searchTextFieldWidget.render(mouseX, mouseY, lastFrameDuration));
 	}
 
 	@Override
@@ -134,10 +141,14 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	@Override
 	public boolean mouseClicked(final double mouseX, final double mouseY, final int button)
 	{
-		if (searchBox.isFocused() && !searchBox.mouseInBounds(mouseX, mouseY) && button == 0)
+		if (searchBox.isPresent())
 		{
-			searchBox.changeFocus(true);
-			this.setFocused(null);
+			final SearchTextFieldWidget box = searchBox.get();
+			if (box.isFocused() && !box.mouseInBounds(mouseX, mouseY) && button == 0)
+			{
+				box.changeFocus(true);
+				this.setFocused(null);
+			}
 		}
 		if (button == 0 && guiLeft + 172 < mouseX && mouseX < guiLeft + 184 && guiTop + 18 < mouseY && mouseY < guiTop + 123)
 		{
@@ -168,38 +179,55 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 			minecraft.player.closeScreen();
 			return true;
 		}
-		if (!searchBox.isFocused())
+		if (searchBox.isPresent())
 		{
-			if (minecraft.gameSettings.keyBindChat.matchesKey(keyCode, scanCode))
+			final SearchTextFieldWidget box = searchBox.get();
+			if (!box.isFocused())
 			{
-				searchBox.changeFocus(true);
-				this.setFocused(searchBox);
-				searchBox.ignoreNextChar();
-				return true;
+				if (minecraft.gameSettings.keyBindChat.matchesKey(keyCode, scanCode))
+				{
+					box.changeFocus(true);
+					this.setFocused(box);
+					box.ignoreNextChar();
+					return true;
+				}
+				return super.keyPressed(keyCode, scanCode, modifiers);
 			}
-			return super.keyPressed(keyCode, scanCode, modifiers);
+			return box.keyPressed(keyCode, scanCode, modifiers);
 		}
-		return searchBox.keyPressed(keyCode, scanCode, modifiers);
+		return super.keyPressed(keyCode, scanCode, modifiers);
 	}
 
 	@Override
 	public boolean charTyped(final char character, int int_1)
 	{
-		if (searchBox.isFocused()) { return searchBox.charTyped(character, int_1); }
+		if (searchBox.isPresent())
+		{
+			final SearchTextFieldWidget box = searchBox.get();
+			if (box.isFocused()) {return box.charTyped(character, int_1); }
+		}
 		return super.charTyped(character, int_1);
 	}
 
 	@Override
 	public void resize(final Minecraft client, final int width, final int height)
 	{
-		String text = searchBox.getText();
-		boolean focused = searchBox.isFocused();
-		super.resize(client, width, height);
-		searchBox.setText(text);
-		if (focused)
+		if (searchBox.isPresent())
 		{
-			searchBox.changeFocus(true);
-			setFocused(searchBox);
+			final SearchTextFieldWidget box = searchBox.get();
+			String text = box.getText();
+			boolean focused = box.isFocused();
+			super.resize(client, width, height);
+			box.setText(text);
+			if (focused)
+			{
+				box.changeFocus(true);
+				setFocused(box);
+			}
+		}
+		else
+		{
+			super.resize(client, width, height);
 		}
 	}
 
