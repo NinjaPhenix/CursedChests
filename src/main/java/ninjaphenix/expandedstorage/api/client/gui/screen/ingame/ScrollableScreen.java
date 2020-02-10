@@ -43,19 +43,24 @@ public class ScrollableScreen extends ContainerScreen<ScrollableContainer>
 	protected void init()
 	{
 		super.init();
-		searchBox = addButton(new SearchTextFieldWidget(font, guiLeft + 82, guiTop + 127, 80, 8, ""));
-		searchBox.setMaxStringLength(50);
-		searchBox.setEnableBackgroundDrawing(false);
-		searchBox.setVisible(hasScrollbar());
-		searchBox.setTextColor(16777215);
-		searchBox.setResponder(str ->
+		if (hasScrollbar())
 		{
-			if (str.equals(searchBoxOldText)) { return; }
-			container.setSearchTerm(str);
-			progress = 0;
-			topRow = 0;
-			searchBoxOldText = str;
-		});
+			searchBox = addButton(new SearchTextFieldWidget(font, guiLeft + 82, guiTop + 127, 80, 8, ""));
+			searchBox.setMaxStringLength(50);
+			searchBox.setEnableBackgroundDrawing(false);
+			searchBox.setVisible(hasScrollbar());
+			searchBox.setTextColor(16777215);
+			searchBox.setResponder(str ->
+			{
+				if (str.equals(searchBoxOldText)) { return; }
+				container.setSearchTerm(str);
+				progress = 0;
+				topRow = 0;
+				searchBoxOldText = str;
+			});
+			this.setFocused(searchBox);
+			searchBox.setFocused2(true);
+		}
 	}
 
 	@Override
