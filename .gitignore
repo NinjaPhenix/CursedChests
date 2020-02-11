@@ -11,3 +11,6 @@ classes/
 *.iws
 /includes/Statement*.jar
 /includes/Towelette*.jar
+/includes/creativebuttonmover-*.jar
+/includes/expandedstorageapi-*.jar
+/includes/ninjaphenix-container-lib-*.jar
