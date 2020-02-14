@@ -1,7 +1,8 @@
 plugins {
-	id "fabric-loom" version "0.2.6-SNAPSHOT"
 	id "com.matthewprenger.cursegradle" version "1.4.0"
 }
+
+apply plugin: "fabric-loom-ninjaphenix"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_1_8
@@ -51,11 +52,11 @@ dependencies {
 
 processResources {
 	inputs.property "version", project.version
-	from(sourceSets.main.resources.srcDirs) {include("fabric.mod.json"); expand("version": version)}
-	from(sourceSets.main.resources.srcDirs) {exclude("fabric.mod.json")}
+	from(sourceSets.main.resources.srcDirs) { include("fabric.mod.json"); expand("version": version) }
+	from(sourceSets.main.resources.srcDirs) { exclude("fabric.mod.json") }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {archiveClassifier.set("sources"); from sourceSets.main.allSource}
+task sourcesJar(type: Jar, dependsOn: classes) { archiveClassifier.set("sources"); from sourceSets.main.allSource }
 jar { from("LICENSE") }
 runClient { args = ["--username", "Dev"] }
 tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
