@@ -13,16 +13,16 @@ pluginManagement {
 	}
 }
 
-buildscript {
-	repositories {
-		mavenCentral()
-		maven {
-			name = "Fabric"
-			url = 'https://maven.fabricmc.net/'
-		}
-		mavenLocal()
-		dependencies{
-			classpath 'net.fabricmc:fabric-loom-ninjaphenix:0.2.6-SNAPSHOT'
-		}
-	}
-}
+//buildscript {
+//	repositories {
+//		mavenCentral()
+//		maven {
+//			name = "Fabric"
+//			url = 'https://maven.fabricmc.net/'
+//		}
+//		mavenLocal()
+//		dependencies{
+//			classpath 'net.fabricmc:fabric-loom-ninjaphenix:0.2.6-SNAPSHOT'
+//		}
+//	}
+//}

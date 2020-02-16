@@ -1,8 +1,9 @@
 plugins {
 	id "com.matthewprenger.cursegradle" version "1.4.0"
+	id "fabric-loom" version "0.2.6-SNAPSHOT"
 }
 
-apply plugin: "fabric-loom-ninjaphenix"
+//apply plugin: "fabric-loom-ninjaphenix"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_1_8
