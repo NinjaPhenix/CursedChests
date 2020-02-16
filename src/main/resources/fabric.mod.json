@@ -8,10 +8,8 @@
     "NinjaPhenix"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage",
-    "sources": "https://github.com/NinjaPhenix/ExpandedStorage/tree/1.15-snapshot"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/expanded-storage"
   },
-  "license": "MIT",
   "icon": "assets/expandedstorage/icon.png",
   "environment": "*",
   "entrypoints": {
