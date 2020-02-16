@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "expandedstorage:item/iron_to_netherite_conversion_kit"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "expandedstorage:item/iron_to_netherite_conversion_kit"
+	}
 }

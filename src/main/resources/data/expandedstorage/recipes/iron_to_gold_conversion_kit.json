@@ -1,19 +1,19 @@
 {
-  "type": "crafting_shaped",
-  "pattern": [
-    "GGG",
-    "GIG",
-    "GGG"
-  ],
-  "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    }
-  },
-  "result": {
-    "item": "expandedstorage:iron_to_gold_conversion_kit"
-  }
+	"type": "crafting_shaped",
+	"pattern": [
+		"GGG",
+		"GIG",
+		"GGG"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:iron_ingot"
+		},
+		"G": {
+			"item": "minecraft:gold_ingot"
+		}
+	},
+	"result": {
+		"item": "expandedstorage:iron_to_gold_conversion_kit"
+	}
 }

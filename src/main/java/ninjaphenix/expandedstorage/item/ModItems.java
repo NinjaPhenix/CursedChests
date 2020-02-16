@@ -24,7 +24,7 @@ public final class ModItems
 		for (int i = 0; i < size; i++)
 		{
 			final Pair<Identifier, String> from = tiers.get(i);
-			for (int j = i+1; j < size; j++)
+			for (int j = i + 1; j < size; j++)
 			{
 				registerConversionItem(from, tiers.get(j));
 			}

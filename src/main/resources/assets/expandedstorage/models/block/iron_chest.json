@@ -1,5 +1,5 @@
 {
-  "textures": {
-    "particle": "expandedstorage:block/old_iron_chest/chest_front"
-  }
+	"textures": {
+		"particle": "expandedstorage:block/old_iron_chest/chest_front"
+	}
 }

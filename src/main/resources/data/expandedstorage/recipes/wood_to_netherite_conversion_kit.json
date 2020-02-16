@@ -4,9 +4,9 @@
     {
       "item": "expandedstorage:wood_to_obsidian_conversion_kit"
     },
-	{
-	  "item": "minecraft:netherite_ingot"
-	}
+    {
+      "item": "minecraft:netherite_ingot"
+    }
   ],
   "result": {
     "item": "expandedstorage:wood_to_netherite_conversion_kit"

@@ -4,9 +4,9 @@
     {
       "item": "minecraft:obsidian"
     },
-	{
-	  "item": "minecraft:netherite_ingot"
-	}
+    {
+      "item": "minecraft:netherite_ingot"
+    }
   ],
   "result": {
     "item": "expandedstorage:obsidian_to_netherite_conversion_kit"
