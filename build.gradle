@@ -16,6 +16,7 @@ repositories {
 	maven { url "https://tehnut.info/maven/" }
 	maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
 	flatDir { dirs "includes" }
+	mavenLocal()
 }
 
 dependencies {
