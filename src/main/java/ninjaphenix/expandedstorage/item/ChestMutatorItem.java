@@ -78,7 +78,7 @@ public class ChestMutatorItem extends ChestModifierItem
 									world.setBlockState(mainBlockPos, mainState.with(TYPE, mainChestType));
 									world.setBlockState(pos, world.getBlockState(pos).with(TYPE, mainChestType.getOpposite()));
 									tag.remove("pos");
-									player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
+									player.addMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
 									player.getItemCooldownManager().set(this, 5);
 									return ActionResult.SUCCESS;
 								}
@@ -93,7 +93,7 @@ public class ChestMutatorItem extends ChestModifierItem
 					if (mainState.get(TYPE) == CursedChestType.SINGLE)
 					{
 						tag.put("pos", NbtHelper.fromBlockPos(mainBlockPos));
-						player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
+						player.addMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
 						player.getItemCooldownManager().set(this, 5);
 						return ActionResult.SUCCESS;
 					}
@@ -195,7 +195,7 @@ public class ChestMutatorItem extends ChestModifierItem
 									blockEntity.fromTag(Inventories.toTag(blockEntity.toTag(new CompoundTag()), invData));
 
 									tag.remove("pos");
-									player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
+									player.addMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_end"), true);
 									player.getItemCooldownManager().set(this, 5);
 								}
 								return ActionResult.SUCCESS;
@@ -209,7 +209,7 @@ public class ChestMutatorItem extends ChestModifierItem
 					if (state.get(ChestBlock.CHEST_TYPE) == ChestType.SINGLE)
 					{
 						tag.put("pos", NbtHelper.fromBlockPos(mainPos));
-						player.addChatMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
+						player.addMessage(new TranslatableText("tooltip.expandedstorage.chest_mutator.merge_start"), true);
 						player.getItemCooldownManager().set(this, 5);
 						return ActionResult.SUCCESS;
 					}
@@ -290,7 +290,7 @@ public class ChestMutatorItem extends ChestModifierItem
 			CompoundTag tag = stack.getOrCreateTag();
 			tag.putByte("mode", getMode(stack).next);
 			if (tag.contains("pos")) { tag.remove("pos"); }
-			if (!world.isClient) { player.addChatMessage(getMode(stack).translation, true); }
+			if (!world.isClient) { player.addMessage(getMode(stack).translation, true); }
 			return TypedActionResult.success(stack);
 		}
 		return super.useModifierInAir(world, player, hand);

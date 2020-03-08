@@ -1,9 +1,7 @@
 plugins {
 	id "com.matthewprenger.cursegradle" version "1.4.0"
-	id "fabric-loom" version "0.2.6-SNAPSHOT"
+	id "fabric-loom" version "0.2.7-SNAPSHOT"
 }
-
-//apply plugin: "fabric-loom-ninjaphenix"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_1_8
@@ -16,6 +14,7 @@ group = project.maven_group
 repositories {
 	maven { url "https://minecraft.curseforge.com/api/maven" }
 	maven { url "https://tehnut.info/maven/" }
+	maven { url "http://server.bbkr.space:8081/artifactory/libs-release/" }
 	flatDir { dirs "includes" }
 }
 
@@ -40,13 +39,19 @@ dependencies {
 	modCompileOnly("statement:Statement:${statement_version}")
 
 	modRuntime("ninjaphenix:ninjaphenix-container-lib:${container_library_version}")
-	//include("ninjaphenix:ninjaphenix-container-lib:${container_library_version}")
+	include("ninjaphenix:ninjaphenix-container-lib:${container_library_version}")
 
 	modApi("ninjaphenix:expandedstorageapi:${expandedstorageapi_version}")
 	include("ninjaphenix:expandedstorageapi:${expandedstorageapi_version}")
 
 	modRuntime("ninjaphenix:creativebuttonmover:${creative_button_mover_version}")
 	include("ninjaphenix:creativebuttonmover:${creative_button_mover_version}")
+
+	modCompile("io.github.cottonmc:Jankson-Fabric:2.0.0+j1.2.0"){
+		exclude(group: "net.fabricmc", module: "fabric-loader")
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+	include "io.github.cottonmc:Jankson-Fabric:2.0.0+j1.2.0"
 
 	compileOnly("org.checkerframework:checker-qual:3.0.1")
 }
@@ -60,6 +65,16 @@ processResources {
 task sourcesJar(type: Jar, dependsOn: classes) { archiveClassifier.set("sources"); from sourceSets.main.allSource }
 jar { from("LICENSE") }
 runClient { args = ["--username", "Dev"] }
+
+task extractAndMinify(type: Copy, dependsOn: tasks.getByName("remapJar")) {
+
+}
+
+task minifyJsonTask(type: Jar, dependsOn: extractAndMinify) {
+
+}
+
+
 tasks.withType(JavaCompile) { options.setEncoding("UTF-8") }
 
 if (project.hasProperty("api_key")) {
